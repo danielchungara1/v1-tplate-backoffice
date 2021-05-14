@@ -1,0 +1,7 @@
+.security-container {
+  border: red solid 1px;
+  margin: 15px;
+  padding: 15px;
+  width: 90vw;
+  height: 80vh;
+}
