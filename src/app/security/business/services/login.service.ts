@@ -5,7 +5,6 @@ import ObjectMapper from 'object-mapper';
 import {HttpService} from '@core/http.service';
 import {EndPoints} from '@core/end-points';
 import {LoginResponseDto} from '../dtos/LoginResponseDto';
-import {UserLogged} from '../../../core/state/UserLogged';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {UserBuilder} from '../helpers/UserBuilder';
 import {Observable, throwError} from 'rxjs';

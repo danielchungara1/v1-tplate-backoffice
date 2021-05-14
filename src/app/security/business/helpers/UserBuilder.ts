@@ -1,4 +1,4 @@
-import {UserLogged} from '../../../core/state/UserLogged';
+import {UserLogged} from '@core/state/UserLogged';
 
 export class UserBuilder {
 
