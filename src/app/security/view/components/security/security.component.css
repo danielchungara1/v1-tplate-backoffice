@@ -8,3 +8,9 @@
 .security-container ::ng-deep router-outlet {
   position: absolute;
 }
+
+p-message {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
