@@ -1,7 +1,10 @@
 .security-container {
-  border: red solid 1px;
-  margin: 15px;
-  padding: 15px;
-  width: 90vw;
-  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.security-container ::ng-deep router-outlet {
+  position: absolute;
 }
