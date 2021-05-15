@@ -1,11 +1,39 @@
 <div class="login-container">
-  <h1>Login Component</h1>
+  <p-card [style]="{width: '360px'}" styleClass="p-card-shadow">
 
-  <input [(ngModel)]="model.username" placeholder="Username" type="text"/>
+    <i class="pi pi-user login-icon"></i>
 
-  <input [(ngModel)]="model.password" placeholder="Password" type="password"/>
+    <div class="p-field">
+      <label for="username1">Username</label>
+      <input
+        id="username1"
+        type="username"
+        aria-describedby="username1-help"
+        pInputText [(ngModel)]="model.username"
+        class="w-100"
+      />
+    </div>
 
-  <button (click)="login()" mat-button>Submit</button>
+    <div class="p-field">
+      <label for="password1">Password</label>
+      <p-password
+        id="password1"
+        [(ngModel)]="model.password"
+        [toggleMask]="true"
+        [inputStyle]="{'width':'100%'}"
+        [style]="{'width':'100%'}"
+      ></p-password>
+    </div>
 
+    <ng-template pTemplate="footer">
+      <p-button
+        [style]="{'width':'100%'}"
+        label="Login"
+        (click)="login()"
+      ></p-button>
+    </ng-template>
+
+  </p-card>
 
 </div>
+

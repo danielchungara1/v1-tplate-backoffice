@@ -6,6 +6,10 @@ import { FooterComponent } from './view/components/footer/footer.component';
 import { LoginComponent } from './view/components/login/login.component';
 import { ResetPassComponent } from './view/components/reset-pass/reset-pass.component';
 import {CoreModule} from '@core/core.module';
+import {CardModule} from 'primeng/card';
+import {ButtonModule} from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import {CoreModule} from '@core/core.module';
   ],
   imports: [
     SecurityRoutingModule,
-    CoreModule
+    CoreModule,
+    CardModule,
+    ButtonModule,
+    InputTextModule,
+    PasswordModule
   ],
   exports: [
   ],
