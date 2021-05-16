@@ -2,9 +2,22 @@
 
 html, body {
   height: 100%;
+  font-size: 0.95em;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.border-red {
+  border: 1px solid red;
+}
+
+.w-100 {
+  width: 100%!important;
 }

@@ -4,14 +4,13 @@
   justify-content: space-between;
   height: 100vh;
 }
-
 .security-container ::ng-deep router-outlet {
   position: absolute;
 }
 
 p-messages {
   position: fixed;
-  bottom: -10px;
+  bottom: 34px;
   width: 400px;
   margin: auto;
   left: 0;
@@ -21,7 +20,7 @@ p-messages ::ng-deep .p-message-wrapper {
   height: 40px;
 }
 p-messages ::ng-deep .p-message {
-  font-size: 0.75em;
+  font-size: 0.85em;
 }
 p-messages ::ng-deep .p-message-icon {
   font-size: 1.25em;

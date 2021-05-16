@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../../business/services/login.service';
-import {UserModel} from '../../models/UserModel';
+import {LoginModel} from '../../models/LoginModel';
 import {NotificationService} from '../../../business/services/notification.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,25 @@ import {NotificationService} from '../../../business/services/notification.servi
 })
 export class LoginComponent implements OnInit {
 
-  model: UserModel;
+  loginForm: FormGroup;
 
-  constructor(private service: LoginService, private notificationService: NotificationService) {
+  constructor(private service: LoginService,
+              private notificationService: NotificationService,
+              public formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-    this.model = {username: '', password: ''};
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+
   }
 
   login(): void {
-    this.service.login(this.model)
+    const model: LoginModel = this.loginForm.value as LoginModel;
+    this.service.login(model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -29,6 +38,10 @@ export class LoginComponent implements OnInit {
           this.notificationService.showError(msg);
         }
       );
+  }
+
+  get getControl(): any {
+    return this.loginForm.controls;
   }
 
 }

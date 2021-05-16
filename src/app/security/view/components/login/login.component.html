@@ -1,40 +1,50 @@
-<div class="login-container">
-  <p-card [style]="{width: '360px', height: '360px', padding: '0 10px'}" styleClass="p-card-shadow">
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-container">
+  <div class="card">
 
-    <i class="pi pi-user login-icon"></i>
-
-    <div class="p-field">
-      <label for="username1">Username</label>
-      <input
-        id="username1"
-        type="username"
-        aria-describedby="username1-help"
-        pInputText [(ngModel)]="model.username"
-        class="w-100"
-      />
+    <div class="card-header">
+      <i class="fas fa-user-circle login-icon"></i>
     </div>
 
-    <div class="p-field">
-      <label for="password1">Password</label>
-      <p-password
-        id="password1"
-        [(ngModel)]="model.password"
-        [toggleMask]="true"
-        [inputStyle]="{'width':'100%'}"
-        [style]="{'width':'100%'}"
-        [feedback] = false
-      ></p-password>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="username1">Username</label>
+        <input
+          id="username1"
+          type="username"
+          aria-describedby="username1-help"
+          pInputText
+          formControlName="username"
+          class="w-100"
+        />
+        <div *ngIf="getControl.username.touched && getControl.username.invalid" class="text-danger">
+          <div *ngIf="getControl.username.errors.required">Username is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password1">Password</label>
+        <p-password
+          id="password1"
+          formControlName="password"
+          [toggleMask]="true"
+          [inputStyle]="{'width':'100%'}"
+          [style]="{'width':'100%'}"
+          [feedback]=false
+        ></p-password>
+        <div *ngIf="getControl.password.touched && getControl.password.invalid" class="text-danger">
+          <div *ngIf="getControl.password.errors.required">Password is required.</div>
+        </div>
+      </div>
     </div>
 
-    <ng-template pTemplate="footer">
+    <div class="card-footer">
       <p-button
-        [style]="{'width':'100%'}"
+        [style]="{'width':'100%', 'font-weight':'600'}"
         label="Login"
-        (click)="login()"
+        type="submit"
+        [disabled]="loginForm.invalid"
       ></p-button>
-    </ng-template>
+    </div>
 
-  </p-card>
-
-</div>
+  </div>
+</form>
 
