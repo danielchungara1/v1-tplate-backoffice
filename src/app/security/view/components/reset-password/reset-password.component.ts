@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ResetCodeService} from '../../../business/services/resetCode.service';
-import {ResetCodeModel} from '../../models/ResetCodeModel';
+import {ResetPasswordModel} from '../../models/ResetPasswordModel';
 import {NotificationService} from '../../../business/services/notification.service';
 
 @Component({
@@ -11,8 +11,12 @@ import {NotificationService} from '../../../business/services/notification.servi
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetCodeForm: FormGroup;
-  sending = false;
+  resetPasswordModel: ResetPasswordModel;
+
+  sendEmailForm: FormGroup;
+  sendingCode = false;
+
+  updatePasswordForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder,
               private resetCodeService: ResetCodeService,
@@ -20,29 +24,55 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.resetCodeForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]
-      ]
+    this.sendEmailForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+
+    this.updatePasswordForm = this.formBuilder.group({
+      code: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     });
   }
 
-  sendResetCode(): void {
-    this.sending = true;
-    const resetCodeModel: ResetCodeModel = this.resetCodeForm.value as ResetCodeModel;
-    this.resetCodeService.sendResetCode(resetCodeModel)
+  sendEmail(): void {
+    this.sendingCode = true;
+    this.resetPasswordModel = this.sendEmailForm.value as ResetPasswordModel;
+
+    this.resetCodeService.sendResetCode(this.resetPasswordModel)
       .subscribe(
         msg => {
           this.notificationService.showSuccess(msg);
-          this.sending = false;
+          this.sendingCode = false;
         },
         msg => {
           this.notificationService.showError(msg);
-          this.sending = false;
+          this.sendingCode = false;
         }
       );
   }
 
-  get getControl(): { [p: string]: AbstractControl } {
-    return this.resetCodeForm.controls;
+  updatePassword(): void {
+    // Todo: uncoupling dependencies
+    const email = this.resetPasswordModel.email;
+    this.resetPasswordModel = this.updatePasswordForm.value as ResetPasswordModel;
+    this.resetPasswordModel.email = email;
+
+    this.resetCodeService.updatePassword(this.resetPasswordModel)
+      .subscribe(
+        msg => {
+          this.notificationService.showSuccess(msg);
+        },
+        msg => {
+          this.notificationService.showError(msg);
+        }
+      );
+  }
+
+  get getSendEmailForm(): { [p: string]: AbstractControl } {
+    return this.sendEmailForm.controls;
+  }
+
+  get getUpdatePasswordForm(): { [p: string]: AbstractControl } {
+    return this.updatePasswordForm.controls;
   }
 }

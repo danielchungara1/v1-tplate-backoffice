@@ -10,9 +10,10 @@ import {UserBuilder} from '../helpers/UserBuilder';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {StoreService} from '@core/store.service';
-import {ResetCodeModel} from '../../view/models/ResetCodeModel';
+import {ResetPasswordModel} from '../../view/models/ResetPasswordModel';
 import {ResetCodeDto} from '../dtos/ResetCodeDto';
 import {ResponseDto} from '../dtos/ResponseDto';
+import {UpdatePasswordDto} from '../dtos/UpdatePasswordDto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,12 +23,28 @@ export class ResetCodeService {
   constructor(private httpService: HttpService) {
   }
 
-  sendResetCode(resetCodeModel: ResetCodeModel): Observable<string> {
+  sendResetCode(resetCodeModel: ResetPasswordModel): Observable<string> {
 
     const resetCodeDto = ObjectMapper(resetCodeModel, ResetCodeDto);
 
     return this.httpService
-      .post<ResponseDto<any>>(EndPoints.AUTH_RESET_CODE, resetCodeDto)
+      .post<ResponseDto<any>>(EndPoints.AUTH_SEND_RESET_CODE, resetCodeDto)
+      .pipe(
+        map((res: ResponseDto<any>) => {
+            // Return message
+            return res.message;
+          }
+        ),
+        catchError(err => throwError(err.message))
+      );
+  }
+
+  updatePassword(resetPasswordModel: ResetPasswordModel): Observable<string> {
+
+    const updatePasswordDto = ObjectMapper(resetPasswordModel, UpdatePasswordDto);
+
+    return this.httpService
+      .put<ResponseDto<any>>(EndPoints.AUTH_UPDATE_PASSWORD, updatePasswordDto)
       .pipe(
         map((res: ResponseDto<any>) => {
             // Return message
