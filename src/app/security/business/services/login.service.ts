@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {UserModel} from '../../view/models/UserModel';
+import {LoginModel} from '../../view/models/LoginModel';
 import {LoginDto} from '../dtos/LoginDto';
 import ObjectMapper from 'object-mapper';
 import {HttpService} from '@core/http.service';
@@ -21,9 +21,9 @@ export class LoginService {
   constructor(private httpService: HttpService, private storeService: StoreService) {
   }
 
-  login(userModel: UserModel): Observable<string> {
+  login(loginModel: LoginModel): Observable<string> {
 
-    const loginDto = ObjectMapper(userModel, LoginDto);
+    const loginDto = ObjectMapper(loginModel, LoginDto);
 
     return this.httpService
       .post<LoginResponseDto>(EndPoints.AUTH_LOGIN, loginDto)
