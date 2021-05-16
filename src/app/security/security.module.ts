@@ -4,7 +4,7 @@ import { HeaderComponent } from './view/components/header/header.component';
 import { SecurityComponent } from './view/components/security/security.component';
 import { FooterComponent } from './view/components/footer/footer.component';
 import { LoginComponent } from './view/components/login/login.component';
-import { ResetPassComponent } from './view/components/reset-pass/reset-pass.component';
+import { ResetPasswordComponent } from './view/components/reset-password/reset-password.component';
 import {CoreModule} from '@core/core.module';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
@@ -19,7 +19,7 @@ import {MessageModule} from 'primeng/message';
     SecurityComponent,
     FooterComponent,
     LoginComponent,
-    ResetPassComponent
+    ResetPasswordComponent
   ],
   imports: [
     SecurityRoutingModule,
