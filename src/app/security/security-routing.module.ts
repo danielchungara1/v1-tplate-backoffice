@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {SecurityComponent} from './view/components/security/security.component';
 import {LoginComponent} from './view/components/login/login.component';
-import {ResetPassComponent} from './view/components/reset-pass/reset-pass.component';
+import {ResetPasswordComponent} from './view/components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
     component: SecurityComponent,
     children: [
       {path: 'login', component: LoginComponent},
-      {path: 'reset-password', component: ResetPassComponent},
+      {path: 'reset-password', component: ResetPasswordComponent},
       {path: '**', component: LoginComponent}
     ]
   }
