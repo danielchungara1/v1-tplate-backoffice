@@ -10,5 +10,7 @@
 }
 
 #image-logo {
-  font-size: 1.25em
+  font-size: 1.25em;
+  cursor:pointer;
+  padding: 16px;
 }

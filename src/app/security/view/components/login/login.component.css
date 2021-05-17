@@ -11,32 +11,6 @@
 }
 
 /**********************************************************************************
-* Forms
-/**********************************************************************************/
-.text-danger {
-  font-size: 0.85em;
-  color: rgba(255, 0, 0, 0.75);
-  font-weight: 600;
-  padding: 5px 0;
-}
-
-.form-group {
-  margin: 15px 0;
-}
-
-.form-group label {
-
-}
-
-.form-group ::ng-deep .p-inputtext {
-  margin: 5px 0;
-}
-
-.p-inputtext.ng-dirty.ng-invalid {
-  border-color: #ced4da;
-}
-
-/**********************************************************************************
 * Cards
 /**********************************************************************************/
 .card {
@@ -49,6 +23,27 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
+
+
 .card-header{}
 .card-body{}
-.card-footer{}
+.card-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+/**********************************************************************************
+* Links
+/**********************************************************************************/
+#reset-password-link {
+  text-decoration: none;
+  margin: 5px  0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9em;
+}
+#reset-password-link:hover{
+  text-decoration: underline;
+}

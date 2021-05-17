@@ -1,15 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ResetCodeService} from '../../../business/services/resetCode.service';
 import {ResetPasswordModel} from '../../models/ResetPasswordModel';
 import {NotificationService} from '../../../business/services/notification.service';
+import {MatVerticalStepper} from '@angular/material/stepper';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reset-pass',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(MatVerticalStepper) stepper: MatVerticalStepper;
 
   resetPasswordModel: ResetPasswordModel;
 
@@ -17,10 +21,12 @@ export class ResetPasswordComponent implements OnInit {
   sendingCode = false;
 
   updatePasswordForm: FormGroup;
+  updatingPassword = false;
 
   constructor(public formBuilder: FormBuilder,
               private resetCodeService: ResetCodeService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,26 +38,36 @@ export class ResetPasswordComponent implements OnInit {
       code: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+
+    this.resetPasswordModel = {code: '', email: '', password: ''};
+  }
+
+  ngAfterViewInit(): void {
+    this.stepper.selected.completed = false;
   }
 
   sendEmail(): void {
-    this.sendingCode = true;
+    this.sendingCodeTrue();
     this.resetPasswordModel = this.sendEmailForm.value as ResetPasswordModel;
 
     this.resetCodeService.sendResetCode(this.resetPasswordModel)
       .subscribe(
         msg => {
           this.notificationService.showSuccess(msg);
-          this.sendingCode = false;
+          this.sendingCodeFalse();
+          this.completeStep();
         },
         msg => {
           this.notificationService.showError(msg);
-          this.sendingCode = false;
+          this.sendingCodeFalse();
         }
       );
+
   }
 
   updatePassword(): void {
+    this.updatingPasswordTrue();
+
     // Todo: uncoupling dependencies
     const email = this.resetPasswordModel.email;
     this.resetPasswordModel = this.updatePasswordForm.value as ResetPasswordModel;
@@ -61,9 +77,13 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
         msg => {
           this.notificationService.showSuccess(msg);
+          this.completeStep();
+          this.updatingPasswordFalse();
+          this.router.navigate(['security/login']);
         },
         msg => {
           this.notificationService.showError(msg);
+          this.updatingPasswordFalse();
         }
       );
   }
@@ -74,5 +94,26 @@ export class ResetPasswordComponent implements OnInit {
 
   get getUpdatePasswordForm(): { [p: string]: AbstractControl } {
     return this.updatePasswordForm.controls;
+  }
+
+  completeStep(): void {
+    this.stepper.selected.completed = true;
+    this.stepper.next();
+  }
+
+  private sendingCodeTrue(): void {
+    this.sendingCode = true;
+  }
+
+  private sendingCodeFalse(): void {
+    this.sendingCode = false;
+  }
+
+  private updatingPasswordTrue(): void {
+    this.updatingPassword = true;
+  }
+
+  private updatingPasswordFalse(): void {
+    this.updatingPassword = false;
   }
 }

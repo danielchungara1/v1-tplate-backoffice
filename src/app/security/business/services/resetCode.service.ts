@@ -1,15 +1,9 @@
 import {Injectable} from '@angular/core';
-import {LoginModel} from '../../view/models/LoginModel';
-import {LoginDto} from '../dtos/LoginDto';
 import ObjectMapper from 'object-mapper';
 import {HttpService} from '@core/http.service';
 import {EndPoints} from '@core/end-points';
-import {LoginResponseDto} from '../dtos/LoginResponseDto';
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {UserBuilder} from '../helpers/UserBuilder';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {StoreService} from '@core/store.service';
 import {ResetPasswordModel} from '../../view/models/ResetPasswordModel';
 import {ResetCodeDto} from '../dtos/ResetCodeDto';
 import {ResponseDto} from '../dtos/ResponseDto';
@@ -40,6 +34,10 @@ export class ResetCodeService {
   }
 
   updatePassword(resetPasswordModel: ResetPasswordModel): Observable<string> {
+
+    if (!resetPasswordModel.email) {
+      return throwError('Complete the previous step before continue.');
+    }
 
     const updatePasswordDto = ObjectMapper(resetPasswordModel, UpdatePasswordDto);
 
