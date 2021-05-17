@@ -1,17 +1,17 @@
 # _Administrative Backoffice_
 
 ## Screenshots
-- Loginfasfd
+- Login
 
 ![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-backoffice/develop/src/assets/snapshots/login.JPG?raw=true)
 
 - Reset Password Step 1
 
-![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-ws/develop/src/assets/snapshots/resetPasswordStep1.JPG?raw=true)
+![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-backoffice/develop/src/assets/snapshots/resetPasswordStep1.JPG?raw=true)
 
 - Reset Password Step 2
 
-![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-ws/develop/src/assets/snapshots/resetPasswordStep2.JPG?raw=true)
+![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-backoffice/develop/src/assets/snapshots/resetPasswordStep2.JPG?raw=true)
 
 ## Core technologies
 - Angular 11
