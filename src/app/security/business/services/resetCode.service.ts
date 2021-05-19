@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import ObjectMapper from 'object-mapper';
-import {HttpService} from '@core/http.service';
-import {EndPoints} from '@core/end-points';
+import {HttpService} from '@core/httpClient/http.service';
+import {EndPoints} from '@core/httpClient/end-points';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {ResetPasswordModel} from '../../view/models/ResetPasswordModel';
-import {ResetCodeDto} from '../dtos/ResetCodeDto';
-import {ResponseDto} from '../dtos/ResponseDto';
-import {UpdatePasswordDto} from '../dtos/UpdatePasswordDto';
+import {ResetPasswordModel} from '../../access/models/ResetPasswordModel';
+import {ResetCodeDto} from '../dtos/resetCode/ResetCodeDto';
+import {ResponseDto} from '@core/abstractClases/ResponseDto';
+import {UpdatePasswordDto} from '../dtos/resetCode/UpdatePasswordDto';
 
 @Injectable({
   providedIn: 'root'

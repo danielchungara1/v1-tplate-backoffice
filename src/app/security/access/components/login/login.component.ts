@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../../business/services/login.service';
 import {LoginModel} from '../../models/LoginModel';
-import {NotificationService} from '../../../business/services/notification.service';
+import {NotificationService} from '@core/notifications/notification.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

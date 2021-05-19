@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {SecurityComponent} from './view/components/security/security.component';
-import {LoginComponent} from './view/components/login/login.component';
-import {ResetPasswordComponent} from './view/components/reset-password/reset-password.component';
+import {LayoutComponent} from './access/shared/layout/layout.component';
+import {LoginComponent} from './access/components/login/login.component';
+import {ResetPasswordComponent} from './access/components/reset-password/reset-password.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: SecurityComponent,
+    component: LayoutComponent,
     children: [
       {path: 'login', component: LoginComponent},
       {path: 'reset-password', component: ResetPasswordComponent},

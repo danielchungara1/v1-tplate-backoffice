@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-security',
-  templateUrl: './security.component.html',
-  styleUrls: ['./security.component.css']
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.css']
 })
-export class SecurityComponent implements OnInit {
+export class LayoutComponent implements OnInit {
 
   constructor() { }
 

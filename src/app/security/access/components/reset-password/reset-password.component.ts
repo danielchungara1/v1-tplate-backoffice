@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ResetCodeService} from '../../../business/services/resetCode.service';
 import {ResetPasswordModel} from '../../models/ResetPasswordModel';
-import {NotificationService} from '../../../business/services/notification.service';
+import {NotificationService} from '@core/notifications/notification.service';
 import {MatVerticalStepper} from '@angular/material/stepper';
 import {Router} from '@angular/router';
 

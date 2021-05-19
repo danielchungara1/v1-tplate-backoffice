@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {DashboardComponent} from './view/components/dashboard/dashboard.component';
+import {LayoutComponent} from './access/shared/layout/layout.component';
 
 
 const routes: Routes = [{
   path: '',
-  component: DashboardComponent,
+  component: LayoutComponent,
   // children: [
   //   {path: 'users', component: UserListComponent},
   //   {path: '**', component: UserListComponent}
