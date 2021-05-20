@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserModel} from '../../models/UserModel';
+import {UserListService} from '../../../business/services/user-list.service';
+import {createLogErrorHandler} from '@angular/compiler-cli/ngcc/src/execution/tasks/completion';
 
 @Component({
   selector: 'app-user-list',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  constructor() { }
+  private users: UserModel[];
+
+  constructor(private userListService: UserListService) {
+  }
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  public loadUsers(): void {
+      this.userListService.getUsers().subscribe(
+        value => console.log(value),
+        error => console.log(error)
+      );
   }
 
 }

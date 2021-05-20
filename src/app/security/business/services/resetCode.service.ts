@@ -8,6 +8,7 @@ import {ResetPasswordModel} from '../../access/models/ResetPasswordModel';
 import {ResetCodeDto} from '../dtos/resetCode/ResetCodeDto';
 import {ResponseDto} from '@core/abstractClases/ResponseDto';
 import {UpdatePasswordDto} from '../dtos/resetCode/UpdatePasswordDto';
+import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class ResetCodeService {
             return res.message;
           }
         ),
-        catchError(err => throwError(err.message))
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
       );
   }
 
@@ -49,7 +50,7 @@ export class ResetCodeService {
             return res.message;
           }
         ),
-        catchError(err => throwError(err.message))
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
       );
   }
 

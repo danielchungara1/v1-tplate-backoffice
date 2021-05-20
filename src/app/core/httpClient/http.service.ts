@@ -49,9 +49,9 @@ export class HttpService {
       );
   }
 
-  get(endpoint: string): Observable<any> {
+  get<T>(endpoint: string): Observable<T> {
     return this.http
-      .get(endpoint, this.createOptions())
+      .get<T>(endpoint, this.createOptions())
       .pipe(
         map(response => this.extractData(response)),
         catchError(error => this.handleError(error))
