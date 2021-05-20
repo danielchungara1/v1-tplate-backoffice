@@ -1,0 +1,21 @@
+p-messages {
+  position: fixed;
+  bottom: 34px;
+  width: 400px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+p-messages ::ng-deep .p-message-wrapper {
+  height: 40px;
+}
+p-messages ::ng-deep .p-message {
+  font-size: 0.85em;
+}
+p-messages ::ng-deep .p-message-icon {
+  font-size: 1.25em;
+}
+p-messages ::ng-deep .p-message-close-icon {
+  font-size: 0.7em;
+}
+

@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DatePipe} from '@angular/common';
 import {CoreModule} from '@core/core.module';
+import {NotificationService} from '@shared/notifications/notification.service';
 
 
 
@@ -22,7 +23,10 @@ import {CoreModule} from '@core/core.module';
     AppComponent
    ],
   bootstrap: [AppComponent],
-  providers: [DatePipe],
+  providers: [
+    DatePipe,
+    NotificationService
+  ],
   exports: [CoreModule]
 })
 export class AppModule {
