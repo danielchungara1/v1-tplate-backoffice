@@ -3,12 +3,6 @@
   justify-content: center;
 }
 
-.login-icon {
-  font-size: 3.5em;
-  display: flex;
-  justify-content: center;
-  color: rgba(0, 0, 0, 0.5);
-}
 
 /**********************************************************************************
 * Cards
@@ -23,9 +17,13 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
+.card-header > i{
+  font-size: 3.5em;
+  display: flex;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+}
 
-
-.card-header{}
 .card-body{}
 .card-footer{
   display: flex;

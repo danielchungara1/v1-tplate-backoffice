@@ -5,9 +5,9 @@ import {TokenInterceptor} from '@core/interceptors/token.interceptor';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {HttpService} from '@core/httpClient/http.service';
-import {FooterComponent} from '@core/sharedComponents/footer/footer.component';
 import {MaterialModule} from '@core/material.module';
 import {PrimengModule} from '@core/primeng.module';
+import {FooterComponent} from '@core/components/footer/footer.component';
 
 
 @NgModule({
