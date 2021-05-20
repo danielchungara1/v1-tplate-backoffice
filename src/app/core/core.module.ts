@@ -8,6 +8,7 @@ import {HttpService} from '@core/httpClient/http.service';
 import {MaterialModule} from '@core/material.module';
 import {PrimengModule} from '@core/primeng.module';
 import {FooterComponent} from '@core/components/footer/footer.component';
+import {MapperService} from '@core/mapper/mapper.service';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {FooterComponent} from '@core/components/footer/footer.component';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    MapperService
   ],
   exports: [
     // Modules
