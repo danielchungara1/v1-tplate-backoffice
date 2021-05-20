@@ -7,6 +7,7 @@ import {MessageService} from 'primeng/api';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {TableModule} from 'primeng/table';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -19,7 +20,8 @@ import {TableModule} from 'primeng/table';
     PasswordModule,
     MessagesModule,
     MessageModule,
-    TableModule
+    TableModule,
+    DropdownModule
   ],
   providers: [
     MessageService

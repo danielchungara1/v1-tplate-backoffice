@@ -21,6 +21,27 @@
       ></p-password>
     </div>
 
+    <div class="form-group">
+      <label for="email1">Email</label>
+      <input
+        id="email1"
+        type="text"
+        pInputText
+        formControlName="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="role1">Role</label>
+      <p-dropdown
+        id="role1"
+        [options]="[{id:1, description:'MANAGER', name:'ADMIN'}, {id:2, description:'MANAGER2', name:'ADMIN2'}]"
+        formControlName="role"
+        optionLabel="name"
+        placeholder=" "
+      ></p-dropdown>
+    </div>
+
     <p-button
       label="Create"
       type="submit"

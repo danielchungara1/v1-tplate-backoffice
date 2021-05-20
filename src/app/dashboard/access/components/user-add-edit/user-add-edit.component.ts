@@ -3,13 +3,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../models/UserModel';
 import {UserAddEditService} from '../../../business/services/user-add-edit.service';
+import {RoleModel} from '../../models/RoleModel';
 
 @Component({
   selector: 'app-add-edit-user',
-  templateUrl: './add-edit-user.component.html',
-  styleUrls: ['./add-edit-user.component.css']
+  templateUrl: './user-add-edit.component.html',
+  styleUrls: ['./user-add-edit.component.css']
 })
-export class AddEditUserComponent implements OnInit {
+export class UserAddEditComponent implements OnInit {
 
   userForm: FormGroup;
 
@@ -21,9 +22,12 @@ export class AddEditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.userForm = this.formBuilder.group({
       username: [''],
-      password: ['']
+      password: [''],
+      role: [null],
+      email: ['']
     });
   }
 

@@ -5,7 +5,7 @@ import {HeaderComponent} from './access/shared/header/header.component';
 import {CoreModule} from '@core/core.module';
 import {UserListComponent} from './access/components/user-list/user-list.component';
 import {SidebarComponent} from './access/shared/sidebar/sidebar/sidebar.component';
-import { AddEditUserComponent } from './access/components/add-edit-user/add-edit-user.component';
+import { UserAddEditComponent } from './access/components/user-add-edit/user-add-edit.component';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { AddEditUserComponent } from './access/components/add-edit-user/add-edit
     HeaderComponent,
     UserListComponent,
     SidebarComponent,
-    AddEditUserComponent
+    UserAddEditComponent
   ],
   imports: [
     DashboardRoutingModule,
