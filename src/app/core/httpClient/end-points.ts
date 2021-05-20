@@ -6,4 +6,7 @@ export class EndPoints {
   static AUTH_SEND_RESET_CODE = environment.API + '/auth/password/reset-code';
   static AUTH_LOGIN = environment.API + '/auth/login';
 
+  // Endpoints of Dashboard
+  static USERS_GET_ALL = environment.API + '/users/all';
+
 }

@@ -6,6 +6,7 @@ import {PasswordModule} from 'primeng/password';
 import {MessageService} from 'primeng/api';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {TableModule} from 'primeng/table';
 
 
 
@@ -17,7 +18,8 @@ import {MessageModule} from 'primeng/message';
     InputTextModule,
     PasswordModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    TableModule
   ],
   providers: [
     MessageService

@@ -8,6 +8,7 @@ import {LoginResponseDto} from '../dtos/login/LoginResponseDto';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {LocalStorageService} from '@core/localStorage/local-storage.service';
+import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class LoginService {
             return res.message;
           }
         ),
-        catchError(err => throwError(err.message))
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
       );
   }
 
