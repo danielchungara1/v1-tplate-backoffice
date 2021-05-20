@@ -4,6 +4,9 @@
       <div class="card-header-title">List of Users</div>
     </div>
     <div class="card-body">
+      <ul>
+        <li *ngFor="let user of users">{{user.username}}</li>
+      </ul>
     </div>
     <div class="card-footer">
     </div>

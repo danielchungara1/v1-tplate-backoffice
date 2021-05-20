@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from '../../models/UserModel';
 import {UserListService} from '../../../business/services/user-list.service';
-import {createLogErrorHandler} from '@angular/compiler-cli/ngcc/src/execution/tasks/completion';
+import {NotificationService} from '@shared/notifications/notification.service';
 
 @Component({
   selector: 'app-user-list',
@@ -10,9 +10,10 @@ import {createLogErrorHandler} from '@angular/compiler-cli/ngcc/src/execution/ta
 })
 export class UserListComponent implements OnInit {
 
-  private users: UserModel[];
+  users: UserModel[];
 
-  constructor(private userListService: UserListService) {
+  constructor(private userListService: UserListService,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -20,10 +21,10 @@ export class UserListComponent implements OnInit {
   }
 
   public loadUsers(): void {
-      this.userListService.getUsers().subscribe(
-        value => console.log(value),
-        error => console.log(error)
-      );
+    this.userListService.getUsers().subscribe(
+      users => this.users = users,
+      error => this.notificationService.showError(error)
+    );
   }
 
 }
