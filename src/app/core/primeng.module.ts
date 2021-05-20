@@ -11,7 +11,7 @@ import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [],
-  imports: [
+  exports: [
     CardModule,
     ButtonModule,
     InputTextModule,
