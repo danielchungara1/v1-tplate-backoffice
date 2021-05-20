@@ -1,19 +1,20 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CoreModule} from '@core/core.module';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {DatePipe} from '@angular/common';
+import {CoreModule} from '@core/core.module';
+import {NotificationService} from '@shared/notifications/notification.service';
+
 
 
 @NgModule({
   imports: [
     AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    // Blank intentionally left
     CoreModule,
+    BrowserAnimationsModule,
+    BrowserModule
     // AuthModule // eager load
     // ShopModule // eager load
 
@@ -22,9 +23,11 @@ import {DatePipe} from '@angular/common';
     AppComponent
    ],
   bootstrap: [AppComponent],
-  providers: [DatePipe],
-  exports: [
-  ]
+  providers: [
+    DatePipe,
+    NotificationService
+  ],
+  exports: [CoreModule]
 })
 export class AppModule {
 }

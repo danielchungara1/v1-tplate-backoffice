@@ -13,11 +13,21 @@ body {
 .bg-red {
   background-color: red;
 }
-
+.bg-green {
+  background-color: green;
+}
+.bg-blue {
+  background-color: blue;
+}
 .border-red {
   border: 1px solid red;
 }
-
+.border-green {
+  border: 1px solid green;
+}
+.border-blue {
+  border: 1px solid blue;
+}
 .w-100 {
   width: 100%!important;
 }

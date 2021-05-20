@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
   {path: 'security', loadChildren: () => import('./security/security.module').then(module => module.SecurityModule)}, // lazy load
+  {path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(module => module.DashboardModule)}, // lazy load
   {path: '**', redirectTo: 'security/login'}
 ];
 
