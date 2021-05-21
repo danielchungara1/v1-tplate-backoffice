@@ -1,0 +1,149 @@
+<div class="userAddEdit-container">
+
+  <div class="card">
+    <form [formGroup]="userForm" (ngSubmit)="createUser()">
+      <div class="card-header">
+        <div class="card-title">CREATE USER</div>
+        <div class="header-separator"></div>
+      </div>
+
+      <div class="card-body">
+
+        <!--Credentials-->
+        <div id="credentials">
+          <div class="section-title">Credentials</div>
+          <div class="row-container">
+            <div class="form-group">
+              <label for="username1">Username *</label>
+              <div class="input-group">
+                <input
+                  id="username1"
+                  type="text"
+                  pInputText
+                  formControlName="username"
+                  placeholder="Username"
+                />
+                <div *ngIf="getFormControls.username.touched && getFormControls.username.invalid" class="text-danger">
+                  <div *ngIf="getFormControls.username.errors.required">Username is required.</div>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="password1">Password *</label>
+              <div class="input-group">
+                <p-password
+                  id="password1"
+                  formControlName="password"
+                  [toggleMask]="true"
+                  [feedback]=false
+                  placeholder="Password"
+                ></p-password>
+                <div *ngIf="getFormControls.password.touched && getFormControls.password.invalid" class="text-danger">
+                  <div *ngIf="getFormControls.password.errors.required">Password is required.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-separator"></div>
+        </div>
+
+        <!--Contact-->
+        <div id="contact">
+          <div class="section-title">Contact</div>
+          <div class="row-container">
+            <div class="form-group">
+              <label for="name1">Name</label>
+              <div class="input-group">
+                <input
+                  id="name1"
+                  type="text"
+                  pInputText
+                  formControlName="name"
+                  placeholder="Name"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="lastname1">Lastname</label>
+              <div class="input-group">
+                <input
+                  id="lastname1"
+                  type="text"
+                  pInputText
+                  formControlName="lastname"
+                  placeholder="Lastname"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row-container">
+            <div class="form-group">
+              <label for="phone1">Phone</label>
+              <div class="input-group">
+                <input
+                  id="phone1"
+                  type="text"
+                  pInputText
+                  formControlName="phone"
+                  placeholder="Phone"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email1">Email *</label>
+              <div class="input-group">
+                <input
+                  id="email1"
+                  type="text"
+                  pInputText
+                  formControlName="email"
+                  placeholder="Email"
+                />
+                <div *ngIf="getFormControls.email.touched && getFormControls.email.invalid" class="text-danger">
+                  <div *ngIf="getFormControls.email.errors.required">Email is required.</div>
+                  <div *ngIf="getFormControls.email.errors.email">Email invalid.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-separator"></div>
+        </div>
+
+
+        <!--Role-->
+        <div id="role">
+          <div class="section-title">Role</div>
+          <div class="form-group">
+            <label for="role1">Role *</label>
+            <div class="input-group">
+              <p-dropdown
+                id="role1"
+                [options]="roles"
+                formControlName="role"
+                optionLabel="name"
+                placeholder="Role"
+              ></p-dropdown>
+              <div *ngIf="getFormControls.role.touched && getFormControls.role.invalid" class="text-danger">
+                <div *ngIf="getFormControls.role.errors.required">Role is required.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+        <p-button
+          label="Create"
+          type="submit"
+          [disabled]="userForm.invalid"
+        ></p-button>
+        <div class="footer-separator"></div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
