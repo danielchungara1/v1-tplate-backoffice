@@ -7,6 +7,7 @@ export class EndPoints {
   static AUTH_LOGIN = environment.API + '/auth/login';
 
   // Endpoints of Dashboard
+  static USERS = environment.API + '/users';
   static USERS_GET_ALL = environment.API + '/users/all';
   static USERS_CREATE = environment.API + '/users/new-user';
 

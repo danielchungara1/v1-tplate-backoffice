@@ -42,6 +42,14 @@ export class UserAddEditComponent implements OnInit {
     this.initializeLabels();
     this.initializeInputs();
 
+    if (this.formIsEdit) {
+      // Fetching user
+      this.userAddEditService.getUser(this.userId).subscribe(
+        data => this.userForm.patchValue(data),
+        msg => this.notificationService.showError(msg)
+      );
+    }
+
     // Fetching roles
     this.roleListService.getRoles().subscribe(
       data => this.roles = data,
@@ -74,7 +82,7 @@ export class UserAddEditComponent implements OnInit {
       this.titleLabel = 'EDIT USER';
       this.buttonLabel = 'Update';
       this.passwordLabel = 'Password';
-    }else {
+    } else {
       this.titleLabel = 'CREATE USER';
       this.buttonLabel = 'Create';
       this.passwordLabel = 'Password *';
