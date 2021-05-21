@@ -10,4 +10,5 @@ export class EndPoints {
   static USERS_GET_ALL = environment.API + '/users/all';
   static USERS_CREATE = environment.API + '/users/new-user';
 
+  static ROLES_GET_ALL = environment.API + '/roles/all';
 }

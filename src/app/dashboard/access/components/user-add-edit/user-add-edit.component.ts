@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../models/UserModel';
 import {UserAddEditService} from '../../../business/services/user-add-edit.service';
+import {RoleListService} from '../../../business/services/role-list.service';
+import {RoleModel} from '../../models/RoleModel';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -14,10 +16,12 @@ export class UserAddEditComponent implements OnInit {
   userForm: FormGroup;
 
   user: UserModel;
+  roles: RoleModel[];
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private userAddEditService: UserAddEditService) {
+              private userAddEditService: UserAddEditService,
+              private roleListService: RoleListService) {
   }
 
   ngOnInit(): void {
@@ -31,6 +35,13 @@ export class UserAddEditComponent implements OnInit {
       email: [''],
       role: [null]
     });
+
+    // Fetching roles
+    this.roleListService.getRoles().subscribe(
+      data => this.roles = data,
+      msg => this.notificationService.showError(msg)
+    );
+
   }
 
   createUser(): void {

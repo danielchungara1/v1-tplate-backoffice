@@ -2,7 +2,7 @@
   <form [formGroup]="userForm" (ngSubmit)="createUser()">
 
     <div class="form-group">
-      <label for="username1">Username</label>
+      <label for="username1">Username *</label>
       <input
         id="username1"
         type="text"
@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-group">
-      <label for="password1">Password</label>
+      <label for="password1">Password *</label>
       <p-password
         id="password1"
         formControlName="password"
@@ -52,7 +52,7 @@
     </div>
 
     <div class="form-group">
-      <label for="email1">Email</label>
+      <label for="email1">Email *</label>
       <input
         id="email1"
         type="text"
@@ -62,10 +62,10 @@
     </div>
 
     <div class="form-group">
-      <label for="role1">Role</label>
+      <label for="role1">Role *</label>
       <p-dropdown
         id="role1"
-        [options]="[{id:1, description:'MANAGER', name:'ADMIN'}, {id:2, description:'MANAGER2', name:'ADMIN2'}]"
+        [options]="roles"
         formControlName="role"
         optionLabel="name"
         placeholder=" "
