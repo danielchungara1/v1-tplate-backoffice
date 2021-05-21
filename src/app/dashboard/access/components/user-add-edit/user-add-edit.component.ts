@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../models/UserModel';
 import {UserAddEditService} from '../../../business/services/user-add-edit.service';
-import {RoleModel} from '../../models/RoleModel';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -26,8 +25,11 @@ export class UserAddEditComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       username: [''],
       password: [''],
-      role: [null],
-      email: ['']
+      name: [''],
+      lastname: [''],
+      phone: [''],
+      email: [''],
+      role: [null]
     });
   }
 

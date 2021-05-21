@@ -22,7 +22,6 @@ export class UserAddEditService {
     const userDto = this.mapperService.map(userModel, UserDto);
     userDto.roleId = userModel.role.id;
 
-
     return this.httpService
       .post<ResponseSimpleDto>(EndPoints.USERS_CREATE, userDto)
       .pipe(
