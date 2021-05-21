@@ -36,6 +36,12 @@ body {
   font-weight:600;
 }
 
+.row-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 /**********************************************************************************
 * Forms
 /**********************************************************************************/
@@ -52,3 +58,5 @@ body {
 .form-group ::ng-deep .p-inputtext {
   margin: 5px 0;
 }
+
+
