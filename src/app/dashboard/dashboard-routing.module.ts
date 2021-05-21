@@ -11,6 +11,7 @@ const routes: Routes = [{
   children: [
     {path: 'users', component: UserListComponent},
     {path: 'create-user', component: UserAddEditComponent},
+    {path: 'edit-user/:id', component: UserAddEditComponent},
     {path: '**', component: UserListComponent}
   ]
 }];
