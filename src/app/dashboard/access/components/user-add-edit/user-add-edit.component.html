@@ -1,9 +1,9 @@
 <div class="userAddEdit-container">
 
   <div class="card">
-    <form [formGroup]="userForm" (ngSubmit)="createUser()">
+    <form [formGroup]="userForm" (ngSubmit)="handlerSubmit()">
       <div class="card-header">
-        <div class="card-title">CREATE USER</div>
+        <div class="card-title">{{titleLabel}}</div>
         <div class="header-separator"></div>
       </div>
 
@@ -30,7 +30,7 @@
 
             </div>
             <div class="form-group">
-              <label for="password1">Password *</label>
+              <label for="password1">{{passwordLabel}}</label>
               <div class="input-group">
                 <p-password
                   id="password1"
@@ -135,7 +135,7 @@
 
       <div class="card-footer">
         <p-button
-          label="Create"
+          [label]="buttonLabel"
           type="submit"
           [disabled]="userForm.invalid"
         ></p-button>
