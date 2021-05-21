@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../../../business/services/login.service';
 import {LoginModel} from '../../models/LoginModel';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 
 @Component({
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  get getControl(): any {
+  get getFormControls(): { [p: string]: AbstractControl }  {
     return this.loginForm.controls;
   }
 

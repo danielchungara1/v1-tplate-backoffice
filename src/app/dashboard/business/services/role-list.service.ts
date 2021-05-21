@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpService} from '@core/httpClient/http.service';
 import {Observable, throwError} from 'rxjs';
-import {UserModel} from '../../access/models/UserModel';
-import {UserListResponseDto} from '../dtos/UserListResponseDto';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';

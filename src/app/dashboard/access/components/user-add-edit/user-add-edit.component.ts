@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../models/UserModel';
 import {UserAddEditService} from '../../../business/services/user-add-edit.service';
@@ -27,13 +27,16 @@ export class UserAddEditComponent implements OnInit {
   ngOnInit(): void {
 
     this.userForm = this.formBuilder.group({
-      username: [''],
-      password: [''],
+      // Credentials
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      // Contact
       name: [''],
       lastname: [''],
       phone: [''],
-      email: [''],
-      role: [null]
+      email: ['', [Validators.required, Validators.email]],
+      // Role
+      role: [null, [Validators.required]]
     });
 
     // Fetching roles
@@ -55,6 +58,10 @@ export class UserAddEditComponent implements OnInit {
           this.notificationService.showError(msg);
         }
       );
+  }
+
+  get getFormControls(): { [p: string]: AbstractControl }  {
+    return this.userForm.controls;
   }
 
 

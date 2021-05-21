@@ -88,14 +88,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
       );
   }
 
-  get getSendEmailForm(): { [p: string]: AbstractControl } {
-    return this.sendEmailForm.controls;
-  }
-
-  get getUpdatePasswordForm(): { [p: string]: AbstractControl } {
-    return this.updatePasswordForm.controls;
-  }
-
   completeStep(): void {
     this.stepper.selected.completed = true;
     this.stepper.next();
@@ -115,5 +107,13 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   private updatingPasswordFalse(): void {
     this.updatingPassword = false;
+  }
+
+  get getSendEmailForm(): { [p: string]: AbstractControl } {
+    return this.sendEmailForm.controls;
+  }
+
+  get getUpdatePasswordForm(): { [p: string]: AbstractControl } {
+    return this.updatePasswordForm.controls;
   }
 }
