@@ -19,10 +19,10 @@ export class UserAddEditComponent implements OnInit {
   titleLabel: string;
   buttonLabel: string;
   passwordLabel: string;
-
   user: UserModel;
   roles: RoleModel[];
   userId: number;
+  handlerSubmit: any;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -41,6 +41,7 @@ export class UserAddEditComponent implements OnInit {
     }
     this.initializeLabels();
     this.initializeInputs();
+    this.initializeSubmit();
 
     if (this.formIsEdit) {
       // Fetching user
@@ -62,6 +63,19 @@ export class UserAddEditComponent implements OnInit {
   createUser(): void {
     const user: UserModel = this.userForm.value as UserModel;
     this.userAddEditService.createUser(user)
+      .subscribe(
+        (msg) => {
+          this.notificationService.showSuccess(msg);
+        },
+        (msg) => {
+          this.notificationService.showError(msg);
+        }
+      );
+  }
+
+  updateUser(): void {
+    const user: UserModel = this.userForm.value as UserModel;
+    this.userAddEditService.updateUser(user, this.userId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -102,5 +116,13 @@ export class UserAddEditComponent implements OnInit {
       // Role
       role: [null, [Validators.required]]
     });
+  }
+
+  private initializeSubmit(): void {
+    if (this.formIsEdit) {
+      this.handlerSubmit = () => this.updateUser();
+    } else {
+      this.handlerSubmit = () => this.createUser();
+    }
   }
 }

@@ -35,6 +35,23 @@ export class UserAddEditService {
       );
   }
 
+  updateUser(userModel: UserModel, userId: number): Observable<string> {
+
+    const userDto = this.mapperService.map(userModel, UserDto);
+    userDto.roleId = userModel.role.id;
+
+    return this.httpService
+      .put<ResponseSimpleDto>(EndPoints.USERS + `/${userId}`, userDto)
+      .pipe(
+        map((res: ResponseSimpleDto) => {
+            // Return message
+            return res.message;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
+
   getUser(userId: number): Observable<UserModel> {
     return this.httpService
       .get<UserResponseDto>(EndPoints.USERS + `/${userId}`)
