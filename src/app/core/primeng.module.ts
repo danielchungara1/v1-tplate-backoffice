@@ -8,7 +8,8 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {TableModule} from 'primeng/table';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 
 @NgModule({
@@ -21,10 +22,12 @@ import {DropdownModule} from 'primeng/dropdown';
     MessagesModule,
     MessageModule,
     TableModule,
-    DropdownModule
+    DropdownModule,
+    ConfirmDialogModule
   ],
   providers: [
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class PrimengModule { }
