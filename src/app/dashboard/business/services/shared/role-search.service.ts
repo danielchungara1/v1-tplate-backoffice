@@ -4,13 +4,13 @@ import {Observable, throwError} from 'rxjs';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {RoleModel} from '../../access/models/RoleModel';
-import {RoleListResponseDto} from '../dtos/RoleListResponseDto';
+import {RoleModel} from '../../../access/models/RoleModel';
+import {RoleListResponseDto} from '../../dtos/RoleListResponseDto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleListService {
+export class RoleSearchService {
 
   constructor(private httpService: HttpService) {
   }

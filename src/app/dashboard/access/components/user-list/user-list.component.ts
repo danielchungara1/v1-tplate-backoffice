@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from '../../models/UserModel';
-import {UserListService} from '../../../business/services/user-list.service';
 import {NotificationService} from '@shared/notifications/notification.service';
+import {UserListService} from '../../../business/services/user-list.service';
 
 @Component({
   selector: 'app-user-list',
