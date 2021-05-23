@@ -1,25 +1,13 @@
 <div class="header-container">
-  <p>
-    Header
-  </p>
 
+  <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
   <button
+    type="button"
+    class="p-button-text text-white"
     pButton
-    label="Edit"
-    [routerLink]="['edit-user', user?.id]"
-  ></button>
-
-  <button
-    pButton
-    label="Logout"
-    (click)="logout()"
-    style="margin-left: 5px"
-  ></button>
-
-  <button
-    pButton
+    icon="fas fa-user-circle cardHeader-icon"
     [label]="user?.username"
-    style="margin-left: 5px"
-  ></button>
+    (click)="menu.toggle($event)">
+  </button>
 
 </div>

@@ -12,3 +12,7 @@
   width: 100%;
   text-align: center;
 }
+
+.header-container ::ng-deep .p-button-icon {
+  font-size:1.5em;
+}
