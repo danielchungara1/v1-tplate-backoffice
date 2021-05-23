@@ -27,4 +27,8 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  onDeleted($event: UserModel): void {
+    this.users =
+      this.users.filter(user => user.id !== $event.id);
+  }
 }
