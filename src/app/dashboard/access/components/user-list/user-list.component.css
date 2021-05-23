@@ -5,6 +5,9 @@
   height: 100%;
   padding: 15px;
 }
+.actions-container > button, .actions-container ::ng-deep .p-button{
+  margin: 0 2px;
+}
 
 /**********************************************************************************
 * Cards

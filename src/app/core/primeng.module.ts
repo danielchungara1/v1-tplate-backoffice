@@ -12,6 +12,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
 import {MenuModule} from 'primeng/menu';
 import {TieredMenuModule} from 'primeng/tieredmenu';
+import {TooltipModule} from 'primeng/tooltip';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import {TieredMenuModule} from 'primeng/tieredmenu';
     DropdownModule,
     ConfirmDialogModule,
     TieredMenuModule,
-    MenuModule
+    MenuModule,
+    TooltipModule
   ],
   providers: [
     MessageService,
