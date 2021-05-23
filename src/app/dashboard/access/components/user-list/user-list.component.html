@@ -24,7 +24,18 @@
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.role.name}}</td>
-            <td><app-user-delete [user]="user" (deleted)="onDeleted($event)"></app-user-delete></td>
+            <td class="actions-container">
+              <app-user-delete
+                [user]="user"
+                (deleted)="onDeleted($event)">
+              </app-user-delete>
+              <button
+                pButton
+                pTooltip="Edit"
+                icon="fas fa-pencil-alt"
+                [routerLink]="['/dashboard/edit-user', user.id]"
+              ></button>
+            </td>
           </tr>
         </ng-template>
       </p-table>
