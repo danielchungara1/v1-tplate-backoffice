@@ -1,0 +1,14 @@
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+  [key]="user.id.toString()"
+  acceptButtonStyleClass="p-button-danger"
+
+>
+</p-confirmDialog>
+<button
+  pButton
+  label="Delete"
+  (click)="deleteUser()"
+  class="p-button-danger"
+></button>

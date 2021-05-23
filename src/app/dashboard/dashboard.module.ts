@@ -6,6 +6,7 @@ import {CoreModule} from '@core/core.module';
 import {UserListComponent} from './access/components/user-list/user-list.component';
 import {SidebarComponent} from './access/shared/sidebar/sidebar/sidebar.component';
 import { UserAddEditComponent } from './access/components/user-add-edit/user-add-edit.component';
+import { UserDeleteComponent } from './access/components/user-delete/user-delete.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UserAddEditComponent } from './access/components/user-add-edit/user-add
     HeaderComponent,
     UserListComponent,
     SidebarComponent,
-    UserAddEditComponent
+    UserAddEditComponent,
+    UserDeleteComponent
   ],
   imports: [
     DashboardRoutingModule,

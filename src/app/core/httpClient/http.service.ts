@@ -10,7 +10,7 @@ export class HttpService {
 
   static CONNECTION_REFUSE = {
     code: 0,
-    message: 'Connection refused'
+    message: 'Connection error.'
   };
 
   private headers: HttpHeaders;
@@ -67,18 +67,18 @@ export class HttpService {
       );
   }
 
-  patch(endpoint: string, body?: object): Observable<any> {
+  patch<T>(endpoint: string, body?: object): Observable<T> {
     return this.http
-      .patch(endpoint, body, this.createOptions())
+      .patch<T>(endpoint, body, this.createOptions())
       .pipe(
         map(response => this.extractData(response)),
         catchError(error => this.handleError(error))
       );
   }
 
-  delete(endpoint: string): Observable<any> {
+  delete<T>(endpoint: string): Observable<T> {
     return this.http
-      .delete(endpoint, this.createOptions())
+      .delete<T>(endpoint, this.createOptions())
       .pipe(
         map(response => this.extractData(response)),
         catchError(error => this.handleError(error)));

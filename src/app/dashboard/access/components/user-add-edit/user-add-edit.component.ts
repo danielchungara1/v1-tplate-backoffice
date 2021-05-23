@@ -3,9 +3,10 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../models/UserModel';
 import {UserAddEditService} from '../../../business/services/user-add-edit.service';
-import {RoleListService} from '../../../business/services/role-list.service';
+import {RoleSearchService} from '../../../business/services/shared/role-search.service';
 import {RoleModel} from '../../models/RoleModel';
 import {ActivatedRoute} from '@angular/router';
+import {UserSearchService} from '../../../business/services/shared/user-search.service';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -27,7 +28,8 @@ export class UserAddEditComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
               private userAddEditService: UserAddEditService,
-              private roleListService: RoleListService,
+              private userSearchService: UserSearchService,
+              private roleSearchService: RoleSearchService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -45,14 +47,14 @@ export class UserAddEditComponent implements OnInit {
 
     if (this.formIsEdit) {
       // Fetching user
-      this.userAddEditService.getUser(this.userId).subscribe(
+      this.userSearchService.getUser(this.userId).subscribe(
         data => this.userForm.patchValue(data),
         msg => this.notificationService.showError(msg)
       );
     }
 
     // Fetching roles
-    this.roleListService.getRoles().subscribe(
+    this.roleSearchService.getRoles().subscribe(
       data => this.roles = data,
       msg => this.notificationService.showError(msg)
     );
