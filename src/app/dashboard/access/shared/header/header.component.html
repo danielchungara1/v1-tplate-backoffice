@@ -6,8 +6,20 @@
   <button
     pButton
     label="Edit"
-    [routerLink]="['edit-user', user.id]"
+    [routerLink]="['edit-user', user?.id]"
   ></button>
 
+  <button
+    pButton
+    label="Logout"
+    (click)="logout()"
+    style="margin-left: 5px"
+  ></button>
+
+  <button
+    pButton
+    [label]="user?.username"
+    style="margin-left: 5px"
+  ></button>
 
 </div>

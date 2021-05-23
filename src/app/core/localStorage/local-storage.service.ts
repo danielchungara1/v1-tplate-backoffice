@@ -26,4 +26,7 @@ export class LocalStorageService {
     localStorage.setItem(LocalStorageKeys.AUTH_USER, JSON.stringify(user));
   }
 
+  clear(): void{
+    localStorage.clear();
+  }
 }
