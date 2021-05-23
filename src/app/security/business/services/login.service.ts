@@ -28,6 +28,7 @@ export class LoginService {
       .pipe(
         map((res: LoginResponseDto) => {
             this.localStorageService.setToken(res.data.token);
+            this.localStorageService.setUser(res.data.user);
             return res.message;
           }
         ),
