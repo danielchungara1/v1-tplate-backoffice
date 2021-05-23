@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LocalStorageService} from '@core/localStorage/local-storage.service';
+import {UserModel} from '../../models/UserModel';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  user: UserModel;
+
+  constructor(private localStorageService: LocalStorageService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.localStorageService.getUser();
   }
 
 }
