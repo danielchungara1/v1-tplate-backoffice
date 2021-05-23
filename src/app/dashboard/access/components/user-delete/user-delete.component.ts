@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {UserDeleteService} from '../../../business/services/user-delete.service';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {UserModel} from '../../models/UserModel';
+
 
 @Component({
   selector: 'app-user-delete',
@@ -13,6 +14,9 @@ export class UserDeleteComponent implements OnInit {
 
   @Input()
   user: UserModel;
+
+  @Output()
+  deleted: EventEmitter<UserModel> = new EventEmitter();
 
   constructor(private userDeleteService: UserDeleteService,
               private notificationService: NotificationService,
@@ -48,7 +52,10 @@ export class UserDeleteComponent implements OnInit {
       accept: () => {
         this.userDeleteService.deleteUser(this.user.id)
           .subscribe(
-            message => this.notificationService.showSuccess(message),
+            message => {
+              this.notificationService.showSuccess(message);
+              this.deleted.emit(this.user);
+            },
             error => this.notificationService.showError(error),
             () => this.confirmationService.close()
           );
