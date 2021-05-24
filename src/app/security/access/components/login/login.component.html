@@ -1,56 +1,60 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div class="card">
+<div class="card-container">
+  <div class="card">
 
-      <div class="card-header">
-        <i class="fas fa-user-circle cardHeader-icon"></i>
-      </div>
-
-      <div class="card-body">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            pInputText
-            formControlName="username"
-            class="w-100"
-          />
-          <div *ngIf="getFormControls.username.touched && getFormControls.username.invalid" class="text-danger">
-            <div *ngIf="getFormControls.username.errors.required">Username is required.</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="password1">Password</label>
-          <p-password
-            id="password1"
-            formControlName="password"
-            [toggleMask]="true"
-            [inputStyle]="{'width':'100%'}"
-            [style]="{'width':'100%'}"
-            [feedback]=false
-          ></p-password>
-          <div *ngIf="getFormControls.password.touched && getFormControls.password.invalid" class="text-danger">
-            <div *ngIf="getFormControls.password.errors.required">Password is required.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-footer">
-        <p-button
-          [style]="{'width':'100%', 'font-weight':'600'}"
-          label="Login"
-          type="submit"
-          [disabled]="loginForm.invalid"
-        ></p-button>
-        <a
-          id="reset-password-link"
-          routerLink="/security/reset-password"
-        >
-          Password forgotten?
-        </a>
-      </div>
-
+    <div class="card-header">
+      <i class="fas fa-user-circle icon-CardHeader"></i>
     </div>
-  </form>
+
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              pInputText
+              formControlName="username"
+              class="w-100"
+            />
+            <div *ngIf="getFormControls.username.touched && getFormControls.username.invalid" class="text-danger">
+              <div *ngIf="getFormControls.username.errors.required">Username is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password1">Password</label>
+            <p-password
+              id="password1"
+              formControlName="password"
+              [toggleMask]="true"
+              [inputStyle]="{'width':'100%'}"
+              [style]="{'width':'100%'}"
+              [feedback]=false
+            ></p-password>
+            <div *ngIf="getFormControls.password.touched && getFormControls.password.invalid" class="text-danger">
+              <div *ngIf="getFormControls.password.errors.required">Password is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <p-button
+            [style]="{'width':'100%', 'font-weight':'600'}"
+            label="Login"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          ></p-button>
+          <a
+            id="reset-password-link"
+            routerLink="/security/reset-password"
+          >
+            Password forgotten?
+          </a>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
 </div>

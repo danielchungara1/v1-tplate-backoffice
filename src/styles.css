@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+* {
+  line-height: normal;
+  font-family: Arial , Helvetica, serif;
+}
+
 html, body {
   height: 100%;
   font-size: 0.95em;
@@ -41,27 +46,52 @@ body {
   font-weight:600;
 }
 
-.row-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+/*.row-container {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*}*/
 
 /**********************************************************************************
-* Forms
+* Cards
 /**********************************************************************************/
-.text-danger {
-  font-size: 0.85em;
-  color: rgba(255, 0, 0, 0.75);
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-container .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.card-container .card .card-header {
+  text-align: center;
+  color: var(--text-color);
+}
+
+.card-container .card .card-header .title-CardHeader {
   font-weight: 600;
+  font-size: 2em;
+}
+
+.card-container .card .card-header .icon-CardHeader {
+  display: block;
+  font-size: 3em;
+}
+
+.card-container .card .card-body .text-danger {
+  color: var(--pink-500);
   padding: 5px 0;
 }
-.form-group {
-  margin: 15px 0;
+.card-container .card .card-body .form-group{
+  margin: 10px 0;
 }
-
-.form-group ::ng-deep .p-inputtext {
-  margin: 5px 0;
+.card-container .card .card-body .form-group ::ng-deep .p-inputtext {
+  margin: 10px 0;
 }
-
 
