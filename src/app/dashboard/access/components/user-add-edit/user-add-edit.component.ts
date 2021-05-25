@@ -11,7 +11,7 @@ import {UserSearchService} from '../../../business/services/shared/user-search.s
 @Component({
   selector: 'app-add-edit-user',
   templateUrl: './user-add-edit.component.html',
-  styleUrls: ['./user-add-edit.component.css']
+  styleUrls: ['./user-add-edit.component.scss']
 })
 export class UserAddEditComponent implements OnInit {
 

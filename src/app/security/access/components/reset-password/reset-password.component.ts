@@ -9,7 +9,7 @@ import {NotificationService} from '@shared/notifications/notification.service';
 @Component({
   selector: 'app-reset-pass',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
