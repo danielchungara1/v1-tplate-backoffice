@@ -71,11 +71,16 @@ body {
 
 .card-container .card .card-header .title-CardHeader {
   font-weight: 600;
-  font-size: 2em;
+  font-size: 1.5em;
+  padding: 10px 0;
 }
 
 .card-container .card .card-header .icon-CardHeader {
   font-size: 3em;
+}
+
+.card-container .card-body {
+  padding: 10px 0;
 }
 
 .card-container .card .card-body .text-danger {
