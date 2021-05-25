@@ -28,6 +28,11 @@ export class SidebarComponent implements OnInit {
         label: 'Create User',
         icon: 'fas fa-user-plus',
         routerLink: ['create-user']
+      },
+      {
+        label: 'List Permissions',
+        icon: 'fas fa-list-alt',
+        routerLink: ['permissions']
       }
     ];
   }
