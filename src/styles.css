@@ -7,7 +7,6 @@
 
 html, body {
   height: 100%;
-  font-size: 0.95em;
 }
 
 body {
@@ -46,25 +45,21 @@ body {
   font-weight:600;
 }
 
-/*.row-container {*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  flex-wrap: wrap;*/
-/*}*/
-
 /**********************************************************************************
 * Cards
 /**********************************************************************************/
 .card-container {
   display: flex;
   justify-content: center;
+  font-size: 1.25em;
+
 }
 
 .card-container .card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  padding: 20px;
+  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
 }
@@ -80,7 +75,6 @@ body {
 }
 
 .card-container .card .card-header .icon-CardHeader {
-  display: block;
   font-size: 3em;
 }
 
@@ -94,4 +88,10 @@ body {
 .card-container .card .card-body .form-group ::ng-deep .p-inputtext {
   margin: 10px 0;
 }
-
+.card-container .card .card-body .form-group label{
+  display: inline-block;
+  margin: 10px 0;
+}
+.card-container .card .card-body .form-actions{
+  padding-top: 10px;
+}
