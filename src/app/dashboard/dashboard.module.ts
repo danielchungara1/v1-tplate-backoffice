@@ -8,6 +8,7 @@ import {SidebarComponent} from './access/shared/sidebar/sidebar/sidebar.componen
 import { UserAddEditComponent } from './access/components/user-add-edit/user-add-edit.component';
 import { UserDeleteComponent } from './access/components/user-delete/user-delete.component';
 import { PermissionListComponent } from './access/components/permission-list/permission-list.component';
+import { RoleListComponent } from './access/components/role-list/role-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { PermissionListComponent } from './access/components/permission-list/per
     SidebarComponent,
     UserAddEditComponent,
     UserDeleteComponent,
-    PermissionListComponent
+    PermissionListComponent,
+    RoleListComponent
   ],
   imports: [
     DashboardRoutingModule,

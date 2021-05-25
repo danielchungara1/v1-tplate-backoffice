@@ -33,6 +33,11 @@ export class SidebarComponent implements OnInit {
         label: 'List Permissions',
         icon: 'fas fa-list-alt',
         routerLink: ['permissions']
+      },
+      {
+        label: 'List Roles',
+        icon: 'fas fa-list-alt',
+        routerLink: ['roles']
       }
     ];
   }
