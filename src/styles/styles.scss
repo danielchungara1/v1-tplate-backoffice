@@ -1,0 +1,112 @@
+@import "./variables";
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  line-height: normal;
+  font-family: Arial, Helvetica, serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-white {
+  color: $color-white !important;
+}
+.text-danger {
+  color: $color-red;
+  font-size: $font-size-small;
+  padding: 5px 0;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+/**********************************************************************************
+* Cards
+/**********************************************************************************/
+.card-container {
+  display: flex;
+  justify-content: center;
+  font-size: $font-size-big;
+
+  & .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+
+    & .card-header {
+      text-align: center;
+      color: $color-gray-dark;
+
+      & .title-CardHeader {
+        font-weight: 600;
+        font-size: $font-size-huge;
+        padding: 10px 0;
+      }
+      & .icon-CardHeader {
+        font-size: $font-size-huge-double;
+      }
+    }
+
+    & .card-body {
+      padding: 10px 0;
+
+      & .form-inputs {
+        & .form-group {
+          margin: 10px 0;
+
+          & ::ng-deep .p-inputtext {
+            margin: 10px 0;
+          }
+          & label {
+            display: inline-block;
+            margin: 10px 0;
+          }
+        }
+      }
+
+      & .form-actions {
+        padding-top: 10px;
+
+        & button {
+          width: 100%;
+          font-weight: 600;
+        }
+      }
+
+    }
+
+  }
+
+}
+
+//Styles for Add Edit Components
+.card-container {
+  & .card {
+    & .card-body {
+      & .form-addEdit {
+        & .form-group {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          & > label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+}

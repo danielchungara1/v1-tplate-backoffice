@@ -32,10 +32,9 @@
               "./node_modules/primeng/resources/themes/saga-blue/theme.css",
               "./node_modules/primeng/resources/primeng.min.css",
               "./node_modules/primeicons/primeicons.css",
-              "src/styles.css"
+              "src/styles/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "dev": {},
@@ -115,10 +114,9 @@
               "./node_modules/primeng/resources/themes/saga-blue/theme.css",
               "./node_modules/primeng/resources/primeng.min.css",
               "./node_modules/primeicons/primeicons.css",
-              "src/styles.css"
+              "src/styles/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           }
         },
         "lint": {
@@ -152,5 +150,10 @@
   "defaultProject": "tplate-backoffice",
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "stylesheet": "scss"
+    }
   }
 }

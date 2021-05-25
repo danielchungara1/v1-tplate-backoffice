@@ -1,8 +1,8 @@
-<div class="userList-container">
+<div class="card-container">
   <div class="card">
 
     <div class="card-header">
-      <div class="card-header-title">List of Users</div>
+      <div class="title-CardHeader">User List</div>
     </div>
 
     <div class="card-body">
@@ -24,7 +24,7 @@
             <td>{{user.name}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.role.name}}</td>
-            <td class="actions-container">
+            <td class="actions-table">
               <app-user-delete
                 [user]="user"
                 (deleted)="onDeleted($event)">
@@ -40,8 +40,5 @@
         </ng-template>
       </p-table>
     </div>
-
-    <div class="card-footer"></div>
-
   </div>
 </div>

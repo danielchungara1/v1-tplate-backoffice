@@ -1,0 +1,12 @@
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--surface-800);
+  color: var(--surface-0);
+  padding:10px 0;
+}
+#copyright {
+  font-size: 1em;
+  padding:5px 0;
+}
