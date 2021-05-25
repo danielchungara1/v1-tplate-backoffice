@@ -95,11 +95,11 @@ export class UserAddEditComponent implements OnInit {
 
   private initializeLabels(): void {
     if (this.formIsEdit) {
-      this.titleLabel = 'EDIT USER';
+      this.titleLabel = 'Edit User';
       this.buttonLabel = 'Update';
       this.passwordLabel = 'Password';
     } else {
-      this.titleLabel = 'CREATE USER';
+      this.titleLabel = 'Create User';
       this.buttonLabel = 'Create';
       this.passwordLabel = 'Password *';
     }

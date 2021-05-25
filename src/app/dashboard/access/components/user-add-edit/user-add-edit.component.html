@@ -1,16 +1,15 @@
-<div class="card">
-  <form [formGroup]="userForm" (ngSubmit)="handlerSubmit()">
+<div class="card-container">
+  <div class="card">
     <div class="card-header">
-      <div class="card-title">{{titleLabel}}</div>
-      <div class="header-separator"></div>
+      <div class="title-CardHeader">
+        {{titleLabel}}
+      </div>
     </div>
-
     <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="handlerSubmit()">
 
-      <!--Credentials-->
-      <div id="credentials">
-        <div class="section-title">Credentials</div>
-        <div class="row-container">
+        <div class="form-inputs form-addEdit">
+          <!--Credentials-->
           <div class="form-group">
             <label for="username1">Username *</label>
             <div class="input-group">
@@ -42,14 +41,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="section-separator"></div>
-      </div>
 
-      <!--Contact-->
-      <div id="contact">
-        <div class="section-title">Contact</div>
-        <div class="row-container">
+          <!--Contact-->
           <div class="form-group">
             <label for="name1">Name</label>
             <div class="input-group">
@@ -74,8 +67,6 @@
               />
             </div>
           </div>
-        </div>
-        <div class="row-container">
           <div class="form-group">
             <label for="phone1">Phone</label>
             <div class="input-group">
@@ -104,42 +95,35 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="section-separator"></div>
-      </div>
 
-
-      <!--Role-->
-      <div id="role">
-        <div class="section-title">Role</div>
-        <div class="form-group">
-          <label for="role1">Role *</label>
-          <div class="input-group">
-            <p-dropdown
-              id="role1"
-              [options]="roles"
-              formControlName="role"
-              optionLabel="name"
-              placeholder="Role"
-            ></p-dropdown>
-            <div *ngIf="getFormControls.role.touched && getFormControls.role.invalid" class="text-danger">
-              <div *ngIf="getFormControls.role.errors.required">Role is required.</div>
+          <!--Role-->
+          <div class="form-group">
+            <label for="role1">Role *</label>
+            <div class="input-group">
+              <p-dropdown
+                id="role1"
+                [options]="roles"
+                formControlName="role"
+                optionLabel="name"
+                placeholder="Role"
+              ></p-dropdown>
+              <div *ngIf="getFormControls.role.touched && getFormControls.role.invalid" class="text-danger">
+                <div *ngIf="getFormControls.role.errors.required">Role is required.</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="form-actions">
+          <p-button
+            [label]="buttonLabel"
+            type="submit"
+            [disabled]="userForm.invalid"
+          ></p-button>
+          <div class="footer-separator"></div>
+        </div>
+
+      </form>
     </div>
-
-    <div class="card-footer">
-      <p-button
-        [label]="buttonLabel"
-        type="submit"
-        [disabled]="userForm.invalid"
-      ></p-button>
-      <div class="footer-separator"></div>
-    </div>
-
-  </form>
+  </div>
 </div>
-
