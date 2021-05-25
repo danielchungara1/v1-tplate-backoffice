@@ -14,4 +14,7 @@ export class EndPoints {
 
   // Roles Endpoints
   static ROLES_GET_ALL = environment.API + '/roles/all';
+
+  // Permissions Endpoints
+  static PERMISSIONS_GET_ALL = environment.API + '/permissions/all';
 }
