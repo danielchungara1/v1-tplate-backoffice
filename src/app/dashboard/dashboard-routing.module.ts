@@ -9,6 +9,7 @@ import {RoleListComponent} from './access/components/role/role-list/role-list.co
 import {RoleAddEditComponent} from './access/components/role/role-add-edit/role-add-edit.component';
 import {RoleDeleteComponent} from './access/components/role/role-delete/role-delete.component';
 import {BrandListComponent} from './access/components/brand/brand-list/brand-list.component';
+import {BrandAddEditComponent} from './access/components/brand/brand-add-edit/brand-add-edit.component';
 
 
 const routes: Routes = [{
@@ -30,9 +31,9 @@ const routes: Routes = [{
     {path: 'edit-role/:id', component: RoleAddEditComponent},
     {path: 'delete-role', component: RoleDeleteComponent},
 
-    // Roles
+    // Brands
     {path: 'brands', component: BrandListComponent},
-    // {path: 'create-role', component: RoleAddEditComponent},
+    {path: 'create-brand', component: BrandAddEditComponent},
     // {path: 'edit-role/:id', component: RoleAddEditComponent},
     // {path: 'delete-role', component: RoleDeleteComponent},
 
