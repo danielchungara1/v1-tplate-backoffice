@@ -17,6 +17,11 @@ export class EndPoints {
   static ROLES_GET_ALL = environment.API + '/roles/all';
   static ROLES_CREATE = environment.API + '/roles/new-role';
 
+  // Brands Endpoints
+  // static ROLES = environment.API + '/roles';
+  static BRANDS_GET_ALL = environment.API + '/brands/all';
+  // static ROLES_CREATE = environment.API + '/roles/new-role';
+
   // Permissions Endpoints
   static PERMISSIONS_GET_ALL = environment.API + '/permissions/all';
 }

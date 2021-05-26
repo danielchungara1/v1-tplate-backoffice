@@ -1,0 +1,10 @@
+/*.actions-table> button, .actions-table ::ng-deep .p-button{*/
+/*  margin: 0 2px;*/
+/*}*/
+
+.card-container .card .card-body ::ng-deep .p-datatable table {
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%;
+}
+

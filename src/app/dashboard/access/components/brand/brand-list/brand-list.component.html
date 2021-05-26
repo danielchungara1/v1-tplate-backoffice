@@ -1,0 +1,42 @@
+<div class="card-container">
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Brand List</div>
+    </div>
+
+    <div class="card-body">
+      <p-table [value]="brands">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Description</th>
+<!--            <th>Actions</th>-->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-brand>
+          <tr>
+            <td>{{brand.id}}</td>
+            <td>{{brand.name}}</td>
+            <td>{{brand.title}}</td>
+            <td>{{brand.description}}</td>
+<!--            <td class="actions-table">-->
+<!--              <app-role-delete-->
+<!--                [role]="brand"-->
+<!--                (deleted)="onDeleted($event)">-->
+<!--              </app-role-delete>-->
+<!--              <button-->
+<!--                pButton-->
+<!--                pTooltip="Edit"-->
+<!--                icon="fas fa-pencil-alt"-->
+<!--                [routerLink]="['/dashboard/edit-role', brand.id]"-->
+<!--              ></button>-->
+<!--            </td>-->
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
