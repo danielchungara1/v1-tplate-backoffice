@@ -3,9 +3,7 @@ import {Observable, throwError} from 'rxjs';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {UserModel} from '../../access/models/UserModel';
 import {MapperService} from '@core/mapper/mapper.service';
-import {UserDto} from '../dtos/UserDto';
 import {HttpService} from '@core/httpClient/http.service';
 import {RoleModel} from '../../access/models/RoleModel';
 import {RoleDto} from '../dtos/RoleDto';
@@ -21,9 +19,7 @@ export class RoleAddEditService {
 
   createRole(roleModel: RoleModel): Observable<string> {
 
-    // TODO: Remove hardcoded code
-    const roleDto = this.mapperService.map(roleModel, RoleDto);
-    roleDto.permissionIds = roleModel.permissions.map(role => role.id);
+    const roleDto = this.buildDto(roleModel);
 
     return this.httpService
       .post<ResponseSimpleDto>(EndPoints.ROLES_CREATE, roleDto)
@@ -39,9 +35,7 @@ export class RoleAddEditService {
 
   updateRole(roleModel: RoleModel, userId: number): Observable<string> {
 
-    // TODO: Remove hardcoded code
-    const roleDto = this.mapperService.map(roleModel, RoleDto);
-    roleDto.permissionIds = [1, 2, 3, 4];
+    const roleDto = this.buildDto(roleModel);
 
     return this.httpService
       .put<ResponseSimpleDto>(EndPoints.ROLES + `/${userId}`, roleDto)
@@ -55,4 +49,9 @@ export class RoleAddEditService {
       );
   }
 
+  private buildDto(roleModel: RoleModel): any {
+    const roleDto = this.mapperService.map(roleModel, RoleDto);
+    roleDto.permissionIds = roleModel.permissions.map(role => role.id);
+    return roleDto;
+  }
 }

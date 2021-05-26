@@ -19,8 +19,7 @@ export class UserAddEditService {
 
   createUser(userModel: UserModel): Observable<string> {
 
-    const userDto = this.mapperService.map(userModel, UserDto);
-    userDto.roleId = userModel.role.id;
+    const userDto = this.buildDto(userModel);
 
     return this.httpService
       .post<ResponseSimpleDto>(EndPoints.USERS_CREATE, userDto)
@@ -36,8 +35,7 @@ export class UserAddEditService {
 
   updateUser(userModel: UserModel, userId: number): Observable<string> {
 
-    const userDto = this.mapperService.map(userModel, UserDto);
-    userDto.roleId = userModel.role.id;
+    const userDto = this.buildDto(userModel);
 
     return this.httpService
       .put<ResponseSimpleDto>(EndPoints.USERS + `/${userId}`, userDto)
@@ -51,16 +49,9 @@ export class UserAddEditService {
       );
   }
 
-  // getUser(userId: number): Observable<UserModel> {
-  //   return this.httpService
-  //     .get<UserResponseDto>(EndPoints.USERS + `/${userId}`)
-  //     .pipe(
-  //       map((res: UserResponseDto) => {
-  //           // Return message
-  //           return res.data;
-  //         }
-  //       ),
-  //       catchError((err: ResponseSimpleDto) => throwError(err.message))
-  //     );
-  // }
+  private buildDto(userModel: UserModel): any {
+    const userDto = this.mapperService.map(userModel, UserDto);
+    userDto.roleId = userModel.role.id;
+    return userDto;
+  }
 }

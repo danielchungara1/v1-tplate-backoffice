@@ -20,6 +20,7 @@ const routes: Routes = [{
     {path: 'permissions', component: PermissionListComponent},
     {path: 'roles', component: RoleListComponent},
     {path: 'create-role', component: RoleAddEditComponent},
+    {path: 'edit-role/:id', component: RoleAddEditComponent},
     {path: '**', component: UserListComponent}
   ]
 }];
