@@ -6,6 +6,7 @@ import {UserAddEditComponent} from './access/components/user-add-edit/user-add-e
 import {UserDeleteComponent} from './access/components/user-delete/user-delete.component';
 import {PermissionListComponent} from './access/components/permission-list/permission-list.component';
 import {RoleListComponent} from './access/components/role-list/role-list.component';
+import {RoleAddEditComponent} from './access/components/role-add-edit/role-add-edit.component';
 
 
 const routes: Routes = [{
@@ -18,6 +19,7 @@ const routes: Routes = [{
     {path: 'delete-user', component: UserDeleteComponent},
     {path: 'permissions', component: PermissionListComponent},
     {path: 'roles', component: RoleListComponent},
+    {path: 'create-role', component: RoleAddEditComponent},
     {path: '**', component: UserListComponent}
   ]
 }];
