@@ -1,0 +1,15 @@
+<p-confirmDialog
+  header="Confirmation"
+  icon="pi pi-exclamation-triangle"
+  [key]="role.id.toString()"
+  acceptButtonStyleClass="p-button-danger"
+
+>
+</p-confirmDialog>
+<button
+  pButton
+  pTooltip="Delete"
+  icon="fas fa-trash-alt"
+  (click)="deleteRole()"
+  class="p-button-danger"
+></button>

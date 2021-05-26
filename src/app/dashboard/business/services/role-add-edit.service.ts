@@ -3,26 +3,26 @@ import {Observable, throwError} from 'rxjs';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {UserModel} from '../../access/models/UserModel';
 import {MapperService} from '@core/mapper/mapper.service';
-import {UserDto} from '../dtos/UserDto';
 import {HttpService} from '@core/httpClient/http.service';
+import {RoleModel} from '../../access/models/RoleModel';
+import {RoleDto} from '../dtos/RoleDto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserAddEditService {
+export class RoleAddEditService {
 
   constructor(private mapperService: MapperService,
               private httpService: HttpService) {
   }
 
-  createUser(userModel: UserModel): Observable<string> {
+  createRole(roleModel: RoleModel): Observable<string> {
 
-    const userDto = this.buildDto(userModel);
+    const roleDto = this.buildDto(roleModel);
 
     return this.httpService
-      .post<ResponseSimpleDto>(EndPoints.USERS_CREATE, userDto)
+      .post<ResponseSimpleDto>(EndPoints.ROLES_CREATE, roleDto)
       .pipe(
         map((res: ResponseSimpleDto) => {
             // Return message
@@ -33,12 +33,12 @@ export class UserAddEditService {
       );
   }
 
-  updateUser(userModel: UserModel, userId: number): Observable<string> {
+  updateRole(roleModel: RoleModel, userId: number): Observable<string> {
 
-    const userDto = this.buildDto(userModel);
+    const roleDto = this.buildDto(roleModel);
 
     return this.httpService
-      .put<ResponseSimpleDto>(EndPoints.USERS + `/${userId}`, userDto)
+      .put<ResponseSimpleDto>(EndPoints.ROLES + `/${userId}`, roleDto)
       .pipe(
         map((res: ResponseSimpleDto) => {
             // Return message
@@ -49,9 +49,9 @@ export class UserAddEditService {
       );
   }
 
-  private buildDto(userModel: UserModel): any {
-    const userDto = this.mapperService.map(userModel, UserDto);
-    userDto.roleId = userModel.role.id;
-    return userDto;
+  private buildDto(roleModel: RoleModel): any {
+    const roleDto = this.mapperService.map(roleModel, RoleDto);
+    roleDto.permissionIds = roleModel.permissions.map(role => role.id);
+    return roleDto;
   }
 }
