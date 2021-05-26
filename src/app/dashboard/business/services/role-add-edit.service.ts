@@ -23,7 +23,7 @@ export class RoleAddEditService {
 
     // TODO: Remove hardcoded code
     const roleDto = this.mapperService.map(roleModel, RoleDto);
-    roleDto.permissionIds = [1, 2, 3, 4];
+    roleDto.permissionIds = roleModel.permissions.map(role => role.id);
 
     return this.httpService
       .post<ResponseSimpleDto>(EndPoints.ROLES_CREATE, roleDto)

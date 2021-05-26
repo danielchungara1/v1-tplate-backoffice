@@ -13,6 +13,7 @@ import {ConfirmationService} from 'primeng/api';
 import {MenuModule} from 'primeng/menu';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {TooltipModule} from 'primeng/tooltip';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import {TooltipModule} from 'primeng/tooltip';
     ConfirmDialogModule,
     TieredMenuModule,
     MenuModule,
-    TooltipModule
+    TooltipModule,
+    MultiSelectModule
   ],
   providers: [
     MessageService,

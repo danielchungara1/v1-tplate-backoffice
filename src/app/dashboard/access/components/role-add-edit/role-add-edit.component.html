@@ -37,39 +37,40 @@
                 formControlName="description"
                 placeholder="Description"
               />
-              <div *ngIf="getFormControls.description.touched && getFormControls.description.invalid" class="text-danger">
+              <div *ngIf="getFormControls.description.touched && getFormControls.description.invalid"
+                   class="text-danger">
                 <div *ngIf="getFormControls.description.errors.required">Description is required.</div>
               </div>
             </div>
           </div>
 
           <!--Permissions-->
-<!--          <div class="form-group">-->
-<!--            <label for="role1">Permissions *</label>-->
-<!--            <div class="input-group">-->
-<!--              <p-dropdown-->
-<!--                id="role1"-->
-<!--                [options]="roles"-->
-<!--                formControlName="role"-->
-<!--                optionLabel="name"-->
-<!--                placeholder="Role"-->
-<!--              ></p-dropdown>-->
-<!--              <div *ngIf="getFormControls.role.touched && getFormControls.role.invalid" class="text-danger">-->
-<!--                <div *ngIf="getFormControls.role.errors.required">Role is required.</div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
+          <div class="form-group">
+            <label for="permissions1">Permissions *</label>
+            <div class="input-group">
+              <p-multiSelect
+                id="permissions1"
+                [options]="permissionsAll"
+                formControlName="permissions"
+                optionLabel="name"
+                placeholder="Permissions"
+                [maxSelectedLabels]="0"
+                [selectedItemsLabel]="'{0} items selected'"
+              ></p-multiSelect>
+              <div *ngIf="getFormControls.permissions.touched && getFormControls.permissions.invalid" class="text-danger">
+                <div *ngIf="getFormControls.permissions.errors.required">Permissions are required.</div>
+              </div>
+            </div>
+          </div>
 
-        <div class="form-actions">
-          <p-button
-            [label]="buttonLabel"
-            type="submit"
-            [disabled]="roleForm.invalid"
-          ></p-button>
-          <div class="footer-separator"></div>
+          <div class="form-actions">
+            <p-button
+              [label]="buttonLabel"
+              type="submit"
+              [disabled]="roleForm.invalid"
+            ></p-button>
+          </div>
         </div>
-
       </form>
     </div>
   </div>

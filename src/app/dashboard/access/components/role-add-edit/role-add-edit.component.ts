@@ -11,7 +11,7 @@ import {PermissionSearchService} from '../../../business/services/shared/permiss
 @Component({
   selector: 'app-role-add-edit',
   templateUrl: './role-add-edit.component.html',
-  styleUrls: ['./role-add-edit.component.css']
+  styleUrls: ['./role-add-edit.component.scss']
 })
 export class RoleAddEditComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class RoleAddEditComponent implements OnInit {
   titleLabel: string;
   buttonLabel: string;
   role: RoleModel;
-  permissions: PermissionModel[];
+  permissionsAll: PermissionModel[];
   roleId: number;
   handlerSubmit: any;
 
@@ -54,7 +54,7 @@ export class RoleAddEditComponent implements OnInit {
 
     // Fetching permissions
     this.permissionSearchService.getPermissions().subscribe(
-      data => this.permissions = data,
+      data => this.permissionsAll = data,
       msg => this.notificationService.showError(msg)
     );
 
@@ -106,7 +106,7 @@ export class RoleAddEditComponent implements OnInit {
     this.roleForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      // permissions: [null, [Validators.required]]
+      permissions: [null, [Validators.required]]
     });
   }
 
