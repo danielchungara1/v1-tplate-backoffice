@@ -41,8 +41,18 @@ export class SidebarComponent implements OnInit {
       },
       {
         label: 'Create Role',
-        icon: 'fas fa-eye',
+        icon: 'fas fa-plus-circle',
         routerLink: ['create-role']
+      },
+      {
+        label: 'List Brands',
+        icon: 'fas fa-list-alt',
+        routerLink: ['brands']
+      },
+      {
+        label: 'Create Brand',
+        icon: 'fas fa-plus-circle',
+        routerLink: ['create-brand']
       },
     ];
   }
