@@ -10,6 +10,7 @@ import { UserDeleteComponent } from './access/components/user-delete/user-delete
 import { PermissionListComponent } from './access/components/permission-list/permission-list.component';
 import { RoleListComponent } from './access/components/role-list/role-list.component';
 import { RoleAddEditComponent } from './access/components/role-add-edit/role-add-edit.component';
+import { RoleDeleteComponent } from './access/components/role-delete/role-delete.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RoleAddEditComponent } from './access/components/role-add-edit/role-add
     UserDeleteComponent,
     PermissionListComponent,
     RoleListComponent,
-    RoleAddEditComponent
+    RoleAddEditComponent,
+    RoleDeleteComponent
   ],
   imports: [
     DashboardRoutingModule,
