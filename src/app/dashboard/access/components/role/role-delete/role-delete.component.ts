@@ -9,7 +9,7 @@ import {RoleDeleteService} from '../../../../business/services/role/role-delete.
 @Component({
   selector: 'app-role-delete',
   templateUrl: './role-delete.component.html',
-  styleUrls: ['./role-delete.component.css']
+  styleUrls: ['./role-delete.component.scss']
 })
 export class RoleDeleteComponent implements OnInit {
 

@@ -13,6 +13,7 @@ import { RoleAddEditComponent } from './access/components/role/role-add-edit/rol
 import { RoleDeleteComponent } from './access/components/role/role-delete/role-delete.component';
 import { BrandListComponent } from './access/components/brand/brand-list/brand-list.component';
 import { BrandAddEditComponent } from './access/components/brand/brand-add-edit/brand-add-edit.component';
+import { BrandDeleteComponent } from './access/components/brand/brand-delete/brand-delete.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BrandAddEditComponent } from './access/components/brand/brand-add-edit/
     RoleAddEditComponent,
     RoleDeleteComponent,
     BrandListComponent,
-    BrandAddEditComponent
+    BrandAddEditComponent,
+    BrandDeleteComponent
   ],
   imports: [
     DashboardRoutingModule,

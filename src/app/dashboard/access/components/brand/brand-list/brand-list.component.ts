@@ -28,8 +28,7 @@ export class BrandListComponent implements OnInit {
   }
 
 
-  // onDeleted($event: RoleModel): void {
-  //   this.brands =
-  //     this.brands.filter(role => role.id !== $event.id);
-  // }
+  onDeleted($event: BrandModel): void {
+    this.brands = this.brands.filter(model => model.id !== $event.id);
+  }
 }
