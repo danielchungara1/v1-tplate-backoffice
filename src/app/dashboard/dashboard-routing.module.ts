@@ -34,7 +34,7 @@ const routes: Routes = [{
     // Brands
     {path: 'brands', component: BrandListComponent},
     {path: 'create-brand', component: BrandAddEditComponent},
-    // {path: 'edit-role/:id', component: RoleAddEditComponent},
+    {path: 'edit-brand/:id', component: BrandAddEditComponent},
     // {path: 'delete-role', component: RoleDeleteComponent},
 
     {path: '**', component: UserListComponent}

@@ -33,21 +33,21 @@ export class BrandAddEditService {
       );
   }
 
-  // updateRole(roleModel: RoleModel, userId: number): Observable<string> {
-  //
-  //   const roleDto = this.buildDto(roleModel);
-  //
-  //   return this.httpService
-  //     .put<ResponseSimpleDto>(EndPoints.ROLES + `/${userId}`, roleDto)
-  //     .pipe(
-  //       map((res: ResponseSimpleDto) => {
-  //           // Return message
-  //           return res.message;
-  //         }
-  //       ),
-  //       catchError((err: ResponseSimpleDto) => throwError(err.message))
-  //     );
-  // }
+  updateBrand(model: BrandModel, id: number): Observable<string> {
+
+    const dto = this.buildDto(model);
+
+    return this.httpService
+      .put<ResponseSimpleDto>(EndPoints.BRANDS + `/${id}`, dto)
+      .pipe(
+        map((res: ResponseSimpleDto) => {
+            // Return message
+            return res.message;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
 
   private buildDto(brandModel: BrandModel): any {
     return this.mapperService.map(brandModel, BrandDto);

@@ -4,6 +4,7 @@ import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {BrandModel} from '../../../models/BrandModel';
 import {BrandAddEditService} from '../../../../business/services/brand/brand-add-edit.service';
+import {BrandSearchService} from '../../../../business/services/brand/brand-search.service';
 
 @Component({
   selector: 'app-brand-add-edit',
@@ -17,35 +18,35 @@ export class BrandAddEditComponent implements OnInit {
   titleLabel: string;
   buttonLabel: string;
   brand: BrandModel;
-  // roleId: number;
+  brandId: number;
   handlerSubmit: any;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
               private brandAddEditService: BrandAddEditService,
-              // private permissionSearchService: BrandSearchService,
+              private permissionSearchService: BrandSearchService,
               private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
 
     // Initialize form depend on create or update
-    // const id = this.activatedRoute.snapshot.paramMap.get('id');
-    // if (id) {
-    //   this.roleId = Number(id);
-    //   this.formIsEdit = true;
-    // }
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.brandId = Number(id);
+      this.formIsEdit = true;
+    }
     this.initializeLabels();
     this.initializeInputs();
     this.initializeSubmit();
 
-    // if (this.formIsEdit) {
-    //   // Fetching role
-    //   this.permissionSearchService.getRole(this.roleId).subscribe(
-    //     data => this.brandForm.patchValue(data),
-    //     msg => this.notificationService.showError(msg)
-    //   );
-    // }
+    if (this.formIsEdit) {
+      // Fetching brand
+      this.permissionSearchService.getBrand(this.brandId).subscribe(
+        data => this.brandForm.patchValue(data),
+        msg => this.notificationService.showError(msg)
+      );
+    }
 
   }
 
@@ -62,18 +63,18 @@ export class BrandAddEditComponent implements OnInit {
       );
   }
 
-  // updateRole(): void {
-  //   const role: RoleModel = this.brandForm.value as RoleModel;
-  //   this.brandAddEditService.updateRole(role, this.roleId)
-  //     .subscribe(
-  //       (msg) => {
-  //         this.notificationService.showSuccess(msg);
-  //       },
-  //       (msg) => {
-  //         this.notificationService.showError(msg);
-  //       }
-  //     );
-  // }
+  updateBrand(): void {
+    const model: BrandModel = this.brandForm.value as BrandModel;
+    this.brandAddEditService.updateBrand(model, this.brandId)
+      .subscribe(
+        (msg) => {
+          this.notificationService.showSuccess(msg);
+        },
+        (msg) => {
+          this.notificationService.showError(msg);
+        }
+      );
+  }
 
   get getFormControls(): { [p: string]: AbstractControl } {
     return this.brandForm.controls;
@@ -100,7 +101,7 @@ export class BrandAddEditComponent implements OnInit {
 
   private initializeSubmit(): void {
     if (this.formIsEdit) {
-      // this.handlerSubmit = () => this.updateRole();
+      this.handlerSubmit = () => this.updateBrand();
     } else {
       this.handlerSubmit = () => this.createBrand();
     }
