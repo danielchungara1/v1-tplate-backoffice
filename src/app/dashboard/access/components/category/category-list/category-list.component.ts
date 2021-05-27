@@ -29,8 +29,7 @@ export class CategoryListComponent implements OnInit {
 
 
   onDeleted($event: CategoryModel): void {
-    this.models =
-      this.models.filter(model => model.id !== $event.id);
+    this.loadModels();
   }
 
 }
