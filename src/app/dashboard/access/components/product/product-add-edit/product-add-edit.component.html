@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="card-body">
-      <form [formGroup]="roleForm" (ngSubmit)="handlerSubmit()">
+      <form [formGroup]="form" (ngSubmit)="handlerSubmit()">
 
         <div class="form-inputs form-addEdit">
           <!--Name-->
@@ -22,6 +22,24 @@
               />
               <div *ngIf="getFormControls.name.touched && getFormControls.name.invalid" class="text-danger">
                 <div *ngIf="getFormControls.name.errors.required">Name is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Title-->
+          <div class="form-group">
+            <label for="title1">Title *</label>
+            <div class="input-group">
+              <input
+                id="title1"
+                type="text"
+                pInputText
+                formControlName="title"
+                placeholder="Title"
+              />
+              <div *ngIf="getFormControls.title.touched && getFormControls.title.invalid"
+                   class="text-danger">
+                <div *ngIf="getFormControls.title.errors.required">Title is required.</div>
               </div>
             </div>
           </div>
@@ -44,33 +62,16 @@
             </div>
           </div>
 
-          <!--Permissions-->
-          <div class="form-group">
-            <label for="permissions1">Permissions *</label>
-            <div class="input-group">
-              <p-multiSelect
-                id="permissions1"
-                [options]="permissionsAll"
-                formControlName="permissions"
-                optionLabel="name"
-                placeholder="Permissions"
-                [maxSelectedLabels]="0"
-                [selectedItemsLabel]="'{0} items selected'"
-              ></p-multiSelect>
-              <div *ngIf="getFormControls.permissions.touched && getFormControls.permissions.invalid" class="text-danger">
-                <div *ngIf="getFormControls.permissions.errors.required">Permissions are required.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <p-button
-              [label]="buttonLabel"
-              type="submit"
-              [disabled]="roleForm.invalid"
-            ></p-button>
-          </div>
         </div>
+
+      <div class="form-actions">
+        <p-button
+          [label]="buttonLabel"
+          type="submit"
+          [disabled]="form.invalid"
+        ></p-button>
+      </div>
+
       </form>
     </div>
   </div>

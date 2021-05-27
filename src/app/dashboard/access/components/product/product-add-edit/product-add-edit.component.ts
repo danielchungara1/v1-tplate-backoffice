@@ -1,34 +1,30 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RoleModel} from '../../../models/RoleModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {RoleSearchService} from '../../../../business/services/role/role-search.service';
 import {ActivatedRoute} from '@angular/router';
-import {PermissionModel} from '../../../models/PermissionModel';
-import {RoleAddEditService} from '../../../../business/services/role/role-add-edit.service';
-import {PermissionSearchService} from '../../../../business/services/permission/permission-search.service';
+import {ProductModel} from '../../../models/ProductModel';
+import {ProductAddEditService} from '../../../../business/services/product/product-add-edit.service';
+import {ProductSearchService} from '../../../../business/services/product/product-search.service';
 
 @Component({
-  selector: 'app-role-add-edit',
+  selector: 'app-category-add-edit',
   templateUrl: './product-add-edit.component.html',
   styleUrls: ['./product-add-edit.component.scss']
 })
 export class ProductAddEditComponent implements OnInit {
 
-  roleForm: FormGroup;
+  form: FormGroup;
   formIsEdit = false;
   titleLabel: string;
   buttonLabel: string;
-  role: RoleModel;
-  permissionsAll: PermissionModel[];
-  roleId: number;
+  model: ProductModel;
+  modelId: number;
   handlerSubmit: any;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private roleAddEditService: RoleAddEditService,
-              private roleSearchService: RoleSearchService,
-              private permissionSearchService: PermissionSearchService,
+              private service: ProductAddEditService,
+              private searchService: ProductSearchService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -37,7 +33,7 @@ export class ProductAddEditComponent implements OnInit {
     // Initialize form depend on create or update
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
-      this.roleId = Number(id);
+      this.modelId = Number(id);
       this.formIsEdit = true;
     }
     this.initializeLabels();
@@ -45,25 +41,18 @@ export class ProductAddEditComponent implements OnInit {
     this.initializeSubmit();
 
     if (this.formIsEdit) {
-      // Fetching role
-      this.roleSearchService.getRole(this.roleId).subscribe(
-        data => this.roleForm.patchValue(data),
+      // Fetching
+      this.searchService.getOne(this.modelId).subscribe(
+        data => this.form.patchValue(data),
         msg => this.notificationService.showError(msg)
       );
     }
 
-    // Fetching permissions
-    this.permissionSearchService.getPermissions().subscribe(
-      data => this.permissionsAll = data,
-      msg => this.notificationService.showError(msg)
-    );
-
-
   }
 
-  createRole(): void {
-    const role: RoleModel = this.roleForm.value as RoleModel;
-    this.roleAddEditService.createRole(role)
+  create(): void {
+    this.model = this.form.value as ProductModel;
+    this.service.create(this.model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -74,9 +63,9 @@ export class ProductAddEditComponent implements OnInit {
       );
   }
 
-  updateRole(): void {
-    const role: RoleModel = this.roleForm.value as RoleModel;
-    this.roleAddEditService.updateRole(role, this.roleId)
+  update(): void {
+    this.model = this.form.value as ProductModel;
+    this.service.update(this.model, this.modelId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -88,33 +77,33 @@ export class ProductAddEditComponent implements OnInit {
   }
 
   get getFormControls(): { [p: string]: AbstractControl } {
-    return this.roleForm.controls;
+    return this.form.controls;
   }
 
 
   private initializeLabels(): void {
     if (this.formIsEdit) {
-      this.titleLabel = 'Edit Role';
+      this.titleLabel = 'Edit Product';
       this.buttonLabel = 'Update';
     } else {
-      this.titleLabel = 'Create Role';
+      this.titleLabel = 'Create Product';
       this.buttonLabel = 'Create';
     }
   }
 
   private initializeInputs(): void {
-    this.roleForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      permissions: [null, [Validators.required]]
+      title: ['', [Validators.required]],
     });
   }
 
   private initializeSubmit(): void {
     if (this.formIsEdit) {
-      this.handlerSubmit = () => this.updateRole();
+      this.handlerSubmit = () => this.update();
     } else {
-      this.handlerSubmit = () => this.createRole();
+      this.handlerSubmit = () => this.create();
     }
   }
 }

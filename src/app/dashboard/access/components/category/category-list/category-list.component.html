@@ -24,10 +24,10 @@
             <td>{{model.description}}</td>
             <td>{{model.title}}</td>
             <td class="actions-table">
-              <app-category-delete
+              <app-product-delete
                 [model]="model"
                 (deleted)="onDeleted($event)">
-              </app-category-delete>
+              </app-product-delete>
               <button
                 pButton
                 pTooltip="Edit"

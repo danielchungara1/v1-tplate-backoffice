@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RoleModel} from '../../../models/RoleModel';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {CategoryModel} from '../../../models/CategoryModel';

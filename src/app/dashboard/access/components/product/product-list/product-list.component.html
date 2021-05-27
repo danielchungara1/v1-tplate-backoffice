@@ -2,34 +2,36 @@
   <div class="card">
 
     <div class="card-header">
-      <div class="title-CardHeader">Role List</div>
+      <div class="title-CardHeader">Product List</div>
     </div>
 
     <div class="card-body">
-      <p-table [value]="roles">
+      <p-table [value]="models">
         <ng-template pTemplate="header">
           <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Title</th>
             <th>Actions</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-role>
+        <ng-template pTemplate="body" let-model>
           <tr>
-            <td>{{role.id}}</td>
-            <td>{{role.name}}</td>
-            <td>{{role.description}}</td>
+            <td>{{model.id}}</td>
+            <td>{{model.name}}</td>
+            <td>{{model.description}}</td>
+            <td>{{model.title}}</td>
             <td class="actions-table">
               <app-product-delete
-                [role]="role"
+                [model]="model"
                 (deleted)="onDeleted($event)">
               </app-product-delete>
               <button
                 pButton
                 pTooltip="Edit"
                 icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-role', role.id]"
+                [routerLink]="['/dashboard/edit-product', model.id]"
               ></button>
             </td>
           </tr>

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
-import {RoleModel} from '../../../models/RoleModel';
-import {RoleDeleteService} from '../../../../business/services/role/role-delete.service';
+import {ProductModel} from '../../../models/ProductModel';
+import {ProductDeleteService} from '../../../../business/services/product/product-delete.service';
 
 @Component({
   selector: 'app-product-delete',
@@ -12,44 +12,35 @@ import {RoleDeleteService} from '../../../../business/services/role/role-delete.
 export class ProductDeleteComponent implements OnInit {
 
   @Input()
-  role: RoleModel;
+  model: ProductModel;
 
   @Output()
-  deleted: EventEmitter<RoleModel> = new EventEmitter();
+  deleted: EventEmitter<ProductModel> = new EventEmitter();
 
-  constructor(private roleDeleteService: RoleDeleteService,
+  constructor(private service: ProductDeleteService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService) {
   }
 
   ngOnInit(): void {
-    // For testing use route: http://localhost:4200/dashboard/delete-role
-    // The role must be on DB.
-    // this.role = {
-    //   id: 4,
-    //   name: 'TESTER+100',
-    //   description: 'TESTING OPERATOR',
-    //   permissions: []
-    // };
-
     // Input validation
-    if (!this.role) {
-      throw new Error(`Role model is required for ${this.constructor.name}.`);
+    if (!this.model) {
+      throw new Error(`Product model is required for ${this.constructor.name}.`);
     }
-    if (!this.role.id) {
-      throw new Error(`Role ID is required for ${this.constructor.name}.`);
+    if (!this.model.id) {
+      throw new Error(`Product ID is required for ${this.constructor.name}.`);
     }
   }
 
-  deleteRole(): void {
+  delete(): void {
     this.confirmationService.confirm({
-      message: `Delete role ${this.role.name} (ID ${this.role.id})?`,
+      message: `Delete product ${this.model.name} (ID ${this.model.id})?`,
       accept: () => {
-        this.roleDeleteService.deleteRole(this.role.id)
+        this.service.delete(this.model.id)
           .subscribe(
             message => {
               this.notificationService.showSuccess(message);
-              this.deleted.emit(this.role);
+              this.deleted.emit(this.model);
             },
             error => this.notificationService.showError(error),
             () => this.confirmationService.close()
@@ -58,7 +49,7 @@ export class ProductDeleteComponent implements OnInit {
       reject: () => {
         this.confirmationService.close();
       },
-      key: this.role.id.toString()
+      key: this.model.id.toString()
     });
   }
 

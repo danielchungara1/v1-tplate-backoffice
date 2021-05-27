@@ -1,36 +1,36 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {RoleModel} from '../../../models/RoleModel';
-import {RoleListService} from '../../../../business/services/role/role-list.service';
+import {ProductModel} from '../../../models/ProductModel';
+import {CategoryListService} from '../../../../business/services/category/category-list.service';
+import {ProductListService} from '../../../../business/services/product/product-list.service';
 
 @Component({
-  selector: 'app-role-list',
+  selector: 'app-category-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
 
-  roles: RoleModel[];
+  models: ProductModel[];
 
-  constructor(private roleListService: RoleListService,
+  constructor(private service: ProductListService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    this.loadRoles();
+    this.loadModels();
   }
 
-  public loadRoles(): void {
-    this.roleListService.getRoles().subscribe(
-      roles => this.roles = roles,
+  public loadModels(): void {
+    this.service.getAll().subscribe(
+      models => this.models = models,
       error => this.notificationService.showError(error)
     );
   }
 
 
-  onDeleted($event: RoleModel): void {
-    this.roles =
-      this.roles.filter(role => role.id !== $event.id);
+  onDeleted($event: ProductModel): void {
+    this.models = this.models.filter(model => model.id !== $event.id);
   }
 
 }
