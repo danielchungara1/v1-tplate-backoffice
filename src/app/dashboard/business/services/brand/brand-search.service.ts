@@ -16,7 +16,7 @@ export class BrandSearchService {
   constructor(private httpService: HttpService) {
   }
 
-  public getBrands(): Observable<BrandModel[]> {
+  public getAll(): Observable<BrandModel[]> {
     return this.httpService.get<BrandListResponseDto>(EndPoints.BRANDS_GET_ALL)
       .pipe(
         map((res: BrandListResponseDto) => {
@@ -27,7 +27,7 @@ export class BrandSearchService {
       );
   }
 
-  getBrand(id: number): Observable<BrandModel> {
+  getOne(id: number): Observable<BrandModel> {
     return this.httpService
       .get<BrandResponseDto>(EndPoints.BRANDS + `/${id}`)
       .pipe(

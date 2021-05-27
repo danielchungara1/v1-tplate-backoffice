@@ -36,7 +36,7 @@ export class CategoryDeleteComponent implements OnInit {
     this.confirmationService.confirm({
       message: `Delete category ${this.model.name} (ID ${this.model.id})?` + '<br/></br>'  +
                `The category and all its descendants categories will be deleted.` + '<br/>'  +
-               `In addition, the products that have some category of the hierarchy has to be eliminated will reset their category.`,
+               `In addition, the products that have some category of the hierarchy will be reset their category.`,
       accept: () => {
         this.service.delete(this.model.id)
           .subscribe(

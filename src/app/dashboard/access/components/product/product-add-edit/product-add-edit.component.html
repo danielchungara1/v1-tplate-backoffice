@@ -62,6 +62,38 @@
             </div>
           </div>
 
+          <!--Brands-->
+          <div class="form-group">
+            <label for="brand1">Brand</label>
+            <div class="input-group">
+              <p-dropdown
+                id="brand1"
+                [options]="brands"
+                formControlName="brand"
+                optionLabel="name"
+                placeholder="Brands"
+                showClear="true"
+                filter="true"
+              ></p-dropdown>
+            </div>
+          </div>
+
+          <!--Categories-->
+          <div class="form-group">
+            <label for="category1">Category</label>
+            <div class="input-group">
+              <p-dropdown
+                id="category1"
+                [options]="categories"
+                formControlName="category"
+                optionLabel="name"
+                placeholder="Categories"
+                showClear="true"
+                filter="true"
+              ></p-dropdown>
+            </div>
+          </div>
+
         </div>
 
       <div class="form-actions">

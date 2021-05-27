@@ -34,7 +34,8 @@ export class BrandDeleteComponent implements OnInit {
 
   delete(): void {
     this.confirmationService.confirm({
-      message: `Delete brand ${this.model.name} (ID ${this.model.id})?`,
+      message: `Delete brand ${this.model.name} (ID ${this.model.id})?` + '<br/></br>'  +
+               `All products that have this brand will be reset it.`,
       accept: () => {
         this.brandDeleteService.delete(this.model.id)
           .subscribe(

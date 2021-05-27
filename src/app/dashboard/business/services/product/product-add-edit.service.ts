@@ -51,6 +51,8 @@ export class ProductAddEditService {
 
   private buildDto(model: ProductModel): any {
     const dto = this.mapperService.map(model, ProductDto);
+    dto.categoryId = model.category?.id;
+    dto.brandId = model.brand?.id;
     return dto;
   }
 }

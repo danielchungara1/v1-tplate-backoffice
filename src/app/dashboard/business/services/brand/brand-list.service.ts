@@ -11,6 +11,6 @@ export class BrandListService {
   constructor(private brandSearchService: BrandSearchService) { }
 
   public getBrands(): Observable<BrandModel[]> {
-    return this.brandSearchService.getBrands();
+    return this.brandSearchService.getAll();
   }
 }

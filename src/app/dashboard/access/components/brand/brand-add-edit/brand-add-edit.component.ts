@@ -42,7 +42,7 @@ export class BrandAddEditComponent implements OnInit {
 
     if (this.formIsEdit) {
       // Fetching brand
-      this.permissionSearchService.getBrand(this.brandId).subscribe(
+      this.permissionSearchService.getOne(this.brandId).subscribe(
         data => this.brandForm.patchValue(data),
         msg => this.notificationService.showError(msg)
       );

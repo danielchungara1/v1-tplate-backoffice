@@ -1,6 +1,8 @@
 export const ProductDto = {
   name: 'name',
   description: 'description',
-  title: 'title'
+  title: 'title',
+  categoryId: 'categoryId',
+  brandId: 'brandId'
 };
 
