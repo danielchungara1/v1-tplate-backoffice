@@ -12,16 +12,26 @@ export class EndPoints {
   static USERS_GET_ALL = environment.API + '/users/all';
   static USERS_CREATE = environment.API + '/users/new-user';
 
-  // Roles Endpoints
+  // Role Endpoints
   static ROLES = environment.API + '/roles';
   static ROLES_GET_ALL = environment.API + '/roles/all';
   static ROLES_CREATE = environment.API + '/roles/new-role';
 
-  // Brands Endpoints
+  // Brand Endpoints
   static BRANDS = environment.API + '/brands';
   static BRANDS_GET_ALL = environment.API + '/brands/all';
   static BRANDS_CREATE = environment.API + '/brands/new-brand';
 
-  // Permissions Endpoints
+  // Permission Endpoints
   static PERMISSIONS_GET_ALL = environment.API + '/permissions/all';
+
+  // Category Endpoints
+  static CATEGORIES = environment.API + '/categories';
+  static CATEGORIES_GET_ALL = environment.API + '/categories/all';
+  static CATEGORIES_CREATE = environment.API + '/categories/new-category';
+
+  // Product Enpoints
+  static PRODUCTS = environment.API + '/products';
+  static PRODUCTS_GET_ALL = environment.API + '/products/all';
+  static PRODUCTS_CREATE = environment.API + '/products/new-product';
 }

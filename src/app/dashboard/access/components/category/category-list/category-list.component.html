@@ -6,7 +6,7 @@
     </div>
 
     <div class="card-body">
-      <p-table [value]="categories">
+      <p-table [value]="models">
         <ng-template pTemplate="header">
           <tr>
             <th>ID</th>
@@ -17,22 +17,22 @@
             <th>Actions</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-category>
+        <ng-template pTemplate="body" let-model>
           <tr>
-            <td>{{category.id}}</td>
-            <td>{{category.name}}</td>
-            <td>{{category.description}}</td>
-            <td>{{category.title}}</td>
+            <td>{{model.id}}</td>
+            <td>{{model.name}}</td>
+            <td>{{model.description}}</td>
+            <td>{{model.title}}</td>
             <td class="actions-table">
               <app-category-delete
-                [role]="category"
+                [model]="model"
                 (deleted)="onDeleted($event)">
               </app-category-delete>
               <button
                 pButton
                 pTooltip="Edit"
                 icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-role', category.id]"
+                [routerLink]="['/dashboard/edit-category', model.id]"
               ></button>
             </td>
           </tr>

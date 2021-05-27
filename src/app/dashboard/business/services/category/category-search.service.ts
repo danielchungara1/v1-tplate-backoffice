@@ -4,22 +4,22 @@ import {Observable, throwError} from 'rxjs';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {RoleModel} from '../../../access/models/RoleModel';
-import {RoleListResponseDto} from '../../dtos/role/RoleListResponseDto';
-import {RoleResponseDto} from '../../dtos/role/RoleResponseDto';
+import {CategoryModel} from '../../../access/models/CategoryModel';
+import {CategoryListResponseDto} from '../../dtos/category/CategoryListResponseDto';
+import {CategoryResponseDto} from '../../dtos/category/CategoryResponseDto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleSearchService {
+export class CategorySearchService {
 
   constructor(private httpService: HttpService) {
   }
 
-  public getRoles(): Observable<RoleModel[]> {
-    return this.httpService.get<RoleListResponseDto>(EndPoints.ROLES_GET_ALL)
+  public getAll(): Observable<CategoryModel[]> {
+    return this.httpService.get<CategoryListResponseDto>(EndPoints.CATEGORIES_GET_ALL)
       .pipe(
-        map((res: RoleListResponseDto) => {
+        map((res: CategoryListResponseDto) => {
             return res.data;
           }
         ),
@@ -27,11 +27,11 @@ export class RoleSearchService {
       );
   }
 
-  getRole(roleId: number): Observable<RoleModel> {
+  getOne(id: number): Observable<CategoryModel> {
     return this.httpService
-      .get<RoleResponseDto>(EndPoints.ROLES + `/${roleId}`)
+      .get<CategoryResponseDto>(EndPoints.CATEGORIES + `/${id}`)
       .pipe(
-        map((res: RoleResponseDto) => {
+        map((res: CategoryResponseDto) => {
             // Return message
             return res.data;
           }

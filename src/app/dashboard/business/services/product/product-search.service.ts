@@ -4,22 +4,22 @@ import {Observable, throwError} from 'rxjs';
 import {EndPoints} from '@core/httpClient/end-points';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {RoleModel} from '../../../access/models/RoleModel';
-import {RoleListResponseDto} from '../../dtos/role/RoleListResponseDto';
-import {RoleResponseDto} from '../../dtos/role/RoleResponseDto';
+import {ProductModel} from '../../../access/models/ProductModel';
+import {ProductListResponseDto} from '../../dtos/product/ProductListResponseDto';
+import {ProductResponseDto} from '../../dtos/product/ProductResponseDto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleSearchService {
+export class ProductSearchService {
 
   constructor(private httpService: HttpService) {
   }
 
-  public getRoles(): Observable<RoleModel[]> {
-    return this.httpService.get<RoleListResponseDto>(EndPoints.ROLES_GET_ALL)
+  public getAll(): Observable<ProductModel[]> {
+    return this.httpService.get<ProductListResponseDto>(EndPoints.PRODUCTS_GET_ALL)
       .pipe(
-        map((res: RoleListResponseDto) => {
+        map((res: ProductListResponseDto) => {
             return res.data;
           }
         ),
@@ -27,11 +27,11 @@ export class RoleSearchService {
       );
   }
 
-  getRole(roleId: number): Observable<RoleModel> {
+  getOne(id: number): Observable<ProductModel> {
     return this.httpService
-      .get<RoleResponseDto>(EndPoints.ROLES + `/${roleId}`)
+      .get<ProductResponseDto>(EndPoints.PRODUCTS + `/${id}`)
       .pipe(
-        map((res: RoleResponseDto) => {
+        map((res: ProductResponseDto) => {
             // Return message
             return res.data;
           }
