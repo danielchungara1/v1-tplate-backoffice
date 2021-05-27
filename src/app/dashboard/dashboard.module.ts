@@ -14,23 +14,41 @@ import { RoleDeleteComponent } from './access/components/role/role-delete/role-d
 import { BrandListComponent } from './access/components/brand/brand-list/brand-list.component';
 import { BrandAddEditComponent } from './access/components/brand/brand-add-edit/brand-add-edit.component';
 import { BrandDeleteComponent } from './access/components/brand/brand-delete/brand-delete.component';
+import {CategoryDeleteComponent} from './access/components/category/category-delete/category-delete.component';
+import {CategoryListComponent} from './access/components/category/category-list/category-list.component';
+import {CategoryAddEditComponent} from './access/components/category/category-add-edit/category-add-edit.component';
+import {ProductListComponent} from './access/components/product/product-list/product-list.component';
+import {ProductDeleteComponent} from './access/components/product/product-delete/product-delete.component';
+import {ProductAddEditComponent} from './access/components/product/product-add-edit/product-add-edit.component';
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    UserListComponent,
     SidebarComponent,
+    // User
+    UserListComponent,
     UserAddEditComponent,
     UserDeleteComponent,
+    // Permission
     PermissionListComponent,
+    // Role
     RoleListComponent,
     RoleAddEditComponent,
     RoleDeleteComponent,
+    // Brand
     BrandListComponent,
     BrandAddEditComponent,
-    BrandDeleteComponent
+    BrandDeleteComponent,
+    // Category
+    CategoryListComponent,
+    CategoryAddEditComponent,
+    CategoryDeleteComponent,
+    // Product
+    ProductListComponent,
+    ProductAddEditComponent,
+    ProductDeleteComponent,
   ],
   imports: [
     DashboardRoutingModule,

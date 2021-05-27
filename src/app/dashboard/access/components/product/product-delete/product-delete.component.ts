@@ -5,11 +5,11 @@ import {RoleModel} from '../../../models/RoleModel';
 import {RoleDeleteService} from '../../../../business/services/role/role-delete.service';
 
 @Component({
-  selector: 'app-role-delete',
-  templateUrl: './role-delete.component.html',
-  styleUrls: ['./role-delete.component.scss']
+  selector: 'app-product-delete',
+  templateUrl: './product-delete.component.html',
+  styleUrls: ['./product-delete.component.scss']
 })
-export class RoleDeleteComponent implements OnInit {
+export class ProductDeleteComponent implements OnInit {
 
   @Input()
   role: RoleModel;

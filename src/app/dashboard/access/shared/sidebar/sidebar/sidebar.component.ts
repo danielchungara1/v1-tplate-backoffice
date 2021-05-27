@@ -54,6 +54,27 @@ export class SidebarComponent implements OnInit {
         icon: 'fas fa-plus-circle',
         routerLink: ['create-brand']
       },
+      {
+        label: 'List Categories',
+        icon: 'fas fa-list-alt',
+        routerLink: ['categories']
+      },
+      {
+        label: 'Create Category',
+        icon: 'fas fa-plus-circle',
+        routerLink: ['create-category']
+      },
+      {
+        label: 'List Product',
+        icon: 'fas fa-list-alt',
+        routerLink: ['products']
+      },
+      {
+        label: 'Create Product',
+        icon: 'fas fa-plus-circle',
+        routerLink: ['create-product']
+      },
+
     ];
   }
 

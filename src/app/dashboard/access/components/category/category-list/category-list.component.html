@@ -1,0 +1,43 @@
+<div class="card-container">
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Category List</div>
+    </div>
+
+    <div class="card-body">
+      <p-table [value]="categories">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Title</th>
+            <!--<th>Parent Category</th>-->
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-category>
+          <tr>
+            <td>{{category.id}}</td>
+            <td>{{category.name}}</td>
+            <td>{{category.description}}</td>
+            <td>{{category.title}}</td>
+            <td class="actions-table">
+              <app-category-delete
+                [role]="category"
+                (deleted)="onDeleted($event)">
+              </app-category-delete>
+              <button
+                pButton
+                pTooltip="Edit"
+                icon="fas fa-pencil-alt"
+                [routerLink]="['/dashboard/edit-role', category.id]"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
