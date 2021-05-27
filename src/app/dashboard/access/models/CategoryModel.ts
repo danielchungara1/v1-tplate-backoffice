@@ -3,4 +3,6 @@ export interface CategoryModel {
   name: string;
   description: string;
   title: string;
+  parent: CategoryModel;
+  parentId: number;
 }

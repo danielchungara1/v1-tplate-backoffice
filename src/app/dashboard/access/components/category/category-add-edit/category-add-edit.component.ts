@@ -20,6 +20,7 @@ export class CategoryAddEditComponent implements OnInit {
   model: CategoryModel;
   modelId: number;
   handlerSubmit: any;
+  parents: CategoryModel[];
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -41,12 +42,26 @@ export class CategoryAddEditComponent implements OnInit {
     this.initializeSubmit();
 
     if (this.formIsEdit) {
-      // Fetching role
+      // Fetching model
       this.searchService.getOne(this.modelId).subscribe(
-        data => this.form.patchValue(data),
+        model => {
+          if (model.parentId) {
+            this.searchService.getOne(model.parentId).subscribe(
+              parent => {
+                model.parent = parent;
+                this.form.patchValue(model);
+              },
+              msg => this.notificationService.showError(msg)
+            );
+          } else {
+            this.form.patchValue(model);
+          }
+        },
         msg => this.notificationService.showError(msg)
       );
     }
+
+    this.loadParents();
 
   }
 
@@ -96,6 +111,7 @@ export class CategoryAddEditComponent implements OnInit {
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       title: ['', [Validators.required]],
+      parent: [null]
     });
   }
 
@@ -105,5 +121,12 @@ export class CategoryAddEditComponent implements OnInit {
     } else {
       this.handlerSubmit = () => this.create();
     }
+  }
+
+  private loadParents(): void {
+    this.searchService.getAll().subscribe(
+      allCategories => this.parents = allCategories,
+      msg => this.notificationService.showError(msg)
+    );
   }
 }

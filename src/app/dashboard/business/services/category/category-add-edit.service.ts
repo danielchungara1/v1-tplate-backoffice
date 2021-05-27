@@ -51,6 +51,7 @@ export class CategoryAddEditService {
 
   private buildDto(model: CategoryModel): any {
     const dto = this.mapperService.map(model, CategoryDto);
+    dto.parentId = model.parent?.id; // Parent category is optional.
     return dto;
   }
 }

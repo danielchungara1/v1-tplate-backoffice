@@ -1,6 +1,7 @@
 export const CategoryDto = {
   name: 'name',
   description: 'description',
-  title: 'title'
+  title: 'title',
+  parentId: 'parentId'
 };
 
