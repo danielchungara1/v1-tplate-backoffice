@@ -40,19 +40,9 @@ export class SidebarComponent implements OnInit {
         routerLink: ['roles']
       },
       {
-        label: 'Create Role',
-        icon: 'fas fa-plus-circle',
-        routerLink: ['create-role']
-      },
-      {
         label: 'List Brands',
         icon: 'fas fa-list-alt',
         routerLink: ['brands']
-      },
-      {
-        label: 'Create Brand',
-        icon: 'fas fa-plus-circle',
-        routerLink: ['create-brand']
       },
       {
         label: 'List Categories',
@@ -60,15 +50,28 @@ export class SidebarComponent implements OnInit {
         routerLink: ['categories']
       },
       {
+        label: 'List Products',
+        icon: 'fas fa-list-alt',
+        routerLink: ['products']
+      },
+      {
+        label: 'Create Role',
+        icon: 'fas fa-plus-circle',
+        routerLink: ['create-role']
+      },
+
+      {
+        label: 'Create Brand',
+        icon: 'fas fa-plus-circle',
+        routerLink: ['create-brand']
+      },
+
+      {
         label: 'Create Category',
         icon: 'fas fa-plus-circle',
         routerLink: ['create-category']
       },
-      {
-        label: 'List Product',
-        icon: 'fas fa-list-alt',
-        routerLink: ['products']
-      },
+
       {
         label: 'Create Product',
         icon: 'fas fa-plus-circle',
