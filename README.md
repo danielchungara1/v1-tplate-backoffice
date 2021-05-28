@@ -13,6 +13,10 @@
 
 ![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-backoffice/develop/src/assets/snapshots/resetPasswordStep2.JPG?raw=true)
 
+- Home
+
+![alt text](https://raw.githubusercontent.com/danielchungara1/v1-tplate-backoffice/develop/src/assets/snapshots/home.JPG?raw=true)
+
 ## Core technologies
 - Angular 11
 - PrimeNG 11
