@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
     "@auth0/angular-jwt": "^5.0.1",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "object-mapper": "^6.2.0",

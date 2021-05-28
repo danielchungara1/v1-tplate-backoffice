@@ -20,6 +20,7 @@ import {CategoryAddEditComponent} from './access/components/category/category-ad
 import {ProductListComponent} from './access/components/product/product-list/product-list.component';
 import {ProductDeleteComponent} from './access/components/product/product-delete/product-delete.component';
 import {ProductAddEditComponent} from './access/components/product/product-add-edit/product-add-edit.component';
+import { HomeComponent } from './access/shared/home/home.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {ProductAddEditComponent} from './access/components/product/product-add-e
     ProductListComponent,
     ProductAddEditComponent,
     ProductDeleteComponent,
+    HomeComponent,
   ],
   imports: [
     DashboardRoutingModule,

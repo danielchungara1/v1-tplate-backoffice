@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
       {
         label: 'Tplate Software',
         icon: 'fas fa-home',
-        routerLink: ['users']
+        routerLink: ['home']
       },
       {
         label: 'List Users',

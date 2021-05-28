@@ -34,7 +34,7 @@
               "./node_modules/primeicons/primeicons.css",
               "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/chart.js/dist/chart.js"]
           },
           "configurations": {
             "dev": {},
@@ -116,7 +116,7 @@
               "./node_modules/primeicons/primeicons.css",
               "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": ["./node_modules/chart.js/dist/chart.js"]
           }
         },
         "lint": {

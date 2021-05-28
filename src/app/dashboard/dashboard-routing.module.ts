@@ -14,6 +14,7 @@ import {CategoryListComponent} from './access/components/category/category-list/
 import {CategoryAddEditComponent} from './access/components/category/category-add-edit/category-add-edit.component';
 import {ProductAddEditComponent} from './access/components/product/product-add-edit/product-add-edit.component';
 import {ProductListComponent} from './access/components/product/product-list/product-list.component';
+import {HomeComponent} from './access/shared/home/home.component';
 
 
 const routes: Routes = [{
@@ -55,7 +56,7 @@ const routes: Routes = [{
 
 
 
-    {path: '**', component: UserListComponent}
+    {path: '**', component: HomeComponent}
   ]
 }];
 
