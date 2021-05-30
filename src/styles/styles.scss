@@ -64,6 +64,11 @@ body {
 .card-body {
   padding: 10px 0;
 }
+.card-body-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .form-inputs {
   .form-group {
     margin: 15px 0;
