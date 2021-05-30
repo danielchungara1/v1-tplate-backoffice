@@ -39,11 +39,13 @@
         </div>
 
         <div class="form-actions">
-          <p-button
+
+          <app-button-submit
             label="Login"
-            type="submit"
-            [disabled]="loginForm.invalid"
-          ></p-button>
+            [form] = loginForm
+            [submitting] = submitting
+          ></app-button-submit>
+
           <a
             id="reset-password-link"
             routerLink="/security/reset-password"

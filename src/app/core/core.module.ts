@@ -9,6 +9,7 @@ import {MaterialModule} from '@core/material.module';
 import {PrimengModule} from '@core/primeng.module';
 import {FooterComponent} from '@core/components/footer/footer.component';
 import {MapperService} from '@core/mapper/mapper.service';
+import {ButtonSubmitComponent} from '@core/components/button-submit/button-submit.component';
 
 
 @NgModule({
@@ -44,11 +45,13 @@ import {MapperService} from '@core/mapper/mapper.service';
     MaterialModule,
     PrimengModule,
     // Components
-    FooterComponent
+    FooterComponent,
+    ButtonSubmitComponent
   ],
   declarations: [
     // Components
-    FooterComponent
+    FooterComponent,
+    ButtonSubmitComponent
   ]
 })
 export class CoreModule {

@@ -22,6 +22,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   updatePasswordForm: FormGroup;
   updatingPassword = false;
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private resetCodeService: ResetCodeService,
@@ -47,26 +48,26 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   }
 
   sendEmail(): void {
-    this.sendingCodeTrue();
+    this.sendingCode = true;
     this.resetPasswordModel = this.sendEmailForm.value as ResetPasswordModel;
 
     this.resetCodeService.sendResetCode(this.resetPasswordModel)
       .subscribe(
         msg => {
           this.notificationService.showSuccess(msg);
-          this.sendingCodeFalse();
+          this.sendingCode = false;
           this.completeStep();
         },
         msg => {
           this.notificationService.showError(msg);
-          this.sendingCodeFalse();
+          this.sendingCode = false;
         }
       );
 
   }
 
   updatePassword(): void {
-    this.updatingPasswordTrue();
+    this.updatingPassword = true;
 
     // Todo: uncoupling dependencies
     const email = this.resetPasswordModel.email;
@@ -78,12 +79,12 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
         msg => {
           this.notificationService.showSuccess(msg);
           this.completeStep();
-          this.updatingPasswordFalse();
+          this.updatingPassword = false;
           this.router.navigate(['security/login']);
         },
         msg => {
           this.notificationService.showError(msg);
-          this.updatingPasswordFalse();
+          this.updatingPassword = false;
         }
       );
   }
@@ -91,22 +92,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
   completeStep(): void {
     this.stepper.selected.completed = true;
     this.stepper.next();
-  }
-
-  private sendingCodeTrue(): void {
-    this.sendingCode = true;
-  }
-
-  private sendingCodeFalse(): void {
-    this.sendingCode = false;
-  }
-
-  private updatingPasswordTrue(): void {
-    this.updatingPassword = true;
-  }
-
-  private updatingPasswordFalse(): void {
-    this.updatingPassword = false;
   }
 
   get getSendEmailForm(): { [p: string]: AbstractControl } {
