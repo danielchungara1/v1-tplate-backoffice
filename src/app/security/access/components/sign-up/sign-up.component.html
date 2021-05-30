@@ -1,0 +1,80 @@
+<div class="card-container">
+  <div class="card">
+    <div class="card-header">
+      <div class="title-CardHeader">
+        Sign Up
+      </div>
+    </div>
+    <div class="card-body">
+
+      <form [formGroup]="form" (ngSubmit)="signUp()">
+
+        <div class="form-inputs form-addEdit">
+
+          <!--Username-->
+          <div class="form-group">
+            <label for="username1">Username *</label>
+            <div class="input-group">
+              <input
+                id="username1"
+                type="text"
+                pInputText
+                formControlName="username"
+                placeholder="Username"
+              />
+              <div *ngIf="getFormControls.username.touched && getFormControls.username.invalid" class="text-danger">
+                <div *ngIf="getFormControls.username.errors.required">Username is required.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!--Password-->
+          <div class="form-group">
+            <label for="password1">Password *</label>
+            <div class="input-group">
+              <p-password
+                id="password1"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]=false
+                placeholder="Password"
+              ></p-password>
+              <div *ngIf="getFormControls.password.touched && getFormControls.password.invalid" class="text-danger">
+                <div *ngIf="getFormControls.password.errors.required">Password is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Email-->
+          <div class="form-group">
+            <label for="email1">Email *</label>
+            <div class="input-group">
+              <input
+                id="email1"
+                type="text"
+                pInputText
+                formControlName="email"
+                placeholder="Email"
+              />
+              <div *ngIf="getFormControls.email.touched && getFormControls.email.invalid" class="text-danger">
+                <div *ngIf="getFormControls.email.errors.required">Email is required.</div>
+                <div *ngIf="getFormControls.email.errors.email">Email invalid.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <app-button-submit
+            label="Sign Up"
+            [form] = form
+            [submitting] = submitting
+          ></app-button-submit>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
