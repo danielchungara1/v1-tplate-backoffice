@@ -1,7 +1,6 @@
-.card-container .card .card-body .form-addEdit .form-group input,
-.card-container .card .card-body .form-addEdit .form-group ::ng-deep .p-inputtext,
-.card-container .card .card-body .form-addEdit .form-group ::ng-deep .p-dropdown,
-.card-container .card .card-body .form-addEdit .form-group ::ng-deep .p-multiselect
+.form-group input,
+.form-group ::ng-deep .p-dropdown,
+.form-group ::ng-deep .p-inputtext
 {
   width: 300px!important;
 }
