@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  submitting = false;
 
   constructor(private service: LoginService,
               private notificationService: NotificationService,
@@ -30,16 +31,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.submitting = true;
     const model: LoginModel = this.loginForm.value as LoginModel;
     this.service.login(model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
           this.router.navigate(['/dashboard']);
-
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting =false;
         }
       );
   }

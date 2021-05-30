@@ -21,6 +21,7 @@ export class CategoryAddEditComponent implements OnInit {
   modelId: number;
   handlerSubmit: any;
   parents: CategoryModel[];
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -66,27 +67,33 @@ export class CategoryAddEditComponent implements OnInit {
   }
 
   create(): void {
+    this.submitting = true;
     this.model = this.form.value as CategoryModel;
     this.service.create(this.model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
 
   update(): void {
+    this.submitting = true;
     this.model = this.form.value as CategoryModel;
     this.service.update(this.model, this.modelId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }

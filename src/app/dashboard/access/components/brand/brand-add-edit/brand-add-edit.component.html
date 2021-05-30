@@ -62,11 +62,11 @@
           </div>
 
           <div class="form-actions">
-            <p-button
+            <app-button-submit
               [label]="buttonLabel"
-              type="submit"
-              [disabled]="brandForm.invalid"
-            ></p-button>
+              [form] = brandForm
+              [submitting] = submitting
+            ></app-button-submit>
           </div>
         </div>
       </form>

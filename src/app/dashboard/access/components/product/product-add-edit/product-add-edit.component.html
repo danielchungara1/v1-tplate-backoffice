@@ -97,11 +97,11 @@
         </div>
 
       <div class="form-actions">
-        <p-button
+        <app-button-submit
           [label]="buttonLabel"
-          type="submit"
-          [disabled]="form.invalid"
-        ></p-button>
+          [form] = form
+          [submitting] = submitting
+        ></app-button-submit>
       </div>
 
       </form>

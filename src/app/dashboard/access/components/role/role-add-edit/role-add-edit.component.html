@@ -64,11 +64,11 @@
           </div>
 
           <div class="form-actions">
-            <p-button
+            <app-button-submit
               [label]="buttonLabel"
-              type="submit"
-              [disabled]="roleForm.invalid"
-            ></p-button>
+              [form] = roleForm
+              [submitting] = submitting
+            ></app-button-submit>
           </div>
         </div>
       </form>

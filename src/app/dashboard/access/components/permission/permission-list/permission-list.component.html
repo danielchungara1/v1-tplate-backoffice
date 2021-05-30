@@ -1,5 +1,8 @@
 <div class="card-container">
-  <div class="card">
+
+  <div class="text-loading" *ngIf="!permissions">Loading...</div>
+
+  <div class="card" *ngIf="permissions">
 
     <div class="card-header">
       <div class="title-CardHeader">Permission List</div>

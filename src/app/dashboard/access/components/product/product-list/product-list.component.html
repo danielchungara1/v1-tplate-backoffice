@@ -1,5 +1,8 @@
 <div class="card-container">
-  <div class="card">
+
+  <div  class="text-loading" *ngIf="!models">Loading...</div>
+
+  <div class="card" *ngIf="models">
 
     <div class="card-header">
       <div class="title-CardHeader">Product List</div>
