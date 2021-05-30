@@ -1,5 +1,8 @@
 <div class="card-container">
-  <div class="card">
+
+  <div  class="text-loading" *ngIf="!roles">Loading...</div>
+
+  <div class="card" *ngIf="roles">
 
     <div class="card-header">
       <div class="title-CardHeader">Role List</div>
