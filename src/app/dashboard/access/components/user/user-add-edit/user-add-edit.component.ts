@@ -24,6 +24,7 @@ export class UserAddEditComponent implements OnInit {
   roles: RoleModel[];
   userId: number;
   handlerSubmit: any;
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -63,27 +64,33 @@ export class UserAddEditComponent implements OnInit {
   }
 
   createUser(): void {
+    this.submitting = true;
     const user: UserModel = this.userForm.value as UserModel;
     this.userAddEditService.createUser(user)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
 
   updateUser(): void {
+    this.submitting = true;
     const user: UserModel = this.userForm.value as UserModel;
     this.userAddEditService.updateUser(user, this.userId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
