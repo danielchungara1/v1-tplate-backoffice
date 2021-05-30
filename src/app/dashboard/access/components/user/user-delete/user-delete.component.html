@@ -1,7 +1,7 @@
 <p-confirmDialog
   header="Confirmation"
   icon="pi pi-exclamation-triangle"
-  [key]="user.id.toString()"
+  [key]="model.id.toString()"
   acceptButtonStyleClass="p-button-danger"
 
 >
@@ -10,6 +10,7 @@
   pButton
   pTooltip="Delete"
   icon="fas fa-trash-alt"
-  (click)="deleteUser()"
+  (click)="delete()"
   class="p-button-danger"
+  [disabled]="isCurrentUser"
 ></button>

@@ -3,6 +3,7 @@ import {UserDeleteService} from '../../../../business/services/user/user-delete.
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {UserModel} from '../../../models/UserModel';
+import {LocalStorageService} from '@core/localStorage/local-storage.service';
 
 
 @Component({
@@ -13,14 +14,16 @@ import {UserModel} from '../../../models/UserModel';
 export class UserDeleteComponent implements OnInit {
 
   @Input()
-  user: UserModel;
+  model: UserModel;
 
   @Output()
   deleted: EventEmitter<UserModel> = new EventEmitter();
+  isCurrentUser = false;
 
-  constructor(private userDeleteService: UserDeleteService,
+  constructor(private service: UserDeleteService,
               private notificationService: NotificationService,
-              private confirmationService: ConfirmationService) {
+              private confirmationService: ConfirmationService,
+              private localStorageService: LocalStorageService) {
   }
 
   ngOnInit(): void {
@@ -38,23 +41,28 @@ export class UserDeleteComponent implements OnInit {
     // };
 
     // Input validation
-    if (!this.user) {
+    if (!this.model) {
       throw new Error(`User model is required for ${this.constructor.name}.`);
     }
-    if (!this.user.id) {
+    if (!this.model.id) {
       throw new Error(`User ID is required for ${this.constructor.name}.`);
     }
+
+    if (this.localStorageService.getUser()?.id === this.model.id) {
+      this.isCurrentUser = true;
+    }
+
   }
 
-  deleteUser(): void {
+  delete(): void {
     this.confirmationService.confirm({
-      message: `Delete user ${this.user.username} (ID ${this.user.id})?`,
+      message: `Delete user ${this.model.username} (ID ${this.model.id})?`,
       accept: () => {
-        this.userDeleteService.deleteUser(this.user.id)
+        this.service.deleteUser(this.model.id)
           .subscribe(
             message => {
               this.notificationService.showSuccess(message);
-              this.deleted.emit(this.user);
+              this.deleted.emit(this.model);
             },
             error => this.notificationService.showError(error),
             () => this.confirmationService.close()
@@ -63,7 +71,7 @@ export class UserDeleteComponent implements OnInit {
       reject: () => {
         this.confirmationService.close();
       },
-      key: this.user.id.toString()
+      key: this.model.id.toString()
     });
   }
 
