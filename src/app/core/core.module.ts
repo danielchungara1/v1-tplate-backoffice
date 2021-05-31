@@ -10,6 +10,7 @@ import {PrimengModule} from '@core/primeng.module';
 import {FooterComponent} from '@core/components/footer/footer.component';
 import {MapperService} from '@core/mapper/mapper.service';
 import {ButtonSubmitComponent} from '@core/components/button-submit/button-submit.component';
+import { ProgresBarComponent } from './components/progres-bar/progres-bar.component';
 
 
 @NgModule({
@@ -46,12 +47,14 @@ import {ButtonSubmitComponent} from '@core/components/button-submit/button-submi
     PrimengModule,
     // Components
     FooterComponent,
-    ButtonSubmitComponent
+    ButtonSubmitComponent,
+    ProgresBarComponent
   ],
   declarations: [
     // Components
     FooterComponent,
-    ButtonSubmitComponent
+    ButtonSubmitComponent,
+    ProgresBarComponent
   ]
 })
 export class CoreModule {

@@ -22,7 +22,6 @@ export class ResetPasswordComponent implements OnInit, AfterViewInit {
 
   updatePasswordForm: FormGroup;
   updatingPassword = false;
-  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private resetCodeService: ResetCodeService,
