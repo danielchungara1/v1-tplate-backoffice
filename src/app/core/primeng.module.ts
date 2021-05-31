@@ -15,6 +15,7 @@ import {TieredMenuModule} from 'primeng/tieredmenu';
 import {TooltipModule} from 'primeng/tooltip';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ChartModule} from 'primeng/chart';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import {ChartModule} from 'primeng/chart';
     MenuModule,
     TooltipModule,
     MultiSelectModule,
-    ChartModule
+    ChartModule,
+    ProgressBarModule
   ],
   providers: [
     MessageService,
