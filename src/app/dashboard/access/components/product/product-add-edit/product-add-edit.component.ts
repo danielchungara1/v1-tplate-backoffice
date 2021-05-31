@@ -27,6 +27,7 @@ export class ProductAddEditComponent implements OnInit {
 
   brands: BrandModel[];
   categories: CategoryModel[];
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -64,27 +65,33 @@ export class ProductAddEditComponent implements OnInit {
   }
 
   create(): void {
+    this.submitting = true;
     this.model = this.form.value as ProductModel;
     this.service.create(this.model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
 
   update(): void {
+    this.submitting = true;
     this.model = this.form.value as ProductModel;
     this.service.update(this.model, this.modelId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }

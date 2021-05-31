@@ -1,7 +1,15 @@
-/**********************************************************************************
-* Reset Password Link
-/**********************************************************************************/
-#reset-password-link {
+@import "./src/styles/variables";
+
+.form-inputs .form-group label {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.form-inputs .form-group {
+  margin: 5px 0;
+}
+
+.link {
   text-decoration: none;
   cursor: pointer;
   display: block;
@@ -10,6 +18,15 @@
   font-size:0.85em;
 
 }
-#reset-password-link:hover{
+.link:hover{
   text-decoration: underline;
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: $font-size-normal-up;
 }

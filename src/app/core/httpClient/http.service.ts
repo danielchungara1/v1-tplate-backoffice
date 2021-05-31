@@ -8,11 +8,6 @@ import {catchError, map} from 'rxjs/operators';
 })
 export class HttpService {
 
-  static CONNECTION_REFUSE = {
-    code: 0,
-    message: 'Connection error.'
-  };
-
   private headers: HttpHeaders;
   private params: HttpParams;
   private responseType: string;
@@ -128,8 +123,8 @@ export class HttpService {
   }
 
   private handleError(response): any {
-    if (response.status === HttpService.CONNECTION_REFUSE.code) {
-      response.error.message = HttpService.CONNECTION_REFUSE.message;
+    if (response.status === 0) {
+      response.error.message = 'Error connection.';
       return throwError(response.error);
     }
 

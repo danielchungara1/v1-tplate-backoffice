@@ -37,80 +37,76 @@ body {
   display: flex;
   justify-content: center;
   font-size: $font-size-big;
+}
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
 
-    .card-header {
-      text-align: center;
-      color: $color-gray-dark;
+.card-header {
+  text-align: center;
+  color: $color-gray-dark;
+}
+.title-CardHeader {
+  font-weight: 600;
+  font-size: $font-size-huge;
+  padding: 10px 0;
+}
+.icon-CardHeader {
+  font-size: $font-size-huge-double;
+}
 
-      .title-CardHeader {
-        font-weight: 600;
-        font-size: $font-size-huge;
-        padding: 10px 0;
-      }
+.card-body {
+  padding: 10px 0;
+}
+.card-body-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
 
-      .icon-CardHeader {
-        font-size: $font-size-huge-double;
-      }
+.form-inputs {
+  .form-group {
+    margin: 15px 0;
+
+    & ::ng-deep .p-inputtext {
+      margin: 10px 0!important;
     }
 
-    .card-body {
-      padding: 10px 0;
-
-      .form-inputs {
-        .form-group {
-          margin: 10px 0;
-
-          & ::ng-deep .p-inputtext {
-            margin: 10px 0;
-          }
-
-          label {
-            display: inline-block;
-            margin: 10px 0;
-          }
-        }
-      }
-
-      .form-actions {
-        padding-top: 10px;
-
-        button {
-          width: 100%;
-          font-weight: 600;
-        }
-      }
-
+    label {
+      display: inline-block;
+      margin: 10px 0;
     }
-
   }
+}
+.form-actions {
+  padding-top: 10px;
 
+  button {
+    width: 100%;
+    font-weight: 600;
+  }
 }
 
 //Styles for Add Edit Components
-.card-container {
-  .card {
-    .card-body {
-      .form-addEdit {
-        .form-group {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+.form-addEdit {
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 
-          & > label {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            width: 120px;
-          }
-        }
-      }
+    & > label {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      width: 120px;
     }
   }
+}
+
+.text-loading {
+  font-size: $font-size-normal;
 }

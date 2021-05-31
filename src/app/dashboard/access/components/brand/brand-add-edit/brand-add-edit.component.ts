@@ -20,6 +20,7 @@ export class BrandAddEditComponent implements OnInit {
   brand: BrandModel;
   brandId: number;
   handlerSubmit: any;
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -51,27 +52,33 @@ export class BrandAddEditComponent implements OnInit {
   }
 
   createBrand(): void {
+    this.submitting = true;
     const brand: BrandModel = this.brandForm.value as BrandModel;
     this.brandAddEditService.createBrand(brand)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
 
   updateBrand(): void {
+    this.submitting = true;
     const model: BrandModel = this.brandForm.value as BrandModel;
     this.brandAddEditService.updateBrand(model, this.brandId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }

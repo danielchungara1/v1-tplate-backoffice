@@ -39,20 +39,31 @@
         </div>
 
         <div class="form-actions">
-          <p-button
+
+          <app-button-submit
             label="Login"
-            type="submit"
-            [disabled]="loginForm.invalid"
-          ></p-button>
-          <a
-            id="reset-password-link"
-            routerLink="/security/reset-password"
-          >
-            Password forgotten?
-          </a>
+            [form] = loginForm
+            [submitting] = submitting
+          ></app-button-submit>
+
         </div>
 
       </form>
+      <div class="link-container">
+        <a
+          class="link"
+          routerLink="/security/reset-password"
+        >
+          Password forgotten?
+        </a>
+        <a
+          class="link"
+          routerLink="/security/sign-up"
+        >
+          Sing Up
+        </a>
+      </div>
+
     </div>
 
   </div>

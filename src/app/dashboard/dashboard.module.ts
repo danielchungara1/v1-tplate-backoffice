@@ -50,7 +50,7 @@ import { HomeComponent } from './access/shared/home/home.component';
     ProductListComponent,
     ProductAddEditComponent,
     ProductDeleteComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     DashboardRoutingModule,

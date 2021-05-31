@@ -1,5 +1,8 @@
 <div class="card-container">
-  <div class="card">
+
+  <div  class="text-loading" *ngIf="!brands">Loading...</div>
+
+  <div class="card" *ngIf="brands">
 
     <div class="card-header">
       <div class="title-CardHeader">Brand List</div>
@@ -13,7 +16,7 @@
             <th>Name</th>
             <th>Title</th>
             <th>Description</th>
-<!--            <th>Actions</th>-->
+            <th>Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-brand>

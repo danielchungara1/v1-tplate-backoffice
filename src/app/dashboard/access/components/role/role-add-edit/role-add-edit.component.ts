@@ -23,6 +23,7 @@ export class RoleAddEditComponent implements OnInit {
   permissionsAll: PermissionModel[];
   roleId: number;
   handlerSubmit: any;
+  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
@@ -62,27 +63,33 @@ export class RoleAddEditComponent implements OnInit {
   }
 
   createRole(): void {
+    this.submitting = true;
     const role: RoleModel = this.roleForm.value as RoleModel;
     this.roleAddEditService.createRole(role)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }
 
   updateRole(): void {
+    this.submitting = true;
     const role: RoleModel = this.roleForm.value as RoleModel;
     this.roleAddEditService.updateRole(role, this.roleId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
+          this.submitting = false;
         },
         (msg) => {
           this.notificationService.showError(msg);
+          this.submitting = false;
         }
       );
   }

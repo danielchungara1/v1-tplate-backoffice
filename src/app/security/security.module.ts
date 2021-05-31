@@ -5,6 +5,7 @@ import {LayoutComponent} from './access/shared/layout/layout.component';
 import {LoginComponent} from './access/components/login/login.component';
 import {ResetPasswordComponent} from './access/components/reset-password/reset-password.component';
 import {CoreModule} from '@core/core.module';
+import {SignUpComponent} from './access/components/sign-up/sign-up.component';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {CoreModule} from '@core/core.module';
     HeaderComponent,
     LayoutComponent,
     LoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    SignUpComponent
   ],
   imports: [
     SecurityRoutingModule,
