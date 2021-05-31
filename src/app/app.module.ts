@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {DatePipe} from '@angular/common';
 import {CoreModule} from '@core/core.module';
 import {NotificationService} from '@shared/notifications/notification.service';
+import {CanActivateDashboardGuard} from './dashboard-guard';
 
 
 
@@ -25,7 +26,8 @@ import {NotificationService} from '@shared/notifications/notification.service';
   bootstrap: [AppComponent],
   providers: [
     DatePipe,
-    NotificationService
+    NotificationService,
+    CanActivateDashboardGuard
   ],
   exports: [CoreModule]
 })

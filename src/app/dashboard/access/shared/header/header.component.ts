@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       {
         label: 'Edit',
         icon: 'pi pi-fw pi-pencil',
-        routerLink: ['edit-user', this.user.id]
+        routerLink: ['edit-user', this.user?.id]
       },
       {
         label: 'Logout',
