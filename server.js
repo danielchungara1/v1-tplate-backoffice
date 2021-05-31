@@ -7,7 +7,7 @@ const path = require('path');
 const server = http.createServer(app);
 
 app.use(express.static(__dirname + PATH_PROJECT));
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, PATH_PROJECT, index.html)));
+app.get('/*', (req, res) => res.sendFile(path.join(__dirname, PATH_PROJECT, 'index.html')));
 
 server.listen(process.env.PORT || 8080, () => {
   if (!process.env.PORT) {
