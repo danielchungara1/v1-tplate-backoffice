@@ -22,7 +22,7 @@ export class PermissionListComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadPermissions();
-    this.currentPage = {length: 0, pageSize: 0, index: 0};
+    this.currentPage = {totalPages: 0, length: 0, pageSize: 0, index: 0};
 
   }
 
@@ -44,8 +44,9 @@ export class PermissionListComponent implements OnInit {
         this.currentPage.length = page.totalElements;
         this.currentPage.pageSize = page.size;
         this.currentPage.index = page.number;
+        this.currentPage.totalPages = page.totalPages;
         this.lastSearched = searchText;
-        },
+      },
       error => this.notificationService.showError(error)
     );
   }

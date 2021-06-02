@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Page} from '@core/components/paging/Page';
 import {PageEvent} from '@angular/material/paginator';
 
@@ -7,7 +7,7 @@ import {PageEvent} from '@angular/material/paginator';
   templateUrl: './paging.component.html',
   styleUrls: ['./paging.component.scss']
 })
-export class PagingComponent implements OnInit {
+export class PagingComponent implements OnInit, AfterViewChecked {
 
   @Input()
   page: Page;
@@ -19,8 +19,16 @@ export class PagingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
+  ngAfterViewChecked(): void {
+    const list = document.getElementsByClassName('mat-paginator-range-label');
+    list[0].innerHTML = 'Total Results ' + this.page?.length;
+    // + '</br>' +
+    // ' Page ' + (this.page?.index + 1) +
+    // ' Of ' + (this.page?.totalPages);
+  }
 
   pageChange($event: PageEvent): void {
     this.newPage$.emit($event.pageIndex);

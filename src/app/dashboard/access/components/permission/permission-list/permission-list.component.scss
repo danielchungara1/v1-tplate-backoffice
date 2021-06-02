@@ -3,3 +3,12 @@
   table-layout: auto;
   width: 100%;
 }
+.card-body {
+  width: 480px;
+  height: 420px;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  font-size: 1em;
+  padding: 0.5em 1em;
+}
