@@ -13,6 +13,7 @@ export class PermissionListComponent implements OnInit {
 
   permissions: PermissionModel[];
   currentPage: Page;
+  lastSearched: string;
 
   constructor(private searchService: PermissionSearchService,
               private notificationService: NotificationService) {
@@ -21,8 +22,7 @@ export class PermissionListComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadPermissions();
-
-    // this.currentPage = {length: 20, pageSize: 10, index: 1};
+    this.currentPage = {length: 0, pageSize: 0, index: 0};
 
   }
 
@@ -33,20 +33,25 @@ export class PermissionListComponent implements OnInit {
     );
   }
 
-  onPageChange($event: number): void {
-    console.log($event);
-    this.currentPage.index = 1;
+  onPageChange(pageNumber: number): void {
+    this.onSearch(this.lastSearched, pageNumber);
   }
 
-  onSearch(searchText): void {
-    this.searchService.getPage(searchText, 0).subscribe(
-      page => this.permissions = page.content,
+  onSearch(searchText: string, pageNumber = 0): void {
+    this.searchService.getPage(searchText, pageNumber).subscribe(
+      page => {
+        this.permissions = page.content;
+        this.currentPage.length = page.totalElements;
+        this.currentPage.pageSize = page.size;
+        this.currentPage.index = page.number;
+        this.lastSearched = searchText;
+        },
       error => this.notificationService.showError(error)
     );
   }
 
-  private loadPermissions(): void{
-    this.onSearch('');
+  private loadPermissions(): void {
+    this.onSearch('', 0);
   }
 
 }

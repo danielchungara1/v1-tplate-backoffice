@@ -29,5 +29,7 @@
       </p-table>
     </div>
 
+    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
+
   </div>
 </div>

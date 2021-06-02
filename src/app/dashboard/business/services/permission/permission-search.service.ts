@@ -30,8 +30,8 @@ export class PermissionSearchService {
       );
   }
 
-  public getPage(searchText: string, number: number): Observable<PageModel<PermissionModel>> {
-    return this.httpService.get<PermissionPageDto>(EndPoints.PERMISSIONS_GET_PAGE + `?text=${searchText}`)
+  public getPage(searchText: string, pageNumber: number): Observable<PageModel<PermissionModel>> {
+    return this.httpService.get<PermissionPageDto>(EndPoints.PERMISSIONS_GET_PAGE + `?text=${searchText}&page=${pageNumber}`)
       .pipe(
         map((res: PermissionPageDto) => {
             return res.data;
