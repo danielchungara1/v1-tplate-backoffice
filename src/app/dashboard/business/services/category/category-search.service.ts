@@ -7,6 +7,10 @@ import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
 import {CategoryModel} from '../../../access/models/CategoryModel';
 import {CategoryListResponseDto} from '../../dtos/category/CategoryListResponseDto';
 import {CategoryResponseDto} from '../../dtos/category/CategoryResponseDto';
+import {PageModel} from '@core/abstractClases/PageModel';
+import {RoleModel} from '../../../access/models/RoleModel';
+import {RolePageDto} from '../../dtos/role/RolePageDto';
+import {CategoryPageDto} from '../../dtos/category/CategoryPageDto';
 
 @Injectable({
   providedIn: 'root'
@@ -40,4 +44,14 @@ export class CategorySearchService {
       );
   }
 
+  public getPage(searchText: string, pageNumber: number): Observable<PageModel<CategoryModel>> {
+    return this.httpService.get<CategoryPageDto>(EndPoints.CATEGORIES + `?text=${searchText}&page=${pageNumber}&size=7`)
+      .pipe(
+        map((res: CategoryPageDto) => {
+            return res.data;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
 }

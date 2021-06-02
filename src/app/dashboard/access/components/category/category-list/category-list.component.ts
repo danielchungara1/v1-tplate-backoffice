@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryListService} from '../../../../business/services/category/category-list.service';
+import {Page} from '@core/components/paging/Page';
+import {CategorySearchService} from '../../../../business/services/category/category-search.service';
 
 @Component({
   selector: 'app-category-list',
@@ -12,16 +13,19 @@ export class CategoryListComponent implements OnInit {
 
   models: CategoryModel[];
 
-  constructor(private service: CategoryListService,
+  currentPage: Page = {};
+  lastSearched: string;
+
+  constructor(private searchService: CategorySearchService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    this.loadModels();
+    this.onSearch();
   }
 
   public loadModels(): void {
-    this.service.getAll().subscribe(
+    this.searchService.getAll().subscribe(
       models => this.models = models,
       error => this.notificationService.showError(error)
     );
@@ -29,7 +33,25 @@ export class CategoryListComponent implements OnInit {
 
 
   onDeleted($event: CategoryModel): void {
-    this.loadModels();
+    this.onSearch();
+  }
+
+  onSearch(searchText = '', pageNumber = 0): void {
+    this.searchService.getPage(searchText, pageNumber).subscribe(
+      page => {
+        this.models = page.content;
+        this.currentPage.length = page.totalElements;
+        this.currentPage.pageSize = page.size;
+        this.currentPage.index = page.number;
+        this.currentPage.totalPages = page.totalPages;
+        this.lastSearched = searchText;
+      },
+      error => this.notificationService.showError(error)
+    );
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.onSearch(this.lastSearched, pageNumber);
   }
 
 }
