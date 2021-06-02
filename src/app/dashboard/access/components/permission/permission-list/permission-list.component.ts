@@ -12,7 +12,8 @@ import {PermissionSearchService} from '../../../../business/services/permission/
 export class PermissionListComponent implements OnInit {
 
   permissions: PermissionModel[];
-  currentPage: Page;
+
+  currentPage: Page = {};
   lastSearched: string;
 
   constructor(private searchService: PermissionSearchService,
@@ -21,8 +22,7 @@ export class PermissionListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loadPermissions();
-    this.currentPage = {totalPages: 0, length: 0, pageSize: 0, index: 0};
+    this.onSearch();
 
   }
 
@@ -37,7 +37,7 @@ export class PermissionListComponent implements OnInit {
     this.onSearch(this.lastSearched, pageNumber);
   }
 
-  onSearch(searchText: string, pageNumber = 0): void {
+  onSearch(searchText = '', pageNumber = 0): void {
     this.searchService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.permissions = page.content;
@@ -49,10 +49,6 @@ export class PermissionListComponent implements OnInit {
       },
       error => this.notificationService.showError(error)
     );
-  }
-
-  private loadPermissions(): void {
-    this.onSearch('', 0);
   }
 
 }
