@@ -33,8 +33,7 @@ export class RoleListComponent implements OnInit {
 
 
   onDeleted($event: RoleModel): void {
-    this.roles =
-      this.roles.filter(role => role.id !== $event.id);
+    this.onSearch();
   }
 
   onSearch(searchText = '', pageNumber = 0): void {

@@ -33,7 +33,7 @@ export class BrandListComponent implements OnInit {
 
 
   onDeleted($event: BrandModel): void {
-    this.brands = this.brands.filter(model => model.id !== $event.id);
+    this.onSearch();
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
