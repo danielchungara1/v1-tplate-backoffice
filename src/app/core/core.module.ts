@@ -11,6 +11,8 @@ import {FooterComponent} from '@core/components/footer/footer.component';
 import {MapperService} from '@core/mapper/mapper.service';
 import {ButtonSubmitComponent} from '@core/components/button-submit/button-submit.component';
 import { ProgresBarComponent } from './components/progres-bar/progres-bar.component';
+import { SearchComponent } from './components/search/search.component';
+import { PagingComponent } from './components/paging/paging.component';
 
 
 @NgModule({
@@ -48,13 +50,17 @@ import { ProgresBarComponent } from './components/progres-bar/progres-bar.compon
     // Components
     FooterComponent,
     ButtonSubmitComponent,
-    ProgresBarComponent
+    ProgresBarComponent,
+    PagingComponent,
+    SearchComponent
   ],
   declarations: [
     // Components
     FooterComponent,
     ButtonSubmitComponent,
-    ProgresBarComponent
+    ProgresBarComponent,
+    SearchComponent,
+    PagingComponent
   ]
 })
 export class CoreModule {

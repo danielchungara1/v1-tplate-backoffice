@@ -8,6 +8,8 @@
       <div class="title-CardHeader">Permission List</div>
     </div>
 
+    <app-search (newSearch$)="onSearch($event)"></app-search>
+
     <div class="card-body card-body-list">
       <p-table [value]="permissions">
         <ng-template pTemplate="header">
@@ -26,5 +28,6 @@
         </ng-template>
       </p-table>
     </div>
+
   </div>
 </div>
