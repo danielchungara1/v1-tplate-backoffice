@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from '../../../models/UserModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {UserListService} from '../../../../business/services/user/user-list.service';
+import {UserSearchService} from '../../../../business/services/user/user-search.service';
+import {Page} from '@core/components/paging/Page';
 
 @Component({
   selector: 'app-user-list',
@@ -12,16 +13,19 @@ export class UserListComponent implements OnInit {
 
   users: UserModel[];
 
-  constructor(private userListService: UserListService,
+  currentPage: Page = {};
+  lastSearched: string;
+
+  constructor(private searchService: UserSearchService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    this.loadUsers();
+    this.onSearch();
   }
 
   public loadUsers(): void {
-    this.userListService.getUsers().subscribe(
+    this.searchService.getUsers().subscribe(
       users => this.users = users,
       error => this.notificationService.showError(error)
     );
@@ -31,4 +35,23 @@ export class UserListComponent implements OnInit {
     this.users =
       this.users.filter(user => user.id !== $event.id);
   }
+
+  onSearch(searchText = '', pageNumber = 0): void {
+    this.searchService.getPage(searchText, pageNumber).subscribe(
+      page => {
+        this.users = page.content;
+        this.currentPage.length = page.totalElements;
+        this.currentPage.pageSize = page.size;
+        this.currentPage.index = page.number;
+        this.currentPage.totalPages = page.totalPages;
+        this.lastSearched = searchText;
+      },
+      error => this.notificationService.showError(error)
+    );
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.onSearch(this.lastSearched, pageNumber);
+  }
+
 }

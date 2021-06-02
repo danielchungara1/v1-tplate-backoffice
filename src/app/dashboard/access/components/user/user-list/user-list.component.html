@@ -8,6 +8,8 @@
       <div class="title-CardHeader">User List</div>
     </div>
 
+    <app-search (newSearch$)="onSearch($event)"></app-search>
+
     <div class="card-body card-body-list">
       <p-table [value]="users">
         <ng-template pTemplate="header">
@@ -43,5 +45,8 @@
         </ng-template>
       </p-table>
     </div>
+
+    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
+
   </div>
 </div>

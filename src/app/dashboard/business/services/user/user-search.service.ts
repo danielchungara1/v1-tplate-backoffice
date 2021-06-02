@@ -8,6 +8,10 @@ import {MapperService} from '@core/mapper/mapper.service';
 import {HttpService} from '@core/httpClient/http.service';
 import {UserResponseDto} from '../../dtos/user/UserResponseDto';
 import {UserListResponseDto} from '../../dtos/user/UserListResponseDto';
+import {PageModel} from '@core/abstractClases/PageModel';
+import {PermissionModel} from '../../../access/models/PermissionModel';
+import {PermissionPageDto} from '../../dtos/permission/PermissionPageDto';
+import {UserPageDto} from '../../dtos/user/UserPageDto';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +39,17 @@ export class UserSearchService {
     return this.httpService.get<UserListResponseDto>(EndPoints.USERS_GET_ALL)
       .pipe(
         map((res: UserListResponseDto) => {
+            return res.data;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
+
+  public getPage(searchText: string, pageNumber: number): Observable<PageModel<UserModel>> {
+    return this.httpService.get<UserPageDto>(EndPoints.USERS + `?text=${searchText}&page=${pageNumber}&size=7`)
+      .pipe(
+        map((res: UserPageDto) => {
             return res.data;
           }
         ),
