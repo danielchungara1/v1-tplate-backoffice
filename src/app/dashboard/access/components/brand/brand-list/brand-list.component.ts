@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {BrandModel} from '../../../models/BrandModel';
-import {BrandListService} from '../../../../business/services/brand/brand-list.service';
+import {Page} from '@core/components/paging/Page';
+import {BrandSearchService} from '../../../../business/services/brand/brand-search.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -12,16 +13,19 @@ export class BrandListComponent implements OnInit {
 
   brands: BrandModel[];
 
-  constructor(private brandListService: BrandListService,
+  currentPage: Page = {};
+  lastSearched: string;
+
+  constructor(private searchService: BrandSearchService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
-    this.loadBrands();
+    this.onSearch();
   }
 
   public loadBrands(): void {
-    this.brandListService.getBrands().subscribe(
+    this.searchService.getAll().subscribe(
       brands => this.brands = brands,
       error => this.notificationService.showError(error)
     );
@@ -31,4 +35,23 @@ export class BrandListComponent implements OnInit {
   onDeleted($event: BrandModel): void {
     this.brands = this.brands.filter(model => model.id !== $event.id);
   }
+
+  onSearch(searchText = '', pageNumber = 0): void {
+    this.searchService.getPage(searchText, pageNumber).subscribe(
+      page => {
+        this.brands = page.content;
+        this.currentPage.length = page.totalElements;
+        this.currentPage.pageSize = page.size;
+        this.currentPage.index = page.number;
+        this.currentPage.totalPages = page.totalPages;
+        this.lastSearched = searchText;
+      },
+      error => this.notificationService.showError(error)
+    );
+  }
+
+  onPageChange(pageNumber: number): void {
+    this.onSearch(this.lastSearched, pageNumber);
+  }
+
 }

@@ -7,6 +7,10 @@ import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
 import {BrandModel} from '../../../access/models/BrandModel';
 import {BrandListResponseDto} from '../../dtos/brand/BrandListResponseDto';
 import {BrandResponseDto} from '../../dtos/brand/BrandResponseDto';
+import {PageModel} from '@core/abstractClases/PageModel';
+import {RoleModel} from '../../../access/models/RoleModel';
+import {RolePageDto} from '../../dtos/role/RolePageDto';
+import {BrandPageDto} from '../../dtos/brand/BrandPageDto';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +37,17 @@ export class BrandSearchService {
       .pipe(
         map((res: BrandResponseDto) => {
             // Return message
+            return res.data;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
+
+  public getPage(searchText: string, pageNumber: number): Observable<PageModel<BrandModel>> {
+    return this.httpService.get<BrandPageDto>(EndPoints.BRANDS + `?text=${searchText}&page=${pageNumber}&size=7`)
+      .pipe(
+        map((res: BrandPageDto) => {
             return res.data;
           }
         ),
