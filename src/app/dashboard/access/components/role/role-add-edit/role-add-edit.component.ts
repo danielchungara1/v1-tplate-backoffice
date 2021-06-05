@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RoleModel} from '../../../models/RoleModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {RoleService} from '../../../../business/services/role/role.service';
+import {RoleService} from '../../../../services/role/role.service';
 import {ActivatedRoute} from '@angular/router';
 import {PermissionModel} from '../../../models/PermissionModel';
-import {PermissionSearchService} from '../../../../business/services/permission/permission-search.service';
+import {PermissionSearchService} from '../../../../services/permission/permission-search.service';
 
 @Component({
   selector: 'app-role-add-edit',

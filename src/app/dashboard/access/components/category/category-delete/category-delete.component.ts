@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryService} from '../../../../business/services/category/category.service';
+import {CategoryService} from '../../../../services/category/category.service';
 
 @Component({
   selector: 'app-category-delete',

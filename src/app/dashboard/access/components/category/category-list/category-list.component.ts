@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {CategoryModel} from '../../../models/CategoryModel';
 import {Page} from '@core/components/paging/Page';
-import {CategoryService} from '../../../../business/services/category/category.service';
+import {CategoryService} from '../../../../services/category/category.service';
 
 @Component({
   selector: 'app-category-list',

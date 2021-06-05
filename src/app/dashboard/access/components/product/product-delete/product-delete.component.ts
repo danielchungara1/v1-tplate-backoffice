@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {ProductModel} from '../../../models/ProductModel';
-import {ProductService} from '../../../../business/services/product/product.service';
+import {ProductService} from '../../../../services/product/product.service';
 
 @Component({
   selector: 'app-product-delete',

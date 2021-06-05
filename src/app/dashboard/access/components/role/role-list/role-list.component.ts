@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {RoleModel} from '../../../models/RoleModel';
 import {Page} from '@core/components/paging/Page';
-import {RoleService} from '../../../../business/services/role/role.service';
+import {RoleService} from '../../../../services/role/role.service';
 
 @Component({
   selector: 'app-role-list',

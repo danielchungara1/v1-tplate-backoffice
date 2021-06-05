@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryService} from '../../../../business/services/category/category.service';
+import {CategoryService} from '../../../../services/category/category.service';
 
 @Component({
   selector: 'app-category-add-edit',

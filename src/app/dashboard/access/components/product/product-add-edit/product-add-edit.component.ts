@@ -3,11 +3,11 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {ProductModel} from '../../../models/ProductModel';
-import {ProductService} from '../../../../business/services/product/product.service';
-import {BrandService} from '../../../../business/services/brand/brand.service';
+import {ProductService} from '../../../../services/product/product.service';
+import {BrandService} from '../../../../services/brand/brand.service';
 import {BrandModel} from '../../../models/BrandModel';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryService} from '../../../../business/services/category/category.service';
+import {CategoryService} from '../../../../services/category/category.service';
 
 @Component({
   selector: 'app-category-add-edit',

@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../../models/UserModel';
-import {RoleService} from '../../../../business/services/role/role.service';
+import {RoleService} from '../../../../services/role/role.service';
 import {RoleModel} from '../../../models/RoleModel';
 import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../../../../business/services/user/user.service';
+import {UserService} from '../../../../services/user/user.service';
 
 @Component({
   selector: 'app-add-edit-user',

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from '@core/httpClient/http.service';
 import {CrudService} from '@core/crud/crud.service';
 import {PermissionEndpoints} from './permission-endpoints';
-import {PermissionModel} from '../../../access/models/PermissionModel';
+import {PermissionModel} from '../../access/models/PermissionModel';
 
 @Injectable({
   providedIn: 'root'

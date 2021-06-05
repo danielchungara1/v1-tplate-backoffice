@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {RoleModel} from '../../../models/RoleModel';
-import {RoleService} from '../../../../business/services/role/role.service';
+import {RoleService} from '../../../../services/role/role.service';
 
 @Component({
   selector: 'app-role-delete',

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from '../../../models/UserModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {UserService} from '../../../../business/services/user/user.service';
+import {UserService} from '../../../../services/user/user.service';
 import {Page} from '@core/components/paging/Page';
 
 @Component({

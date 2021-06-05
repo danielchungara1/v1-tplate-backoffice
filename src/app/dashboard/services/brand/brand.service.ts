@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '@core/httpClient/http.service';
-import {BrandModel} from '../../../access/models/BrandModel';
+import {BrandModel} from '../../access/models/BrandModel';
 import {BrandEndpoints} from './brand-endpoints';
 import {CrudService} from '@core/crud/crud.service';
-import {BrandDto} from '../../dtos/brand/BrandDto';
+import {BrandDto} from './brand-dto';
 import {MapperService} from '@core/mapper/mapper.service';
 
 @Injectable({

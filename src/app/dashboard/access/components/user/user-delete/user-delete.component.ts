@@ -3,7 +3,7 @@ import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {UserModel} from '../../../models/UserModel';
 import {LocalStorageService} from '@core/localStorage/local-storage.service';
-import {UserService} from '../../../../business/services/user/user.service';
+import {UserService} from '../../../../services/user/user.service';
 
 
 @Component({

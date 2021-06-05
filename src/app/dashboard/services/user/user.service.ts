@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpService} from '@core/httpClient/http.service';
 import {CrudService} from '@core/crud/crud.service';
 import {UserEndpoints} from './user-endpoints';
-import {ProductModel} from '../../../access/models/ProductModel';
-import {RoleModel} from '../../../access/models/RoleModel';
-import {UserModel} from '../../../access/models/UserModel';
-import {UserDto} from '../../dtos/user/UserDto';
+import {ProductModel} from '../../access/models/ProductModel';
+import {RoleModel} from '../../access/models/RoleModel';
+import {UserModel} from '../../access/models/UserModel';
+import {UserDto} from './user-dto';
 import {MapperService} from '@core/mapper/mapper.service';
 
 @Injectable({

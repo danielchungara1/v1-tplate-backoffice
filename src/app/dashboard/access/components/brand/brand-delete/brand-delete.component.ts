@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {BrandModel} from '../../../models/BrandModel';
-import {BrandService} from '../../../../business/services/brand/brand.service';
+import {BrandService} from '../../../../services/brand/brand.service';
 
 @Component({
   selector: 'app-brand-delete',

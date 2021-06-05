@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PermissionModel} from '../../../models/PermissionModel';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {Page} from '@core/components/paging/Page';
-import {PermissionSearchService} from '../../../../business/services/permission/permission-search.service';
+import {PermissionSearchService} from '../../../../services/permission/permission-search.service';
 
 @Component({
   selector: 'app-permission-list',

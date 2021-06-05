@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {BrandModel} from '../../../models/BrandModel';
 import {Page} from '@core/components/paging/Page';
-import {BrandService} from '../../../../business/services/brand/brand.service';
+import {BrandService} from '../../../../services/brand/brand.service';
 
 @Component({
   selector: 'app-brand-list',
