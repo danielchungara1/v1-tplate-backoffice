@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   public loadUsers(): void {
-    this.searchService.getUsers().subscribe(
+    this.searchService.getAll().subscribe(
       users => this.users = users,
       error => this.notificationService.showError(error)
     );

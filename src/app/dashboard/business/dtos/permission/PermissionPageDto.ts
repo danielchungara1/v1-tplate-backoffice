@@ -1,8 +1,8 @@
 import {ResponseDto} from '@core/abstractClases/ResponseDto';
 import {PermissionModel} from '../../../access/models/PermissionModel';
-import {PageModel} from '@core/abstractClases/PageModel';
+import {Page} from '@core/abstractClases/Page';
 
-export interface PermissionPageDto extends ResponseDto<PageModel<PermissionModel>> {
+export interface PermissionPageDto extends ResponseDto<Page<PermissionModel>> {
 
 }
 

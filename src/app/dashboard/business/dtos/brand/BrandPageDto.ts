@@ -1,8 +1,8 @@
 import {ResponseDto} from '@core/abstractClases/ResponseDto';
-import {PageModel} from '@core/abstractClases/PageModel';
+import {Page} from '@core/abstractClases/Page';
 import {BrandModel} from '../../../access/models/BrandModel';
 
-export interface BrandPageDto extends ResponseDto<PageModel<BrandModel>> {
+export interface BrandPageDto extends ResponseDto<Page<BrandModel>> {
 
 }
 

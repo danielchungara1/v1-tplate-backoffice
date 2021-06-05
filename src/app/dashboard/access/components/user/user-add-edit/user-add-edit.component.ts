@@ -48,14 +48,14 @@ export class UserAddEditComponent implements OnInit {
 
     if (this.formIsEdit) {
       // Fetching user
-      this.userSearchService.getUser(this.userId).subscribe(
+      this.userSearchService.getOne(this.userId).subscribe(
         data => this.userForm.patchValue(data),
         msg => this.notificationService.showError(msg)
       );
     }
 
     // Fetching roles
-    this.roleSearchService.getRoles().subscribe(
+    this.roleSearchService.getAll().subscribe(
       data => this.roles = data,
       msg => this.notificationService.showError(msg)
     );

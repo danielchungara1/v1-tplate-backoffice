@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ProductModel} from '../../../models/ProductModel';
-import {CategoryListService} from '../../../../business/services/category/category-list.service';
-import {ProductListService} from '../../../../business/services/product/product-list.service';
 import {Page} from '@core/components/paging/Page';
 import {ProductSearchService} from '../../../../business/services/product/product-search.service';
 

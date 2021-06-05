@@ -1,4 +1,4 @@
-export interface PageModel<T> {
+export interface Page<T> {
   content: T[];
 
   // General Metadata

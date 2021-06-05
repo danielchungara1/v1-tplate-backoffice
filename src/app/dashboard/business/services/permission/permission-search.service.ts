@@ -1,43 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
-import {EndPoints} from '@core/httpClient/end-points';
-import {catchError, map} from 'rxjs/operators';
-import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {MapperService} from '@core/mapper/mapper.service';
 import {HttpService} from '@core/httpClient/http.service';
+import {SearchService} from '@core/search/search.service';
+import {PermissionEndpoints} from './permission-endpoints';
 import {PermissionModel} from '../../../access/models/PermissionModel';
-import {PermissionListResponseDto} from '../../dtos/permission/PermissionListResponseDto';
-import {PageModel} from '@core/abstractClases/PageModel';
-import {PermissionPageDto} from '../../dtos/permission/PermissionPageDto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionSearchService {
+export class PermissionSearchService extends SearchService<PermissionModel> {
 
-  constructor(private mapperService: MapperService,
-              private httpService: HttpService) {
+  constructor(protected httpService: HttpService) {
+    super(httpService, new PermissionEndpoints());
   }
 
-  public getPermissions(): Observable<PermissionModel[]> {
-    return this.httpService.get<PermissionListResponseDto>(EndPoints.PERMISSIONS_GET_ALL)
-      .pipe(
-        map((res: PermissionListResponseDto) => {
-            return res.data;
-          }
-        ),
-        catchError((err: ResponseSimpleDto) => throwError(err.message))
-      );
-  }
-
-  public getPage(searchText: string, pageNumber: number): Observable<PageModel<PermissionModel>> {
-    return this.httpService.get<PermissionPageDto>(EndPoints.PERMISSIONS_GET_PAGE + `?text=${searchText}&page=${pageNumber}&size=10`)
-      .pipe(
-        map((res: PermissionPageDto) => {
-            return res.data;
-          }
-        ),
-        catchError((err: ResponseSimpleDto) => throwError(err.message))
-      );
-  }
 }

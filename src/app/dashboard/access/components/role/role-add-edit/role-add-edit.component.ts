@@ -47,14 +47,14 @@ export class RoleAddEditComponent implements OnInit {
 
     if (this.formIsEdit) {
       // Fetching role
-      this.roleSearchService.getRole(this.roleId).subscribe(
+      this.roleSearchService.getOne(this.roleId).subscribe(
         data => this.roleForm.patchValue(data),
         msg => this.notificationService.showError(msg)
       );
     }
 
     // Fetching permissions
-    this.permissionSearchService.getPermissions().subscribe(
+    this.permissionSearchService.getAll().subscribe(
       data => this.permissionsAll = data,
       msg => this.notificationService.showError(msg)
     );

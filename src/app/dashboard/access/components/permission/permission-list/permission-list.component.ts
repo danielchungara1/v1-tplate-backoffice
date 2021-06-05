@@ -27,7 +27,7 @@ export class PermissionListComponent implements OnInit {
   }
 
   public loadAllPermissions(): void {
-    this.searchService.getPermissions().subscribe(
+    this.searchService.getAll().subscribe(
       permissions => this.permissions = permissions,
       error => this.notificationService.showError(error)
     );
