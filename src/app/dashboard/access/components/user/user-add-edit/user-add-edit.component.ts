@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {UserModel} from '../../../models/UserModel';
-import {UserAddEditService} from '../../../../business/services/user/user-add-edit.service';
-import {RoleSearchService} from '../../../../business/services/role/role-search.service';
+import {RoleService} from '../../../../business/services/role/role.service';
 import {RoleModel} from '../../../models/RoleModel';
 import {ActivatedRoute} from '@angular/router';
-import {UserSearchService} from '../../../../business/services/user/user-search.service';
+import {UserService} from '../../../../business/services/user/user.service';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -28,9 +27,8 @@ export class UserAddEditComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private userAddEditService: UserAddEditService,
-              private userSearchService: UserSearchService,
-              private roleSearchService: RoleSearchService,
+              private userSearchService: UserService,
+              private roleSearchService: RoleService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -66,7 +64,7 @@ export class UserAddEditComponent implements OnInit {
   createUser(): void {
     this.submitting = true;
     const user: UserModel = this.userForm.value as UserModel;
-    this.userAddEditService.createUser(user)
+    this.userSearchService.create(user)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -82,7 +80,7 @@ export class UserAddEditComponent implements OnInit {
   updateUser(): void {
     this.submitting = true;
     const user: UserModel = this.userForm.value as UserModel;
-    this.userAddEditService.updateUser(user, this.userId)
+    this.userSearchService.update(user, this.userId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);

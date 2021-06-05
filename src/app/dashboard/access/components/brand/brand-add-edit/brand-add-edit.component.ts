@@ -3,8 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {BrandModel} from '../../../models/BrandModel';
-import {BrandAddEditService} from '../../../../business/services/brand/brand-add-edit.service';
-import {BrandSearchService} from '../../../../business/services/brand/brand-search.service';
+import {BrandService} from '../../../../business/services/brand/brand.service';
 
 @Component({
   selector: 'app-brand-add-edit',
@@ -24,8 +23,7 @@ export class BrandAddEditComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private brandAddEditService: BrandAddEditService,
-              private permissionSearchService: BrandSearchService,
+              private brandService: BrandService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -43,7 +41,7 @@ export class BrandAddEditComponent implements OnInit {
 
     if (this.formIsEdit) {
       // Fetching brand
-      this.permissionSearchService.getOne(this.brandId).subscribe(
+      this.brandService.getOne(this.brandId).subscribe(
         data => this.brandForm.patchValue(data),
         msg => this.notificationService.showError(msg)
       );
@@ -54,7 +52,7 @@ export class BrandAddEditComponent implements OnInit {
   createBrand(): void {
     this.submitting = true;
     const brand: BrandModel = this.brandForm.value as BrandModel;
-    this.brandAddEditService.createBrand(brand)
+    this.brandService.create(brand)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -70,7 +68,7 @@ export class BrandAddEditComponent implements OnInit {
   updateBrand(): void {
     this.submitting = true;
     const model: BrandModel = this.brandForm.value as BrandModel;
-    this.brandAddEditService.updateBrand(model, this.brandId)
+    this.brandService.update(model, this.brandId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);

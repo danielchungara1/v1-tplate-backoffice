@@ -2,7 +2,7 @@ import {HttpService} from '@core/httpClient/http.service';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {CrudEndpoints} from '@core/search/crud-endpoints';
+import {CrudEndpoints} from '@core/crud/crud-endpoints';
 
 export class DeleteService {
 

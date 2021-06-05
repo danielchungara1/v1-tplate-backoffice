@@ -3,8 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryAddEditService} from '../../../../business/services/category/category-add-edit.service';
-import {CategorySearchService} from '../../../../business/services/category/category-search.service';
+import {CategoryService} from '../../../../business/services/category/category.service';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -25,8 +24,7 @@ export class CategoryAddEditComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private service: CategoryAddEditService,
-              private searchService: CategorySearchService,
+              private searchService: CategoryService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -69,7 +67,7 @@ export class CategoryAddEditComponent implements OnInit {
   create(): void {
     this.submitting = true;
     this.model = this.form.value as CategoryModel;
-    this.service.create(this.model)
+    this.searchService.create(this.model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -85,7 +83,7 @@ export class CategoryAddEditComponent implements OnInit {
   update(): void {
     this.submitting = true;
     this.model = this.form.value as CategoryModel;
-    this.service.update(this.model, this.modelId)
+    this.searchService.update(this.model, this.modelId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);

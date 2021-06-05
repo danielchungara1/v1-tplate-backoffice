@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserDeleteService} from '../../../../business/services/user/user-delete.service';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {UserModel} from '../../../models/UserModel';
 import {LocalStorageService} from '@core/localStorage/local-storage.service';
+import {UserService} from '../../../../business/services/user/user.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class UserDeleteComponent implements OnInit {
   deleted: EventEmitter<UserModel> = new EventEmitter();
   isCurrentUser = false;
 
-  constructor(private service: UserDeleteService,
+  constructor(private service: UserService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService,
               private localStorageService: LocalStorageService) {

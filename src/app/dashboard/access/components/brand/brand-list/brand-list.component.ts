@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {BrandModel} from '../../../models/BrandModel';
 import {Page} from '@core/components/paging/Page';
-import {BrandSearchService} from '../../../../business/services/brand/brand-search.service';
+import {BrandService} from '../../../../business/services/brand/brand.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -16,7 +16,7 @@ export class BrandListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: BrandSearchService,
+  constructor(private searchService: BrandService,
               private notificationService: NotificationService) {
   }
 

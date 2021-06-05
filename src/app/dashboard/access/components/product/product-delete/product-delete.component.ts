@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {ProductModel} from '../../../models/ProductModel';
-import {ProductDeleteService} from '../../../../business/services/product/product-delete.service';
+import {ProductService} from '../../../../business/services/product/product.service';
 
 @Component({
   selector: 'app-product-delete',
@@ -17,7 +17,7 @@ export class ProductDeleteComponent implements OnInit {
   @Output()
   deleted: EventEmitter<ProductModel> = new EventEmitter();
 
-  constructor(private service: ProductDeleteService,
+  constructor(private service: ProductService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService) {
   }

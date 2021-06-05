@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategoryDeleteService} from '../../../../business/services/category/category-delete.service';
+import {CategoryService} from '../../../../business/services/category/category.service';
 
 @Component({
   selector: 'app-category-delete',
@@ -17,7 +17,7 @@ export class CategoryDeleteComponent implements OnInit {
   @Output()
   deleted: EventEmitter<CategoryModel> = new EventEmitter();
 
-  constructor(private service: CategoryDeleteService,
+  constructor(private service: CategoryService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService) {
   }

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {BrandModel} from '../../../models/BrandModel';
-import {BrandDeleteService} from '../../../../business/services/brand/brand-delete.service';
+import {BrandService} from '../../../../business/services/brand/brand.service';
 
 @Component({
   selector: 'app-brand-delete',
@@ -17,7 +17,7 @@ export class BrandDeleteComponent implements OnInit {
   @Output()
   deleted: EventEmitter<BrandModel> = new EventEmitter();
 
-  constructor(private brandDeleteService: BrandDeleteService,
+  constructor(private brandDeleteService: BrandService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService) {
   }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {CategoryModel} from '../../../models/CategoryModel';
 import {Page} from '@core/components/paging/Page';
-import {CategorySearchService} from '../../../../business/services/category/category-search.service';
+import {CategoryService} from '../../../../business/services/category/category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -16,7 +16,7 @@ export class CategoryListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: CategorySearchService,
+  constructor(private searchService: CategoryService,
               private notificationService: NotificationService) {
   }
 

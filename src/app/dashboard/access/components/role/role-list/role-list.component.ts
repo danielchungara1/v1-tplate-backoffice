@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {RoleModel} from '../../../models/RoleModel';
 import {Page} from '@core/components/paging/Page';
-import {RoleSearchService} from '../../../../business/services/role/role-search.service';
+import {RoleService} from '../../../../business/services/role/role.service';
 
 @Component({
   selector: 'app-role-list',
@@ -16,7 +16,7 @@ export class RoleListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: RoleSearchService,
+  constructor(private searchService: RoleService,
               private notificationService: NotificationService) {
   }
 

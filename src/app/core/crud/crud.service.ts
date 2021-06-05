@@ -7,9 +7,10 @@ import {ResponseDto} from '@core/abstractClases/ResponseDto';
 import {CrudEndpoints} from './crud-endpoints';
 
 
-export class SearchService<T> {
+export abstract class CrudService<T> {
 
-  constructor(protected httpService: HttpService, protected crudEndpoints: CrudEndpoints) {
+  protected constructor(protected httpService: HttpService,
+                        protected crudEndpoints: CrudEndpoints) {
   }
 
   public getAll(): Observable<T[]> {
@@ -47,4 +48,52 @@ export class SearchService<T> {
       );
   }
 
+  public delete(id: number): Observable<string> {
+
+    return this.httpService
+      .delete<ResponseSimpleDto>(this.crudEndpoints.BASE + `/${id}`)
+      .pipe(
+        map((res: ResponseSimpleDto) => {
+          return res.message;
+        }),
+        catchError((error: ResponseSimpleDto) => throwError(error.message))
+      );
+
+  }
+
+  create(model: T): Observable<string> {
+
+    const dto = this.buildDto(model);
+
+    return this.httpService
+      .post<ResponseSimpleDto>(this.crudEndpoints.NEW, dto)
+      .pipe(
+        map((res: ResponseSimpleDto) => {
+            // Return message
+            return res.message;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
+
+  update(model: T, id: number): Observable<string> {
+
+    const dto = this.buildDto(model);
+
+    return this.httpService
+      .put<ResponseSimpleDto>(this.crudEndpoints.BASE + `/${id}`, dto)
+      .pipe(
+        map((res: ResponseSimpleDto) => {
+            // Return message
+            return res.message;
+          }
+        ),
+        catchError((err: ResponseSimpleDto) => throwError(err.message))
+      );
+  }
+
+  protected abstract buildDto(model: T): any;
+
 }
+

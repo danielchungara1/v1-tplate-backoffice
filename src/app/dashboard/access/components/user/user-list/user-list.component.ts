@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserModel} from '../../../models/UserModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {UserSearchService} from '../../../../business/services/user/user-search.service';
+import {UserService} from '../../../../business/services/user/user.service';
 import {Page} from '@core/components/paging/Page';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: UserSearchService,
+  constructor(private searchService: UserService,
               private notificationService: NotificationService) {
   }
 

@@ -2,10 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RoleModel} from '../../../models/RoleModel';
 import {NotificationService} from '@shared/notifications/notification.service';
-import {RoleSearchService} from '../../../../business/services/role/role-search.service';
+import {RoleService} from '../../../../business/services/role/role.service';
 import {ActivatedRoute} from '@angular/router';
 import {PermissionModel} from '../../../models/PermissionModel';
-import {RoleAddEditService} from '../../../../business/services/role/role-add-edit.service';
 import {PermissionSearchService} from '../../../../business/services/permission/permission-search.service';
 
 @Component({
@@ -27,8 +26,7 @@ export class RoleAddEditComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private roleAddEditService: RoleAddEditService,
-              private roleSearchService: RoleSearchService,
+              private roleSearchService: RoleService,
               private permissionSearchService: PermissionSearchService,
               private activatedRoute: ActivatedRoute) {
   }
@@ -65,7 +63,7 @@ export class RoleAddEditComponent implements OnInit {
   createRole(): void {
     this.submitting = true;
     const role: RoleModel = this.roleForm.value as RoleModel;
-    this.roleAddEditService.createRole(role)
+    this.roleSearchService.create(role)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -81,7 +79,7 @@ export class RoleAddEditComponent implements OnInit {
   updateRole(): void {
     this.submitting = true;
     const role: RoleModel = this.roleForm.value as RoleModel;
-    this.roleAddEditService.updateRole(role, this.roleId)
+    this.roleSearchService.update(role, this.roleId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);

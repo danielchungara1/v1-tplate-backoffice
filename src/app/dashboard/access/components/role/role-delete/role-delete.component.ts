@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ConfirmationService} from 'primeng/api';
 import {RoleModel} from '../../../models/RoleModel';
-import {RoleDeleteService} from '../../../../business/services/role/role-delete.service';
+import {RoleService} from '../../../../business/services/role/role.service';
 
 @Component({
   selector: 'app-role-delete',
@@ -17,7 +17,7 @@ export class RoleDeleteComponent implements OnInit {
   @Output()
   deleted: EventEmitter<RoleModel> = new EventEmitter();
 
-  constructor(private roleDeleteService: RoleDeleteService,
+  constructor(private roleDeleteService: RoleService,
               private notificationService: NotificationService,
               private confirmationService: ConfirmationService) {
   }

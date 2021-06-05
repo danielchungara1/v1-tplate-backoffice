@@ -3,12 +3,11 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {ProductModel} from '../../../models/ProductModel';
-import {ProductAddEditService} from '../../../../business/services/product/product-add-edit.service';
-import {ProductSearchService} from '../../../../business/services/product/product-search.service';
-import {BrandSearchService} from '../../../../business/services/brand/brand-search.service';
+import {ProductService} from '../../../../business/services/product/product.service';
+import {BrandService} from '../../../../business/services/brand/brand.service';
 import {BrandModel} from '../../../models/BrandModel';
 import {CategoryModel} from '../../../models/CategoryModel';
-import {CategorySearchService} from '../../../../business/services/category/category-search.service';
+import {CategoryService} from '../../../../business/services/category/category.service';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -31,10 +30,9 @@ export class ProductAddEditComponent implements OnInit {
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private service: ProductAddEditService,
-              private searchService: ProductSearchService,
-              private brandSearchService: BrandSearchService,
-              private categorySearchService: CategorySearchService,
+              private searchService: ProductService,
+              private brandSearchService: BrandService,
+              private categorySearchService: CategoryService,
               private activatedRoute: ActivatedRoute) {
   }
 
@@ -67,7 +65,7 @@ export class ProductAddEditComponent implements OnInit {
   create(): void {
     this.submitting = true;
     this.model = this.form.value as ProductModel;
-    this.service.create(this.model)
+    this.searchService.create(this.model)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -83,7 +81,7 @@ export class ProductAddEditComponent implements OnInit {
   update(): void {
     this.submitting = true;
     this.model = this.form.value as ProductModel;
-    this.service.update(this.model, this.modelId)
+    this.searchService.update(this.model, this.modelId)
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
