@@ -45,7 +45,7 @@ export class RoleDeleteComponent implements OnInit {
     this.confirmationService.confirm({
       message: `Delete role ${this.role.name} (ID ${this.role.id})?`,
       accept: () => {
-        this.roleDeleteService.deleteRole(this.role.id)
+        this.roleDeleteService.delete(this.role.id)
           .subscribe(
             message => {
               this.notificationService.showSuccess(message);

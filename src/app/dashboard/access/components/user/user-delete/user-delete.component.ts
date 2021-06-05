@@ -58,7 +58,7 @@ export class UserDeleteComponent implements OnInit {
     this.confirmationService.confirm({
       message: `Delete user ${this.model.username} (ID ${this.model.id})?`,
       accept: () => {
-        this.service.deleteUser(this.model.id)
+        this.service.delete(this.model.id)
           .subscribe(
             message => {
               this.notificationService.showSuccess(message);

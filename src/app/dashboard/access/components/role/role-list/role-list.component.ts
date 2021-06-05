@@ -25,7 +25,7 @@ export class RoleListComponent implements OnInit {
   }
 
   public loadRoles(): void {
-    this.searchService.getRoles().subscribe(
+    this.searchService.getAll().subscribe(
       roles => this.roles = roles,
       error => this.notificationService.showError(error)
     );
