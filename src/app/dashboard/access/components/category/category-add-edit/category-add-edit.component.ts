@@ -4,6 +4,7 @@ import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {CategoryModel} from '../../../models/CategoryModel';
 import {CategoryService} from '../../../../services/category/category.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -14,60 +15,43 @@ export class CategoryAddEditComponent implements OnInit {
 
   form: FormGroup;
   formIsEdit = false;
-  titleLabel: string;
-  buttonLabel: string;
-  model: CategoryModel;
-  modelId: number;
-  handlerSubmit: any;
-  parents: CategoryModel[];
   submitting = false;
+
+  categories: CategoryModel[];
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private searchService: CategoryService,
+              private service: CategoryService,
               private activatedRoute: ActivatedRoute) {
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+      this.formIsEdit = true; // Dynamic form (change of labels/callbacks)
+    }
   }
 
   ngOnInit(): void {
 
-    // Initialize form depend on create or update
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.modelId = Number(id);
-      this.formIsEdit = true;
-    }
-    this.initializeLabels();
-    this.initializeInputs();
-    this.initializeSubmit();
+    this.createForm();
 
     if (this.formIsEdit) {
-      // Fetching model
-      this.searchService.getOne(this.modelId).subscribe(
-        model => {
-          if (model.parentId) {
-            this.searchService.getOne(model.parentId).subscribe(
-              parent => {
-                model.parent = parent;
-                this.form.patchValue(model);
-              },
-              msg => this.notificationService.showError(msg)
-            );
-          } else {
-            this.form.patchValue(model);
-          }
-        },
-        msg => this.notificationService.showError(msg)
-      );
+      this.loadModel();
     }
 
-    this.loadParents();
+    this.loadCategories();
 
   }
 
-  create(): void {
+  submit(): void {
+
     this.submitting = true;
-    this.model = this.form.value as CategoryModel;
-    this.searchService.create(this.model)
+    let callback: Observable<string>;
+
+    if (this.formIsEdit) {
+      callback = this.service.update(this.form.value as CategoryModel, this.getModelId());
+    } else {
+      callback = this.service.create(this.form.value as CategoryModel);
+    }
+
+    callback
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -77,41 +61,42 @@ export class CategoryAddEditComponent implements OnInit {
           this.notificationService.showError(msg);
           this.submitting = false;
         }
-      );
-  }
+      )
+    ;
 
-  update(): void {
-    this.submitting = true;
-    this.model = this.form.value as CategoryModel;
-    this.searchService.update(this.model, this.modelId)
-      .subscribe(
-        (msg) => {
-          this.notificationService.showSuccess(msg);
-          this.submitting = false;
-        },
-        (msg) => {
-          this.notificationService.showError(msg);
-          this.submitting = false;
-        }
-      );
   }
 
   get getFormControls(): { [p: string]: AbstractControl } {
     return this.form.controls;
   }
 
-
-  private initializeLabels(): void {
-    if (this.formIsEdit) {
-      this.titleLabel = 'Edit Category';
-      this.buttonLabel = 'Update';
-    } else {
-      this.titleLabel = 'Create Category';
-      this.buttonLabel = 'Create';
-    }
+  private loadCategories(): void {
+    this.service.getAll().subscribe(
+      models => this.categories = models,
+      msg => this.notificationService.showError(msg)
+    );
   }
 
-  private initializeInputs(): void {
+  private loadModel(): void {
+    this.service.getOne(this.getModelId()).subscribe(
+      model => {
+        if (model.parentId) {
+          this.service.getOne(model.parentId).subscribe(
+            parent => {
+              model.parent = parent;
+              this.form.patchValue(model);
+            },
+            msg => this.notificationService.showError(msg)
+          );
+        } else {
+          this.form.patchValue(model);
+        }
+      },
+      msg => this.notificationService.showError(msg)
+    );
+  }
+
+  private createForm(): void {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -120,18 +105,7 @@ export class CategoryAddEditComponent implements OnInit {
     });
   }
 
-  private initializeSubmit(): void {
-    if (this.formIsEdit) {
-      this.handlerSubmit = () => this.update();
-    } else {
-      this.handlerSubmit = () => this.create();
-    }
-  }
-
-  private loadParents(): void {
-    this.searchService.getAll().subscribe(
-      allCategories => this.parents = allCategories,
-      msg => this.notificationService.showError(msg)
-    );
+  private getModelId(): number {
+    return Number(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 }

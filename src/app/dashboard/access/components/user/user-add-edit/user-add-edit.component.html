@@ -2,11 +2,11 @@
   <div class="card">
     <div class="card-header">
       <div class="title-CardHeader">
-        {{titleLabel}}
+        {{formIsEdit ? 'Edit User' : 'Create User'}}
       </div>
     </div>
     <div class="card-body">
-      <form [formGroup]="userForm" (ngSubmit)="handlerSubmit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
 
         <div class="form-inputs form-addEdit">
           <!--Credentials-->
@@ -27,7 +27,9 @@
 
           </div>
           <div class="form-group">
-            <label for="password1">{{passwordLabel}}</label>
+            <label for="password1">
+              {{formIsEdit ? 'Password' : 'Password *'}}
+            </label>
             <div class="input-group">
               <p-password
                 id="password1"
@@ -117,8 +119,8 @@
 
         <div class="form-actions">
           <app-button-submit
-            [label]="buttonLabel"
-            [form] = userForm
+            [label]="formIsEdit ? 'Edit' : 'Create'"
+            [form] = form
             [submitting] = submitting
           ></app-button-submit>
           <div class="footer-separator"></div>

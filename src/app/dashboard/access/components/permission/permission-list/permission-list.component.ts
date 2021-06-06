@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PermissionModel} from '../../../models/PermissionModel';
 import {NotificationService} from '@shared/notifications/notification.service';
 import {Page} from '@core/components/paging/Page';
-import {PermissionSearchService} from '../../../../services/permission/permission-search.service';
+import {PermissionService} from '../../../../services/permission/permission.service';
 
 @Component({
   selector: 'app-permission-list',
@@ -16,7 +16,7 @@ export class PermissionListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: PermissionSearchService,
+  constructor(private searchService: PermissionService,
               private notificationService: NotificationService) {
   }
 

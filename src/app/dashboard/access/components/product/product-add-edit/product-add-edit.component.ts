@@ -8,6 +8,7 @@ import {BrandService} from '../../../../services/brand/brand.service';
 import {BrandModel} from '../../../models/BrandModel';
 import {CategoryModel} from '../../../models/CategoryModel';
 import {CategoryService} from '../../../../services/category/category.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-category-add-edit',
@@ -18,42 +19,29 @@ export class ProductAddEditComponent implements OnInit {
 
   form: FormGroup;
   formIsEdit = false;
-  titleLabel: string;
-  buttonLabel: string;
-  model: ProductModel;
-  modelId: number;
-  handlerSubmit: any;
+  submitting = false;
 
   brands: BrandModel[];
   categories: CategoryModel[];
-  submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private searchService: ProductService,
+              private service: ProductService,
               private brandSearchService: BrandService,
               private categorySearchService: CategoryService,
               private activatedRoute: ActivatedRoute) {
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+      this.formIsEdit = true; // Dynamic form (change of labels/callbacks)
+    }
   }
 
   ngOnInit(): void {
 
-    // Initialize form depend on create or update
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.modelId = Number(id);
-      this.formIsEdit = true;
-    }
-    this.initializeLabels();
-    this.initializeInputs();
-    this.initializeSubmit();
+    this.createForm();
 
+    // Only for Edit
     if (this.formIsEdit) {
-      // Fetching
-      this.searchService.getOne(this.modelId).subscribe(
-        data => this.form.patchValue(data),
-        msg => this.notificationService.showError(msg)
-      );
+      this.loadModel();
     }
 
     // Load selects
@@ -62,26 +50,17 @@ export class ProductAddEditComponent implements OnInit {
 
   }
 
-  create(): void {
+  submit(): void {
     this.submitting = true;
-    this.model = this.form.value as ProductModel;
-    this.searchService.create(this.model)
-      .subscribe(
-        (msg) => {
-          this.notificationService.showSuccess(msg);
-          this.submitting = false;
-        },
-        (msg) => {
-          this.notificationService.showError(msg);
-          this.submitting = false;
-        }
-      );
-  }
+    let callback: Observable<string>;
 
-  update(): void {
-    this.submitting = true;
-    this.model = this.form.value as ProductModel;
-    this.searchService.update(this.model, this.modelId)
+    if (this.formIsEdit) {
+      callback = this.service.update(this.form.value as ProductModel, this.getModelId());
+    } else {
+      callback = this.service.create(this.form.value as ProductModel);
+    }
+
+    callback
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -91,40 +70,12 @@ export class ProductAddEditComponent implements OnInit {
           this.notificationService.showError(msg);
           this.submitting = false;
         }
-      );
+      )
+    ;
   }
 
   get getFormControls(): { [p: string]: AbstractControl } {
     return this.form.controls;
-  }
-
-
-  private initializeLabels(): void {
-    if (this.formIsEdit) {
-      this.titleLabel = 'Edit Product';
-      this.buttonLabel = 'Update';
-    } else {
-      this.titleLabel = 'Create Product';
-      this.buttonLabel = 'Create';
-    }
-  }
-
-  private initializeInputs(): void {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      title: ['', [Validators.required]],
-      category: [null],
-      brand: [null],
-    });
-  }
-
-  private initializeSubmit(): void {
-    if (this.formIsEdit) {
-      this.handlerSubmit = () => this.update();
-    } else {
-      this.handlerSubmit = () => this.create();
-    }
   }
 
   private loadBrands(): void {
@@ -139,5 +90,26 @@ export class ProductAddEditComponent implements OnInit {
       categories => this.categories = categories,
       msg => this.notificationService.showError(msg)
     );
+  }
+
+  private createForm(): void {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+      category: [null],
+      brand: [null],
+    });
+  }
+
+  private loadModel(): void {
+    this.service.getOne(this.getModelId()).subscribe(
+      model => this.form.patchValue(model),
+      msg => this.notificationService.showError(msg)
+    );
+  }
+
+  private getModelId(): number {
+    return Number(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 }

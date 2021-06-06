@@ -7,7 +7,7 @@ import {PermissionModel} from '../../access/models/PermissionModel';
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionSearchService extends CrudService<PermissionModel> {
+export class PermissionService extends CrudService<PermissionModel> {
 
   constructor(protected httpService: HttpService) {
     super(httpService, new PermissionEndpoints());

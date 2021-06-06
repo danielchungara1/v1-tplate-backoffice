@@ -2,11 +2,11 @@
   <div class="card">
     <div class="card-header">
       <div class="title-CardHeader">
-        {{titleLabel}}
+        {{formIsEdit ? 'Edit Product' : 'Create Product'}}
       </div>
     </div>
     <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="handlerSubmit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
 
         <div class="form-inputs form-addEdit">
           <!--Name-->
@@ -98,7 +98,7 @@
 
       <div class="form-actions">
         <app-button-submit
-          [label]="buttonLabel"
+          [label]="formIsEdit ? 'Edit' : 'Create'"
           [form] = form
           [submitting] = submitting
         ></app-button-submit>

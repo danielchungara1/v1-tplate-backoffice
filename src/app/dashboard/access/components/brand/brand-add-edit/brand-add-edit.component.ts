@@ -4,6 +4,7 @@ import {NotificationService} from '@shared/notifications/notification.service';
 import {ActivatedRoute} from '@angular/router';
 import {BrandModel} from '../../../models/BrandModel';
 import {BrandService} from '../../../../services/brand/brand.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-brand-add-edit',
@@ -12,47 +13,42 @@ import {BrandService} from '../../../../services/brand/brand.service';
 })
 export class BrandAddEditComponent implements OnInit {
 
-  brandForm: FormGroup;
+  form: FormGroup;
   formIsEdit = false;
-  titleLabel: string;
-  buttonLabel: string;
-  brand: BrandModel;
-  brandId: number;
-  handlerSubmit: any;
   submitting = false;
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private brandService: BrandService,
+              private service: BrandService,
               private activatedRoute: ActivatedRoute) {
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+      this.formIsEdit = true; // Dynamic form (change of labels/callbacks)
+    }
   }
 
   ngOnInit(): void {
 
-    // Initialize form depend on create or update
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.brandId = Number(id);
-      this.formIsEdit = true;
+    this.createForm();
+
+    // Only for Edit
+    if (this.formIsEdit) {
+      this.loadModel();
     }
-    this.initializeLabels();
-    this.initializeInputs();
-    this.initializeSubmit();
+
+  }
+
+  submit(): void {
+
+    this.submitting = true;
+    let callback: Observable<string>;
 
     if (this.formIsEdit) {
-      // Fetching brand
-      this.brandService.getOne(this.brandId).subscribe(
-        data => this.brandForm.patchValue(data),
-        msg => this.notificationService.showError(msg)
-      );
+      callback = this.service.update(this.form.value as BrandModel, this.getModelId());
+    } else {
+      callback = this.service.create(this.form.value as BrandModel);
     }
 
-  }
-
-  createBrand(): void {
-    this.submitting = true;
-    const brand: BrandModel = this.brandForm.value as BrandModel;
-    this.brandService.create(brand)
+    callback
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -62,54 +58,31 @@ export class BrandAddEditComponent implements OnInit {
           this.notificationService.showError(msg);
           this.submitting = false;
         }
-      );
-  }
-
-  updateBrand(): void {
-    this.submitting = true;
-    const model: BrandModel = this.brandForm.value as BrandModel;
-    this.brandService.update(model, this.brandId)
-      .subscribe(
-        (msg) => {
-          this.notificationService.showSuccess(msg);
-          this.submitting = false;
-        },
-        (msg) => {
-          this.notificationService.showError(msg);
-          this.submitting = false;
-        }
-      );
+      )
+    ;
   }
 
   get getFormControls(): { [p: string]: AbstractControl } {
-    return this.brandForm.controls;
+    return this.form.controls;
   }
 
-
-  private initializeLabels(): void {
-    if (this.formIsEdit) {
-      this.titleLabel = 'Edit Brand';
-      this.buttonLabel = 'Update';
-    } else {
-      this.titleLabel = 'Create Brand';
-      this.buttonLabel = 'Create';
-    }
-  }
-
-  private initializeInputs(): void {
-    this.brandForm = this.formBuilder.group({
+  private createForm(): void {
+    this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       title: ['', [Validators.required]]
     });
   }
 
-  private initializeSubmit(): void {
-    if (this.formIsEdit) {
-      this.handlerSubmit = () => this.updateBrand();
-    } else {
-      this.handlerSubmit = () => this.createBrand();
-    }
+  private loadModel(): void {
+    // Fill form
+    this.service.getOne(this.getModelId()).subscribe(
+      data => this.form.patchValue(data),
+      msg => this.notificationService.showError(msg)
+    );
   }
 
+  private getModelId(): number {
+    return Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  }
 }

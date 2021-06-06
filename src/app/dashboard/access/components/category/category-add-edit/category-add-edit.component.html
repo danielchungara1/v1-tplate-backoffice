@@ -2,11 +2,11 @@
   <div class="card">
     <div class="card-header">
       <div class="title-CardHeader">
-        {{titleLabel}}
+        {{formIsEdit ? 'Edit Category' : 'Create Category'}}
       </div>
     </div>
     <div class="card-body">
-      <form [formGroup]="form" (ngSubmit)="handlerSubmit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
 
         <div class="form-inputs form-addEdit">
           <!--Name-->
@@ -68,7 +68,7 @@
             <div class="input-group">
               <p-dropdown
                 id="category1"
-                [options]="parents"
+                [options]="categories"
                 formControlName="parent"
                 optionLabel="name"
                 placeholder="Parent Category"
@@ -82,7 +82,7 @@
 
       <div class="form-actions">
         <app-button-submit
-          [label]="buttonLabel"
+          [label]="formIsEdit ? 'Edit' : 'Create'"
           [form] = form
           [submitting] = submitting
         ></app-button-submit>

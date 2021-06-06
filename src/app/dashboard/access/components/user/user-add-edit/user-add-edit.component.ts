@@ -6,6 +6,8 @@ import {RoleService} from '../../../../services/role/role.service';
 import {RoleModel} from '../../../models/RoleModel';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../../services/user/user.service';
+import {Observable} from 'rxjs';
+import {CategoryModel} from '../../../models/CategoryModel';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -14,57 +16,45 @@ import {UserService} from '../../../../services/user/user.service';
 })
 export class UserAddEditComponent implements OnInit {
 
-  userForm: FormGroup;
+  form: FormGroup;
   formIsEdit = false;
-  titleLabel: string;
-  buttonLabel: string;
-  passwordLabel: string;
-  user: UserModel;
-  roles: RoleModel[];
-  userId: number;
-  handlerSubmit: any;
   submitting = false;
+
+  roles: RoleModel[];
 
   constructor(public formBuilder: FormBuilder,
               private notificationService: NotificationService,
-              private userSearchService: UserService,
-              private roleSearchService: RoleService,
+              private userService: UserService,
+              private roleService: RoleService,
               private activatedRoute: ActivatedRoute) {
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+      this.formIsEdit = true; // Dynamic form (change of labels/callbacks)
+    }
   }
 
   ngOnInit(): void {
 
-    // Initialize form depend on create or update
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.userId = Number(id);
-      this.formIsEdit = true;
-    }
-    this.initializeLabels();
-    this.initializeInputs();
-    this.initializeSubmit();
+    this.createForm();
 
     if (this.formIsEdit) {
-      // Fetching user
-      this.userSearchService.getOne(this.userId).subscribe(
-        data => this.userForm.patchValue(data),
-        msg => this.notificationService.showError(msg)
-      );
+      this.loadModel();
     }
 
-    // Fetching roles
-    this.roleSearchService.getAll().subscribe(
-      data => this.roles = data,
-      msg => this.notificationService.showError(msg)
-    );
-
+    this.loadRoles();
 
   }
 
-  createUser(): void {
+  submit(): void {
     this.submitting = true;
-    const user: UserModel = this.userForm.value as UserModel;
-    this.userSearchService.create(user)
+    let callback: Observable<string>;
+
+    if (this.formIsEdit) {
+      callback = this.userService.update(this.form.value as UserModel, this.getModelId());
+    } else {
+      callback = this.userService.create(this.form.value as UserModel);
+    }
+
+    callback
       .subscribe(
         (msg) => {
           this.notificationService.showSuccess(msg);
@@ -74,47 +64,22 @@ export class UserAddEditComponent implements OnInit {
           this.notificationService.showError(msg);
           this.submitting = false;
         }
-      );
+      )
+    ;
+
   }
 
-  updateUser(): void {
-    this.submitting = true;
-    const user: UserModel = this.userForm.value as UserModel;
-    this.userSearchService.update(user, this.userId)
-      .subscribe(
-        (msg) => {
-          this.notificationService.showSuccess(msg);
-          this.submitting = false;
-        },
-        (msg) => {
-          this.notificationService.showError(msg);
-          this.submitting = false;
-        }
-      );
-  }
 
   get getFormControls(): { [p: string]: AbstractControl } {
-    return this.userForm.controls;
+    return this.form.controls;
   }
 
-
-  private initializeLabels(): void {
-    if (this.formIsEdit) {
-      this.titleLabel = 'Edit User';
-      this.buttonLabel = 'Update';
-      this.passwordLabel = 'Password';
-    } else {
-      this.titleLabel = 'Create User';
-      this.buttonLabel = 'Create';
-      this.passwordLabel = 'Password *';
-    }
-  }
-
-  private initializeInputs(): void {
-    this.userForm = this.formBuilder.group({
+  private createForm(): void {
+    console.log(this.formIsEdit);
+    this.form = this.formBuilder.group({
       // Credentials
       username: ['', [Validators.required]],
-      password: ['', this.formIsEdit ? [] : [Validators.required]],
+      password: ['', this.formIsEdit === true ? [] : [Validators.required]],
       // Contact
       name: [''],
       lastname: [''],
@@ -125,11 +90,21 @@ export class UserAddEditComponent implements OnInit {
     });
   }
 
-  private initializeSubmit(): void {
-    if (this.formIsEdit) {
-      this.handlerSubmit = () => this.updateUser();
-    } else {
-      this.handlerSubmit = () => this.createUser();
-    }
+  private loadModel(): void {
+    this.userService.getOne(this.getModelId()).subscribe(
+      data => this.form.patchValue(data),
+      msg => this.notificationService.showError(msg)
+    );
+  }
+
+  private loadRoles(): void {
+    this.roleService.getAll().subscribe(
+      data => this.roles = data,
+      msg => this.notificationService.showError(msg)
+    );
+  }
+
+  private getModelId(): number {
+    return Number(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 }
