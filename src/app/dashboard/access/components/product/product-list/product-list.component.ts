@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: ProductService,
+  constructor(public productService: ProductService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   }
 
   public loadModels(): void {
-    this.searchService.getAll().subscribe(
+    this.productService.getAll().subscribe(
       models => this.models = models,
       error => this.notificationService.showError(error)
     );
@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
-    this.searchService.getPage(searchText, pageNumber).subscribe(
+    this.productService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.models = page.content;
         this.currentPage.length = page.totalElements;

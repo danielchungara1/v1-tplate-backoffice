@@ -26,10 +26,12 @@
             <td>{{role.name}}</td>
             <td>{{role.description}}</td>
             <td class="actions-table">
-              <app-role-delete
-                [role]="role"
-                (deleted)="onDeleted($event)">
-              </app-role-delete>
+              <app-delete
+                [model]="role"
+                (deleted)="onDeleted($event)"
+                [crudService]="roleService"
+                additionalDeleteMessage="All users who have this role will change to Visualizer Role."
+              ></app-delete>
               <button
                 pButton
                 pTooltip="Edit"

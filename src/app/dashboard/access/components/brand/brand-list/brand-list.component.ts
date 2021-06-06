@@ -16,7 +16,7 @@ export class BrandListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: BrandService,
+  constructor(public brandService: BrandService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +25,7 @@ export class BrandListComponent implements OnInit {
   }
 
   public loadBrands(): void {
-    this.searchService.getAll().subscribe(
+    this.brandService.getAll().subscribe(
       brands => this.brands = brands,
       error => this.notificationService.showError(error)
     );
@@ -37,7 +37,7 @@ export class BrandListComponent implements OnInit {
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
-    this.searchService.getPage(searchText, pageNumber).subscribe(
+    this.brandService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.brands = page.content;
         this.currentPage.length = page.totalElements;

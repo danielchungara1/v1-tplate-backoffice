@@ -28,10 +28,11 @@
             <td>{{model.description}}</td>
             <td>{{model.title}}</td>
             <td class="actions-table">
-              <app-product-delete
+              <app-delete
                 [model]="model"
-                (deleted)="onDeleted($event)">
-              </app-product-delete>
+                (deleted)="onDeleted($event)"
+                [crudService]="productService"
+              ></app-delete>
               <button
                 pButton
                 pTooltip="Edit"

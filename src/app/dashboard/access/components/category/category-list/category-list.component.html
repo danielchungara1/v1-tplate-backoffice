@@ -29,10 +29,12 @@
             <td>{{model.description}}</td>
             <td>{{model.title}}</td>
             <td class="actions-table">
-              <app-category-delete
+              <app-delete
                 [model]="model"
-                (deleted)="onDeleted($event)">
-              </app-category-delete>
+                (deleted)="onDeleted($event)"
+                [crudService]="categoryService"
+                [additionalDeleteMessage]= additionalDeleteMessage
+              ></app-delete>
               <button
                 pButton
                 pTooltip="Edit"

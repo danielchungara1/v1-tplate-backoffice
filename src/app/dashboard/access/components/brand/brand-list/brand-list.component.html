@@ -28,10 +28,12 @@
             <td>{{brand.title}}</td>
             <td>{{brand.description}}</td>
             <td class="actions-table">
-              <app-brand-delete
+              <app-delete
                 [model]="brand"
-                (deleted)="onDeleted($event)">
-              </app-brand-delete>
+                (deleted)="onDeleted($event)"
+                [crudService]="brandService"
+                additionalDeleteMessage="All products that have this brand will be reset it."
+              ></app-delete>
               <button
                 pButton
                 pTooltip="Edit"

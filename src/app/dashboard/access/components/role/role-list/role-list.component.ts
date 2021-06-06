@@ -16,7 +16,7 @@ export class RoleListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: RoleService,
+  constructor(public roleService: RoleService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +25,7 @@ export class RoleListComponent implements OnInit {
   }
 
   public loadRoles(): void {
-    this.searchService.getAll().subscribe(
+    this.roleService.getAll().subscribe(
       roles => this.roles = roles,
       error => this.notificationService.showError(error)
     );
@@ -37,7 +37,7 @@ export class RoleListComponent implements OnInit {
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
-    this.searchService.getPage(searchText, pageNumber).subscribe(
+    this.roleService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.roles = page.content;
         this.currentPage.length = page.totalElements;

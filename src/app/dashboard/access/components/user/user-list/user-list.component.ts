@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: UserService,
+  constructor(public userService: UserService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   public loadUsers(): void {
-    this.searchService.getAll().subscribe(
+    this.userService.getAll().subscribe(
       users => this.users = users,
       error => this.notificationService.showError(error)
     );
@@ -36,7 +36,7 @@ export class UserListComponent implements OnInit {
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
-    this.searchService.getPage(searchText, pageNumber).subscribe(
+    this.userService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.users = page.content;
         this.currentPage.length = page.totalElements;

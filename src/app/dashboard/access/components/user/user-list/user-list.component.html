@@ -1,6 +1,6 @@
 <div class="card-container">
 
-  <div  class="text-loading" *ngIf="!users">Loading...</div>
+  <div class="text-loading" *ngIf="!users">Loading...</div>
 
   <div class="card" *ngIf="users">
 
@@ -30,10 +30,12 @@
             <td>{{user.lastname}}</td>
             <td>{{user.role.name}}</td>
             <td class="actions-table">
-              <app-user-delete
-                      [model]="user"
-                (deleted)="onDeleted($event)">
-              </app-user-delete>
+              <app-delete
+                [model]="user"
+                (deleted)="onDeleted($event)"
+                [crudService]="userService"
+              >
+              </app-delete>
               <button
                 pButton
                 pTooltip="Edit"

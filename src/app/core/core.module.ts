@@ -13,6 +13,7 @@ import {ButtonSubmitComponent} from '@core/components/button-submit/button-submi
 import { ProgresBarComponent } from './components/progres-bar/progres-bar.component';
 import { SearchComponent } from './components/search/search.component';
 import { PagingComponent } from './components/paging/paging.component';
+import {DeleteComponent} from '@core/components/delete/delete.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { PagingComponent } from './components/paging/paging.component';
     ButtonSubmitComponent,
     ProgresBarComponent,
     PagingComponent,
-    SearchComponent
+    SearchComponent,
+    DeleteComponent
   ],
   declarations: [
     // Components
@@ -60,7 +62,8 @@ import { PagingComponent } from './components/paging/paging.component';
     ButtonSubmitComponent,
     ProgresBarComponent,
     SearchComponent,
-    PagingComponent
+    PagingComponent,
+    DeleteComponent
   ]
 })
 export class CoreModule {

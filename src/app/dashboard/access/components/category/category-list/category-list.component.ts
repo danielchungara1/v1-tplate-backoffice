@@ -16,7 +16,10 @@ export class CategoryListComponent implements OnInit {
   currentPage: Page = {};
   lastSearched: string;
 
-  constructor(private searchService: CategoryService,
+  additionalDeleteMessage = `The category and all its descendants categories will be deleted.` + '<br/>' +
+    `In addition, the products that have some category of the hierarchy will be reset their category.`;
+
+  constructor(public categoryService: CategoryService,
               private notificationService: NotificationService) {
   }
 
@@ -25,7 +28,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   public loadModels(): void {
-    this.searchService.getAll().subscribe(
+    this.categoryService.getAll().subscribe(
       models => this.models = models,
       error => this.notificationService.showError(error)
     );
@@ -37,7 +40,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   onSearch(searchText = '', pageNumber = 0): void {
-    this.searchService.getPage(searchText, pageNumber).subscribe(
+    this.categoryService.getPage(searchText, pageNumber).subscribe(
       page => {
         this.models = page.content;
         this.currentPage.length = page.totalElements;
