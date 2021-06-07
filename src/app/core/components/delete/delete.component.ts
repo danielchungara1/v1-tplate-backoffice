@@ -23,9 +23,6 @@ export class DeleteComponent<T extends BaseModel> implements OnInit {
   @Input()
   modelName = '';
 
-  @Output()
-  deleted: EventEmitter<T> = new EventEmitter();
-
   constructor(
     protected notificationService: NotificationService,
     protected confirmationService: ConfirmationService) {
@@ -50,7 +47,7 @@ export class DeleteComponent<T extends BaseModel> implements OnInit {
           .subscribe(
             message => {
               this.notificationService.showSuccess(message);
-              this.deleted.emit(this.model);
+              this.crudService.searchAndEmit('', 0);
             },
             error => this.notificationService.showError(error),
             () => this.confirmationService.close()

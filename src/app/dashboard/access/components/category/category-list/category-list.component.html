@@ -1,53 +1,20 @@
 <div class="card-container">
 
-  <div  class="text-loading" *ngIf="!models">Loading...</div>
-
-  <div class="card" *ngIf="models">
+  <div class="card">
 
     <div class="card-header">
       <div class="title-CardHeader">Category List</div>
     </div>
 
-    <app-search (newSearch$)="onSearch($event)"></app-search>
+    <div class="card-body">
+      <app-search [crudService]="categoryService"></app-search>
 
-    <div class="card-body card-body-list">
-      <p-table [value]="models">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Title</th>
-            <!--<th>Parent Category</th>-->
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-model>
-          <tr>
-            <td>{{model.id}}</td>
-            <td>{{model.name}}</td>
-            <td>{{model.description}}</td>
-            <td>{{model.title}}</td>
-            <td class="actions-table">
-              <app-delete
-                [model]="model"
-                (deleted)="onDeleted($event)"
-                [crudService]="categoryService"
-                [additionalDeleteMessage]= additionalDeleteMessage
-              ></app-delete>
-              <button
-                pButton
-                pTooltip="Edit"
-                icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-category', model.id]"
-              ></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <app-category-table [crudService]="categoryService"></app-category-table>
+
+      <app-paginator [crudService]="categoryService"></app-paginator>
     </div>
 
-    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
-
   </div>
+
 </div>
+

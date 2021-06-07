@@ -16,6 +16,12 @@ import {CategoryAddEditComponent} from './access/components/category/category-ad
 import {ProductListComponent} from './access/components/product/product-list/product-list.component';
 import {ProductAddEditComponent} from './access/components/product/product-add-edit/product-add-edit.component';
 import { HomeComponent } from './access/shared/home/home.component';
+import { PermissionTableComponent } from './access/components/permission/permission-table/permission-table.component';
+import { ProductTableComponent } from './access/components/product/product-table/product-table.component';
+import { BrandTableComponent } from './access/components/brand/brand-table/brand-table.component';
+import { CategoryTableComponent } from './access/components/category/category-table/category-table.component';
+import { RoleTableComponent } from './access/components/role/role-table/role-table.component';
+import { UserTableComponent } from './access/components/user/user-table/user-table.component';
 
 @NgModule({
   declarations: [
@@ -27,19 +33,25 @@ import { HomeComponent } from './access/shared/home/home.component';
     UserAddEditComponent,
     // Permission
     PermissionListComponent,
+    PermissionTableComponent,
     // Role
     RoleListComponent,
-    RoleAddEditComponent,
     // Brand
+    RoleAddEditComponent,
     BrandListComponent,
-    BrandAddEditComponent,
     // Category
+    BrandAddEditComponent,
     CategoryListComponent,
-    CategoryAddEditComponent,
     // Product
+    CategoryAddEditComponent,
     ProductListComponent,
     ProductAddEditComponent,
-    HomeComponent
+    HomeComponent,
+    ProductTableComponent,
+    BrandTableComponent,
+    CategoryTableComponent,
+    RoleTableComponent,
+    UserTableComponent
   ],
   imports: [
     DashboardRoutingModule,

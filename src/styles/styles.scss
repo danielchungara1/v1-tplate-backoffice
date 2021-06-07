@@ -37,6 +37,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: $font-size-big;
+  flex-direction: column;
 }
 
 .card {

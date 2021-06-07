@@ -1,37 +1,43 @@
-import {AfterViewChecked, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Page} from '@core/components/paging/Page';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
 import {PageEvent} from '@angular/material/paginator';
+import {CrudService} from '@core/crud/crud.service';
+import {ResultSearch} from '@core/abstractClases/ResultSearch';
+
 
 @Component({
-  selector: 'app-paging',
+  selector: 'app-paginator',
   templateUrl: './paging.component.html',
   styleUrls: ['./paging.component.scss']
 })
-export class PagingComponent implements OnInit, AfterViewChecked {
+export class PagingComponent<T> implements OnInit, AfterViewChecked {
 
   @Input()
-  page: Page;
+  crudService: CrudService<T>;
 
-  @Output()
-  newPage$: EventEmitter<number> = new EventEmitter<number>();
+  resultSearch: ResultSearch<T>;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.crudService.$resultSearch.subscribe(
+      (resultSearch: ResultSearch<T>) => {
+        this.resultSearch = resultSearch;
+      }
+    );
+  }
 
+  pageChange($event: PageEvent): void {
+    this.crudService.searchAndEmit(this.resultSearch.searchText, $event.pageIndex);
   }
 
   ngAfterViewChecked(): void {
     const list = document.getElementsByClassName('mat-paginator-range-label');
-    list[0].innerHTML = 'Total Results ' + this.page?.length;
-    // + '</br>' +
-    // ' Page ' + (this.page?.index + 1) +
-    // ' Of ' + (this.page?.totalPages);
-  }
 
-  pageChange($event: PageEvent): void {
-    this.newPage$.emit($event.pageIndex);
+    if (list.length > 0) {
+      list[0].innerHTML = 'Total Results ' + this.resultSearch?.page?.totalElements;
+    }
+
   }
 
 }

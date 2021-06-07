@@ -1,18 +1,19 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
 import {SearchModel} from '@core/components/search/SearchModel';
+import {CrudService} from '@core/crud/crud.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent<T> implements OnInit {
+
+  @Input()
+  crudService: CrudService<T>;
 
   form: FormGroup;
-
-  @Output()
-  newSearch$: EventEmitter<string> = new EventEmitter();
 
   constructor(public formBuilder: FormBuilder) {
   }
@@ -25,7 +26,7 @@ export class SearchComponent implements OnInit {
 
     const model: SearchModel = this.form.value as SearchModel;
 
-    this.newSearch$.emit(model.textSearch);
+    this.crudService.searchAndEmit(model.textSearch, 0);
 
   }
 

@@ -1,52 +1,20 @@
 <div class="card-container">
 
-  <div  class="text-loading" *ngIf="!brands">Loading...</div>
-
-  <div class="card" *ngIf="brands">
+  <div class="card">
 
     <div class="card-header">
       <div class="title-CardHeader">Brand List</div>
     </div>
 
-    <app-search (newSearch$)="onSearch($event)"></app-search>
-
     <div class="card-body">
-      <p-table [value]="brands">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-brand>
-          <tr>
-            <td>{{brand.id}}</td>
-            <td>{{brand.name}}</td>
-            <td>{{brand.title}}</td>
-            <td>{{brand.description}}</td>
-            <td class="actions-table">
-              <app-delete
-                [model]="brand"
-                (deleted)="onDeleted($event)"
-                [crudService]="brandService"
-                additionalDeleteMessage="All products that have this brand will be reset it."
-              ></app-delete>
-              <button
-                pButton
-                pTooltip="Edit"
-                icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-brand', brand.id]"
-              ></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <app-search [crudService]="brandService"></app-search>
+
+      <app-brand-table [crudService]="brandService"></app-brand-table>
+
+      <app-paginator [crudService]="brandService"></app-paginator>
     </div>
 
-    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
-
   </div>
+
 </div>
+

@@ -1,35 +1,19 @@
 <div class="card-container">
 
-  <div class="text-loading" *ngIf="!permissions">Loading...</div>
-
-  <div class="card" *ngIf="permissions">
+  <div class="card">
 
     <div class="card-header">
       <div class="title-CardHeader">Permission List</div>
     </div>
 
-    <app-search (newSearch$)="onSearch($event)"></app-search>
+    <div class="card-body">
+      <app-search [crudService]="searchService"></app-search>
 
-    <div class="card-body card-body-list">
-      <p-table [value]="permissions">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-permission>
-          <tr>
-            <td>{{permission.id}}</td>
-            <td>{{permission.name}}</td>
-            <td>{{permission.description}}</td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <app-permission-table [crudService]="searchService"></app-permission-table>
+
+      <app-paginator [crudService]="searchService"></app-paginator>
     </div>
 
-    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
-
   </div>
+
 </div>

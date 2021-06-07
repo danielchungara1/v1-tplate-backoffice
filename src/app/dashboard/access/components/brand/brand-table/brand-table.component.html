@@ -1,0 +1,32 @@
+<p-table [value]="brands">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-brand>
+    <tr>
+      <td>{{brand.id}}</td>
+      <td>{{brand.name}}</td>
+      <td>{{brand.title}}</td>
+      <td>{{brand.description}}</td>
+      <td class="actions-table">
+        <app-delete
+          [model]="brand"
+          [crudService]="crudService"
+          additionalDeleteMessage="All products that have this brand will be reset it."
+        ></app-delete>
+        <button
+          pButton
+          pTooltip="Edit"
+          icon="fas fa-pencil-alt"
+          [routerLink]="['/dashboard/edit-brand', brand.id]"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

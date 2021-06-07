@@ -1,50 +1,19 @@
 <div class="card-container">
 
-  <div  class="text-loading" *ngIf="!roles">Loading...</div>
-
-  <div class="card" *ngIf="roles">
+  <div class="card">
 
     <div class="card-header">
       <div class="title-CardHeader">Role List</div>
     </div>
 
-    <app-search (newSearch$)="onSearch($event)"></app-search>
+    <div class="card-body">
+      <app-search [crudService]="roleService"></app-search>
 
-    <div class="card-body card-body-list">
-      <p-table [value]="roles">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-role>
-          <tr>
-            <td>{{role.id}}</td>
-            <td>{{role.name}}</td>
-            <td>{{role.description}}</td>
-            <td class="actions-table">
-              <app-delete
-                [model]="role"
-                (deleted)="onDeleted($event)"
-                [crudService]="roleService"
-                additionalDeleteMessage="All users who have this role will change to Visualizer Role."
-              ></app-delete>
-              <button
-                pButton
-                pTooltip="Edit"
-                icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-role', role.id]"
-              ></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <app-role-table [crudService]="roleService"></app-role-table>
+
+      <app-paginator [crudService]="roleService"></app-paginator>
     </div>
 
-    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
-
   </div>
+
 </div>

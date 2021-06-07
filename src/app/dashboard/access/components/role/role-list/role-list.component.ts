@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificationService} from '@shared/notifications/notification.service';
-import {RoleModel} from '../../../models/RoleModel';
-import {Page} from '@core/components/paging/Page';
 import {RoleService} from '../../../../services/role/role.service';
 
 @Component({
@@ -11,47 +8,11 @@ import {RoleService} from '../../../../services/role/role.service';
 })
 export class RoleListComponent implements OnInit {
 
-  roles: RoleModel[];
-
-  currentPage: Page = {};
-  lastSearched: string;
-
-  constructor(public roleService: RoleService,
-              private notificationService: NotificationService) {
+  constructor(public roleService: RoleService) {
   }
 
   ngOnInit(): void {
-    this.onSearch();
-  }
-
-  public loadRoles(): void {
-    this.roleService.getAll().subscribe(
-      roles => this.roles = roles,
-      error => this.notificationService.showError(error)
-    );
-  }
-
-
-  onDeleted($event: RoleModel): void {
-    this.onSearch();
-  }
-
-  onSearch(searchText = '', pageNumber = 0): void {
-    this.roleService.getPage(searchText, pageNumber).subscribe(
-      page => {
-        this.roles = page.content;
-        this.currentPage.length = page.totalElements;
-        this.currentPage.pageSize = page.size;
-        this.currentPage.index = page.number;
-        this.currentPage.totalPages = page.totalPages;
-        this.lastSearched = searchText;
-      },
-      error => this.notificationService.showError(error)
-    );
-  }
-
-  onPageChange(pageNumber: number): void {
-    this.onSearch(this.lastSearched, pageNumber);
+    this.roleService.searchAndEmit('', 0);
   }
 
 }

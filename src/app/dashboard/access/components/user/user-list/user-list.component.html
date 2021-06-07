@@ -1,54 +1,19 @@
 <div class="card-container">
 
-  <div class="text-loading" *ngIf="!users">Loading...</div>
-
-  <div class="card" *ngIf="users">
+  <div class="card">
 
     <div class="card-header">
       <div class="title-CardHeader">User List</div>
     </div>
 
-    <app-search (newSearch$)="onSearch($event)"></app-search>
+    <div class="card-body">
+      <app-search [crudService]="userService"></app-search>
 
-    <div class="card-body card-body-list">
-      <p-table [value]="users">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Name</th>
-            <th>Lastname</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-user>
-          <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.username}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.lastname}}</td>
-            <td>{{user.role.name}}</td>
-            <td class="actions-table">
-              <app-delete
-                [model]="user"
-                (deleted)="onDeleted($event)"
-                [crudService]="userService"
-              >
-              </app-delete>
-              <button
-                pButton
-                pTooltip="Edit"
-                icon="fas fa-pencil-alt"
-                [routerLink]="['/dashboard/edit-user', user.id]"
-              ></button>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
+      <app-user-table [crudService]="userService"></app-user-table>
+
+      <app-paginator [crudService]="userService"></app-paginator>
     </div>
 
-    <app-paging [page]="currentPage" (newPage$)="onPageChange($event)"></app-paging>
-
   </div>
+
 </div>

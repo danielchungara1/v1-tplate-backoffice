@@ -15,7 +15,6 @@ import { SearchComponent } from './components/search/search.component';
 import { PagingComponent } from './components/paging/paging.component';
 import {DeleteComponent} from '@core/components/delete/delete.component';
 
-
 @NgModule({
   imports: [
     // Modules
@@ -63,7 +62,7 @@ import {DeleteComponent} from '@core/components/delete/delete.component';
     ProgresBarComponent,
     SearchComponent,
     PagingComponent,
-    DeleteComponent
+    DeleteComponent,
   ]
 })
 export class CoreModule {
