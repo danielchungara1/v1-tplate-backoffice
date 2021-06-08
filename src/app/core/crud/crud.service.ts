@@ -1,12 +1,12 @@
 import {HttpService} from '@core/httpClient/http.service';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {ResponseSimpleDto} from '@core/abstractClases/ResponseSimpleDto';
-import {Page} from '@core/abstractClases/Page';
-import {ResponseDto} from '@core/abstractClases/ResponseDto';
+import {ResponseSimpleDto} from '@core/abstract/ResponseSimpleDto';
+import {Page} from '@core/abstract/Page';
+import {ResponseDto} from '@core/abstract/ResponseDto';
 import {CrudEndpoints} from './crud-endpoints';
 import {EventEmitter} from '@angular/core';
-import {ResultSearch} from '@core/abstractClases/ResultSearch';
+import {ResultSearch} from '@core/abstract/ResultSearch';
 
 
 export abstract class CrudService<T> {

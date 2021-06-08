@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LocalStorageKeys} from '@core/localStorage/local-storage-keys';
-import {UserModel} from '../../dashboard/access/models/UserModel';
+import {UserModel} from '../../dashboard/models/UserModel';
 
 @Injectable({
   providedIn: 'root'
