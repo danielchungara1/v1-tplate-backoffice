@@ -7,7 +7,6 @@ import {RoleModel} from '../../../models/RoleModel';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../../services/user/user.service';
 import {Observable} from 'rxjs';
-import {CategoryModel} from '../../../models/CategoryModel';
 
 @Component({
   selector: 'app-add-edit-user',

@@ -1,4 +1,4 @@
-<p-table [value]="brands">
+<p-table [value]="brands" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>ID</th>
@@ -20,12 +20,9 @@
           [crudService]="crudService"
           additionalDeleteMessage="All products that have this brand will be reset it."
         ></app-delete>
-        <button
-          pButton
-          pTooltip="Edit"
-          icon="fas fa-pencil-alt"
+        <app-btn-edit
           [routerLink]="['/dashboard/edit-brand', brand.id]"
-        ></button>
+        ></app-btn-edit>
       </td>
     </tr>
   </ng-template>

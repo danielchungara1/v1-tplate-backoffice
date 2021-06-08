@@ -1,4 +1,4 @@
-<p-table [value]="model">
+<p-table [value]="model" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>ID</th>
@@ -19,12 +19,11 @@
           [model]="model"
           [crudService]="crudService"
         ></app-delete>
-        <button
-          pButton
-          pTooltip="Edit"
-          icon="fas fa-pencil-alt"
+
+        <app-btn-edit
           [routerLink]="['/dashboard/edit-product', model.id]"
-        ></button>
+        ></app-btn-edit>
+
       </td>
     </tr>
   </ng-template>

@@ -1,4 +1,4 @@
-<p-table [value]="users">
+<p-table [value]="users" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>ID</th>
@@ -22,12 +22,9 @@
           [crudService]="crudService"
         >
         </app-delete>
-        <button
-          pButton
-          pTooltip="Edit"
-          icon="fas fa-pencil-alt"
+        <app-btn-edit
           [routerLink]="['/dashboard/edit-user', user.id]"
-        ></button>
+        ></app-btn-edit>
       </td>
     </tr>
   </ng-template>

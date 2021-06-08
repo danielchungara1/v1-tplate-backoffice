@@ -1,4 +1,4 @@
-<p-table [value]="categories">
+<p-table [value]="categories" styleClass="p-datatable-sm">
   <ng-template pTemplate="header">
     <tr>
       <th>ID</th>
@@ -18,12 +18,9 @@
           [crudService]="crudService"
           additionalDeleteMessage="All users who have this role will change to Visualizer Role."
         ></app-delete>
-        <button
-          pButton
-          pTooltip="Edit"
-          icon="fas fa-pencil-alt"
+        <app-btn-edit
           [routerLink]="['/dashboard/edit-role', role.id]"
-        ></button>
+        ></app-btn-edit>
       </td>
     </tr>
   </ng-template>

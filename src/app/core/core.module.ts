@@ -14,6 +14,7 @@ import { ProgresBarComponent } from './components/progres-bar/progres-bar.compon
 import { SearchComponent } from './components/search/search.component';
 import { PagingComponent } from './components/paging/paging.component';
 import {DeleteComponent} from '@core/components/delete/delete.component';
+import { BtnEditComponent } from './components/btn-edit/btn-edit.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,8 @@ import {DeleteComponent} from '@core/components/delete/delete.component';
     ProgresBarComponent,
     PagingComponent,
     SearchComponent,
-    DeleteComponent
+    DeleteComponent,
+    BtnEditComponent
   ],
   declarations: [
     // Components
@@ -63,6 +65,7 @@ import {DeleteComponent} from '@core/components/delete/delete.component';
     SearchComponent,
     PagingComponent,
     DeleteComponent,
+    BtnEditComponent,
   ]
 })
 export class CoreModule {
