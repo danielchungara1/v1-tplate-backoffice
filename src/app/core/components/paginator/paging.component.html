@@ -1,0 +1,13 @@
+<div *ngIf="resultSearch">
+  <mat-paginator
+    [length]="resultSearch.page.totalElements"
+    [pageSize]="resultSearch.page.size"
+    [pageIndex]="resultSearch.page.number"
+    (page)="pageChange($event)"
+    hidePageSize
+    showFirstLastButtons
+  >
+  </mat-paginator>
+</div>
+
+

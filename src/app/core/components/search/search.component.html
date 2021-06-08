@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="handlerSubmit()">
+
+  <div class="search-container">
+
+    <!--SearchText-->
+    <div class="form-group">
+      <div class="input-group">
+        <label for="text1" hidden>Search</label>
+        <input
+          id="text1"
+          type="text"
+          pInputText
+          formControlName="textSearch"
+          placeholder="Search"
+        />
+      </div>
+    </div>
+
+    <div class="form-actions" hidden>
+      <p-button
+        label="Search"
+        type="submit"
+      ></p-button>
+    </div>
+
+  </div>
+
+</form>

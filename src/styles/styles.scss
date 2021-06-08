@@ -37,6 +37,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: $font-size-big;
+  flex-direction: column;
 }
 
 .card {
@@ -66,7 +67,7 @@ body {
 }
 .card-body-list {
   max-height: 500px;
-  overflow-y: auto;
+  //overflow-y: auto;
 }
 
 .form-inputs {
@@ -107,6 +108,32 @@ body {
   }
 }
 
+input {
+  width: 300px;
+}
+.p-dropdown .p-dropdown-label{
+  width: 260px;
+}
+.p-multiselect .p-multiselect-label {
+  width: 260px;
+}
+
+
 .text-loading {
   font-size: $font-size-normal;
+}
+
+.btn-table {
+  padding: 5px !important;
+  margin: 0 2.5px;
+}
+
+.p-datatable-sm {
+  margin-top: 10px;
+  min-height: 480px;
+}
+
+.card-security {
+  max-width: 420px;
+  margin: 0 auto;
 }

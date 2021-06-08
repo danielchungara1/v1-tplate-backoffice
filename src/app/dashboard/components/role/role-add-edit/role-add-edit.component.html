@@ -1,0 +1,77 @@
+<div class="card-container">
+  <div class="card">
+    <div class="card-header">
+      <div class="title-CardHeader">
+        {{formIsEdit ? 'Edit Role' : 'Create Role'}}
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-inputs form-addEdit">
+          <!--Name-->
+          <div class="form-group">
+            <label for="name1">Name *</label>
+            <div class="input-group">
+              <input
+                id="name1"
+                type="text"
+                pInputText
+                formControlName="name"
+                placeholder="Name"
+              />
+              <div *ngIf="getFormControls.name.touched && getFormControls.name.invalid" class="text-danger">
+                <div *ngIf="getFormControls.name.errors.required">Name is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Description-->
+          <div class="form-group">
+            <label for="description1">Description *</label>
+            <div class="input-group">
+              <input
+                id="description1"
+                type="text"
+                pInputText
+                formControlName="description"
+                placeholder="Description"
+              />
+              <div *ngIf="getFormControls.description.touched && getFormControls.description.invalid"
+                   class="text-danger">
+                <div *ngIf="getFormControls.description.errors.required">Description is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Permissions-->
+          <div class="form-group">
+            <label for="permissions1">Permissions *</label>
+            <div class="input-group">
+              <p-multiSelect
+                id="permissions1"
+                [options]="permissions"
+                formControlName="permissions"
+                optionLabel="name"
+                placeholder="Permissions"
+                [maxSelectedLabels]="0"
+                [selectedItemsLabel]="'{0} items selected'"
+              ></p-multiSelect>
+              <div *ngIf="getFormControls.permissions.touched && getFormControls.permissions.invalid" class="text-danger">
+                <div *ngIf="getFormControls.permissions.errors.required">Permissions are required.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <app-button-submit
+              [label]="formIsEdit ? 'Edit' : 'Create'"
+              [form] = form
+              [submitting] = submitting
+            ></app-button-submit>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

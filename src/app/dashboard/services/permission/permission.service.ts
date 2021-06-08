@@ -1,0 +1,20 @@
+import {Injectable} from '@angular/core';
+import {HttpService} from '@core/httpClient/http.service';
+import {CrudService} from '@core/crud/crud.service';
+import {PermissionEndpoints} from './permission-endpoints';
+import {PermissionModel} from '../../models/PermissionModel';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PermissionService extends CrudService<PermissionModel> {
+
+  constructor(protected httpService: HttpService) {
+    super(httpService, new PermissionEndpoints());
+  }
+
+  protected buildDto(model: PermissionModel): any {
+    // It's necessary for the abstract method.
+  }
+
+}

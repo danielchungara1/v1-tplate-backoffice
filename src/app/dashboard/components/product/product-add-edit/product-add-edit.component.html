@@ -1,0 +1,110 @@
+<div class="card-container">
+  <div class="card">
+    <div class="card-header">
+      <div class="title-CardHeader">
+        {{formIsEdit ? 'Edit Product' : 'Create Product'}}
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-inputs form-addEdit">
+          <!--Name-->
+          <div class="form-group">
+            <label for="name1">Name *</label>
+            <div class="input-group">
+              <input
+                id="name1"
+                type="text"
+                pInputText
+                formControlName="name"
+                placeholder="Name"
+              />
+              <div *ngIf="getFormControls.name.touched && getFormControls.name.invalid" class="text-danger">
+                <div *ngIf="getFormControls.name.errors.required">Name is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Title-->
+          <div class="form-group">
+            <label for="title1">Title *</label>
+            <div class="input-group">
+              <input
+                id="title1"
+                type="text"
+                pInputText
+                formControlName="title"
+                placeholder="Title"
+              />
+              <div *ngIf="getFormControls.title.touched && getFormControls.title.invalid"
+                   class="text-danger">
+                <div *ngIf="getFormControls.title.errors.required">Title is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Description-->
+          <div class="form-group">
+            <label for="description1">Description *</label>
+            <div class="input-group">
+              <input
+                id="description1"
+                type="text"
+                pInputText
+                formControlName="description"
+                placeholder="Description"
+              />
+              <div *ngIf="getFormControls.description.touched && getFormControls.description.invalid"
+                   class="text-danger">
+                <div *ngIf="getFormControls.description.errors.required">Description is required.</div>
+              </div>
+            </div>
+          </div>
+
+          <!--Brands-->
+          <div class="form-group">
+            <label for="brand1">Brand</label>
+            <div class="input-group">
+              <p-dropdown
+                id="brand1"
+                [options]="brands"
+                formControlName="brand"
+                optionLabel="name"
+                placeholder="Brands"
+                showClear="true"
+                filter="true"
+              ></p-dropdown>
+            </div>
+          </div>
+
+          <!--Categories-->
+          <div class="form-group">
+            <label for="category1">Category</label>
+            <div class="input-group">
+              <p-dropdown
+                id="category1"
+                [options]="categories"
+                formControlName="category"
+                optionLabel="name"
+                placeholder="Categories"
+                showClear="true"
+                filter="true"
+              ></p-dropdown>
+            </div>
+          </div>
+
+        </div>
+
+      <div class="form-actions">
+        <app-button-submit
+          [label]="formIsEdit ? 'Edit' : 'Create'"
+          [form] = form
+          [submitting] = submitting
+        ></app-button-submit>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>

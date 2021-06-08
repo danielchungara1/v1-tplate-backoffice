@@ -25,6 +25,7 @@ export class EndPoints {
 
   // Permission Endpoints
   static PERMISSIONS_GET_ALL = environment.API + '/permissions/all';
+  static PERMISSIONS_GET_PAGE = environment.API + '/permissions';
 
   // Category Endpoints
   static CATEGORIES = environment.API + '/categories';

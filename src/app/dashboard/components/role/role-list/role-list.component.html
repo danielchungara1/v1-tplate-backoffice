@@ -1,0 +1,19 @@
+<div class="card-container">
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Role List</div>
+    </div>
+
+    <div class="card-body">
+      <app-search [crudService]="roleService"></app-search>
+
+      <app-role-table [crudService]="roleService"></app-role-table>
+
+      <app-paginator [crudService]="roleService"></app-paginator>
+    </div>
+
+  </div>
+
+</div>
