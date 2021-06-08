@@ -1,0 +1,20 @@
+<div class="card-container">
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Category List</div>
+    </div>
+
+    <div class="card-body">
+      <app-search [crudService]="categoryService"></app-search>
+
+      <app-category-table [crudService]="categoryService"></app-category-table>
+
+      <app-paginator [crudService]="categoryService"></app-paginator>
+    </div>
+
+  </div>
+
+</div>
+

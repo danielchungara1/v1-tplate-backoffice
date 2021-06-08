@@ -9,9 +9,12 @@ import {MaterialModule} from '@core/material.module';
 import {PrimengModule} from '@core/primeng.module';
 import {FooterComponent} from '@core/components/footer/footer.component';
 import {MapperService} from '@core/mapper/mapper.service';
-import {ButtonSubmitComponent} from '@core/components/button-submit/button-submit.component';
+import {ButtonSubmitComponent} from '@core/components/btn-submit/button-submit.component';
 import { ProgresBarComponent } from './components/progres-bar/progres-bar.component';
-
+import { SearchComponent } from './components/search/search.component';
+import { PagingComponent } from './components/paginator/paging.component';
+import {DeleteComponent} from '@core/components/btn-delete/delete.component';
+import { BtnEditComponent } from './components/btn-edit/btn-edit.component';
 
 @NgModule({
   imports: [
@@ -48,13 +51,21 @@ import { ProgresBarComponent } from './components/progres-bar/progres-bar.compon
     // Components
     FooterComponent,
     ButtonSubmitComponent,
-    ProgresBarComponent
+    ProgresBarComponent,
+    PagingComponent,
+    SearchComponent,
+    DeleteComponent,
+    BtnEditComponent
   ],
   declarations: [
     // Components
     FooterComponent,
     ButtonSubmitComponent,
-    ProgresBarComponent
+    ProgresBarComponent,
+    SearchComponent,
+    PagingComponent,
+    DeleteComponent,
+    BtnEditComponent,
   ]
 })
 export class CoreModule {

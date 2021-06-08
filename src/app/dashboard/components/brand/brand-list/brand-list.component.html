@@ -1,0 +1,20 @@
+<div class="card-container">
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Brand List</div>
+    </div>
+
+    <div class="card-body">
+      <app-search [crudService]="brandService"></app-search>
+
+      <app-brand-table [crudService]="brandService"></app-brand-table>
+
+      <app-paginator [crudService]="brandService"></app-paginator>
+    </div>
+
+  </div>
+
+</div>
+

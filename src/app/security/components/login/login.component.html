@@ -1,0 +1,70 @@
+<div class="card-container card-security">
+  <div class="card">
+
+    <div class="card-header">
+      <i class="fas fa-user-circle icon-CardHeader" pTooltip="Login"></i>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              id="username"
+              type="text"
+              pInputText
+              formControlName="username"
+              class="w-100"
+            />
+            <div *ngIf="getFormControls.username.touched && getFormControls.username.invalid" class="text-danger">
+              <div *ngIf="getFormControls.username.errors.required">Username is required.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password1">Password</label>
+            <p-password
+              id="password1"
+              formControlName="password"
+              [toggleMask]="true"
+              [inputStyle]="{'width':'100%'}"
+              [style]="{'width':'100%'}"
+              [feedback]=false
+            ></p-password>
+            <div *ngIf="getFormControls.password.touched && getFormControls.password.invalid" class="text-danger">
+              <div *ngIf="getFormControls.password.errors.required">Password is required.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+
+          <app-button-submit
+            label="Login"
+            [form] = loginForm
+            [submitting] = submitting
+          ></app-button-submit>
+
+        </div>
+
+      </form>
+      <div class="link-container">
+        <a
+          class="link"
+          routerLink="/security/reset-password"
+        >
+          Password forgotten?
+        </a>
+        <a
+          class="link"
+          routerLink="/security/sign-up"
+        >
+          Sing Up
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

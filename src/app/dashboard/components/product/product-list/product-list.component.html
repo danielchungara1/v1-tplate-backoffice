@@ -1,0 +1,19 @@
+<div class="card-container">
+
+  <div class="card">
+
+    <div class="card-header">
+      <div class="title-CardHeader">Product List</div>
+    </div>
+
+    <div class="card-body">
+      <app-search [crudService]="searchService"></app-search>
+
+      <app-product-table [crudService]="searchService"></app-product-table>
+
+      <app-paginator [crudService]="searchService"></app-paginator>
+    </div>
+
+  </div>
+
+</div>

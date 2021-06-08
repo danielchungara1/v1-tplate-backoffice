@@ -1,9 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LayoutComponent} from './access/shared/layout/layout.component';
-import {LoginComponent} from './access/components/login/login.component';
-import {ResetPasswordComponent} from './access/components/reset-password/reset-password.component';
-import {SignUpComponent} from './access/components/sign-up/sign-up.component';
+import {LayoutComponent} from './components/shared/layout/layout.component';
+import {LoginComponent} from './components/login/login.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
 
 
 const routes: Routes = [
