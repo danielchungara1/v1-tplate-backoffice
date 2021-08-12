@@ -7,7 +7,7 @@ export const environment = {
   production: true,
   NAME: name,
   VERSION: version,
-  API: 'http://3.142.54.225:8080/api/v1',
+  API: 'http://18.219.252.132:80/api/v1',
 };
 
 /*
