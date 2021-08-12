@@ -11,8 +11,8 @@ app.get('/*', (req, res) => res.sendFile(path.join(__dirname, PATH_PROJECT, 'ind
 
 const SERVER_PORT = 80;
 
-server.listen(process.env.PORT || SERVER_PORT, () => {
-    if (!process.env.PORT) {
-        console.log('Running application with Express on port ' + SERVER_PORT);      
-    }       
+server.listen(process.env.PORT || SERVER_PORT, () => {    
+    const REAL_PORT = !process.env.PORT ? SERVER_PORT : process.env.PORT;
+    console.log(`Running application with Express on port ${REAL_PORT}`);      
+    
 });
