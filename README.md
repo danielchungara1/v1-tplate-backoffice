@@ -42,6 +42,5 @@
 - Angular CLI 11
 
 ## Installation
-- Install dependencies
-- Run app ng serve
-
+- Install dependencies npm install
+- Run application ng serve

@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitting = false;
 
+  ADMIN_USER = 'administrador';
+  ADMIN_PASSWORD = 'tplate';
+
   constructor(private service: LoginService,
               private notificationService: NotificationService,
               public formBuilder: FormBuilder,
@@ -24,8 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      username: [this.ADMIN_USER, [Validators.required]],
+      password: [this.ADMIN_PASSWORD, [Validators.required]]
     });
 
   }
